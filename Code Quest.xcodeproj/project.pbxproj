@@ -146,6 +146,7 @@
 				TargetAttributes = {
 					10B20FCE1D909BD100142CAE = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = HHW676SF57;
 						ProvisioningStyle = Automatic;
 					};
 					10B20FE21D909BD200142CAE = {
@@ -339,6 +340,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = HHW676SF57;
 				INFOPLIST_FILE = "Code Quest/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "xyz.spookle.Code-Quest";
@@ -351,6 +353,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = HHW676SF57;
 				INFOPLIST_FILE = "Code Quest/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "xyz.spookle.Code-Quest";
