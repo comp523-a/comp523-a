@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController, UICollectionViewDelegate {
     
     let testGrid = [[2,2,2,2,2,2],
-                    [2,3,1,1,1,2],
+                    [2,3,1,1,4,2],
                     [2,2,2,2,2,2]]
 
     override func viewDidLoad() {
@@ -26,6 +26,8 @@ class ViewController: UIViewController, UICollectionViewDelegate {
                         cell = wallCell()
                     case 3:
                         cell = playerCell()
+                    case 4:
+                        cell = goalCell()
                     default:
                         cell = floorCell()
                 }
@@ -41,9 +43,6 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    
-
-
 
 }
 
