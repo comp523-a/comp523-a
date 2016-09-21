@@ -18,4 +18,15 @@ class gameCell: UIImageView {
     }
     */
 
+    override init(image: UIImage?) {
+        super.init(image: image)
+        self.isAccessibilityElement = true
+        self.accessibilityTraits = UIAccessibilityTraitImage
+        self.accessibilityLabel = "Empty"
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 }
