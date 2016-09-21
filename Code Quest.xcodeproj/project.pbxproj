@@ -22,6 +22,9 @@
 		10B20FDA1D909BD200142CAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10B20FD91D909BD200142CAE /* Assets.xcassets */; };
 		10B20FDD1D909BD200142CAE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10B20FDB1D909BD200142CAE /* LaunchScreen.storyboard */; };
 		10B20FE81D909BD200142CAE /* Code_QuestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B20FE71D909BD200142CAE /* Code_QuestTests.swift */; };
+		D95015981D9235EF00CFE700 /* wallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95015971D9235EF00CFE700 /* wallCell.swift */; };
+		D950159A1D92362900CFE700 /* playerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95015991D92362900CFE700 /* playerCell.swift */; };
+		D950159C1D92366200CFE700 /* floorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D950159B1D92366200CFE700 /* floorCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +57,9 @@
 		10B20FE31D909BD200142CAE /* Code QuestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Code QuestTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		10B20FE71D909BD200142CAE /* Code_QuestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Code_QuestTests.swift; sourceTree = "<group>"; };
 		10B20FE91D909BD200142CAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D95015971D9235EF00CFE700 /* wallCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = wallCell.swift; sourceTree = "<group>"; };
+		D95015991D92362900CFE700 /* playerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = playerCell.swift; sourceTree = "<group>"; };
+		D950159B1D92366200CFE700 /* floorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = floorCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +116,9 @@
 				103B18221D92350500BD00CE /* wall.png */,
 				103B18281D92351000BD00CE /* down.png */,
 				103B182A1D92357300BD00CE /* play.png */,
+				D95015971D9235EF00CFE700 /* wallCell.swift */,
+				D95015991D92362900CFE700 /* playerCell.swift */,
+				D950159B1D92366200CFE700 /* floorCell.swift */,
 			);
 			path = "Code Quest";
 			sourceTree = "<group>";
@@ -236,8 +245,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				10B20FD51D909BD200142CAE /* ViewController.swift in Sources */,
+				D95015981D9235EF00CFE700 /* wallCell.swift in Sources */,
 				10B20FD31D909BD200142CAE /* AppDelegate.swift in Sources */,
 				103733491D921F86006B5B0B /* gameCell.swift in Sources */,
+				D950159C1D92366200CFE700 /* floorCell.swift in Sources */,
+				D950159A1D92362900CFE700 /* playerCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
