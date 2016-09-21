@@ -152,7 +152,7 @@
 				TargetAttributes = {
 					10B20FCE1D909BD100142CAE = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = HHW676SF57;
+						DevelopmentTeam = 6Y5948ZXSW;
 						ProvisioningStyle = Automatic;
 					};
 					10B20FE21D909BD200142CAE = {
@@ -348,11 +348,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = HHW676SF57;
+				DEVELOPMENT_TEAM = 6Y5948ZXSW;
 				INFOPLIST_FILE = "Code Quest/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "xyz.spookle.Code-Quest";
+				PRODUCT_BUNDLE_IDENTIFIER = "xyz.Code-Quest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -362,11 +362,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = HHW676SF57;
+				DEVELOPMENT_TEAM = 6Y5948ZXSW;
 				INFOPLIST_FILE = "Code Quest/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "xyz.spookle.Code-Quest";
+				PRODUCT_BUNDLE_IDENTIFIER = "xyz.Code-Quest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

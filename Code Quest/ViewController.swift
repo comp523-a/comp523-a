@@ -18,7 +18,8 @@ class ViewController: UIViewController, UICollectionViewDelegate {
             for j in 0...4 {
             var cell1 = gameCell(image: UIImage(named:"grid.png"))
             cell1.frame = CGRect(x: 100 + 64*i, y: 100 + 64*j, width: 64, height: 64)
-            cell1.accessibilityTraits
+            cell1.isAccessibilityElement = true
+            cell1.accessibilityTraits = UIAccessibilityTraitImage
             cell1.accessibilityLabel = "gameCell, empty; x equals \(i) and y equals \(j)"
             self.view.addSubview(cell1)
             }
