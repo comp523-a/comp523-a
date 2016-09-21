@@ -13,6 +13,7 @@
 		10B20FDA1D909BD200142CAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10B20FD91D909BD200142CAE /* Assets.xcassets */; };
 		10B20FDD1D909BD200142CAE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10B20FDB1D909BD200142CAE /* LaunchScreen.storyboard */; };
 		10B20FE81D909BD200142CAE /* Code_QuestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B20FE71D909BD200142CAE /* Code_QuestTests.swift */; };
+		D95015941D921E4E00CFE700 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95015931D921E4E00CFE700 /* MyCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		10B20FE31D909BD200142CAE /* Code QuestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Code QuestTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		10B20FE71D909BD200142CAE /* Code_QuestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Code_QuestTests.swift; sourceTree = "<group>"; };
 		10B20FE91D909BD200142CAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D95015931D921E4E00CFE700 /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				10B20FD91D909BD200142CAE /* Assets.xcassets */,
 				10B20FDB1D909BD200142CAE /* LaunchScreen.storyboard */,
 				10B20FDE1D909BD200142CAE /* Info.plist */,
+				D95015931D921E4E00CFE700 /* MyCollectionViewCell.swift */,
 			);
 			path = "Code Quest";
 			sourceTree = "<group>";
@@ -146,7 +149,7 @@
 				TargetAttributes = {
 					10B20FCE1D909BD100142CAE = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = HHW676SF57;
+						DevelopmentTeam = 6Y5948ZXSW;
 						ProvisioningStyle = Automatic;
 					};
 					10B20FE21D909BD200142CAE = {
@@ -202,6 +205,7 @@
 			files = (
 				10B20FD51D909BD200142CAE /* ViewController.swift in Sources */,
 				10B20FD31D909BD200142CAE /* AppDelegate.swift in Sources */,
+				D95015941D921E4E00CFE700 /* MyCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,10 +344,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = HHW676SF57;
+				DEVELOPMENT_TEAM = 6Y5948ZXSW;
 				INFOPLIST_FILE = "Code Quest/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "xyz.spookle.Code-Quest";
+				PRODUCT_BUNDLE_IDENTIFIER = "xyz.Code-Quest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -353,10 +358,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = HHW676SF57;
+				DEVELOPMENT_TEAM = 6Y5948ZXSW;
 				INFOPLIST_FILE = "Code Quest/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "xyz.spookle.Code-Quest";
+				PRODUCT_BUNDLE_IDENTIFIER = "xyz.Code-Quest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -409,6 +415,7 @@
 				10B20FEE1D909BD200142CAE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		10B20FEF1D909BD200142CAE /* Build configuration list for PBXNativeTarget "Code QuestTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +424,7 @@
 				10B20FF11D909BD200142CAE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
