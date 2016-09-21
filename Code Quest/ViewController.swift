@@ -8,13 +8,33 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UICollectionViewDelegate {
     
-    @IBOutlet weak var buttonText: UIButton!
-    var counter = 0;
+    let testGrid = [[2,2,2,2,2,2],
+                    [2,3,1,1,4,2],
+                    [2,2,2,2,2,2]]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        for y in 0..<testGrid.count {
+            for x in 0..<testGrid[y].count {
+                var cell:gameCell
+                switch testGrid[y][x] {
+                    case 1:
+                        cell = floorCell()
+                    case 2:
+                        cell = wallCell()
+                    case 3:
+                        cell = playerCell()
+                    case 4:
+                        cell = goalCell()
+                    default:
+                        cell = floorCell()
+                }
+                cell.frame = CGRect(x: 100 + 64*x, y: 100 + 64*y, width: 64, height: 64)
+                self.view.addSubview(cell)
+            }
+        }
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -23,15 +43,6 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func buttonButton(_ sender: UIButton) {
-        counter += 1
-        buttonText.setTitle(String(counter), for: .normal)
-        
-        
-        
-    }
-    
-
 
 }
 
