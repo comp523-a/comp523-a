@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		103733491D921F86006B5B0B /* gameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103733481D921F86006B5B0B /* gameCell.swift */; };
 		103B181D1D9226EF00BD00CE /* grid.png in Resources */ = {isa = PBXBuildFile; fileRef = 103B181C1D9226EF00BD00CE /* grid.png */; };
+		103B18231D92350500BD00CE /* left.png in Resources */ = {isa = PBXBuildFile; fileRef = 103B181E1D92350500BD00CE /* left.png */; };
+		103B18241D92350500BD00CE /* player.png in Resources */ = {isa = PBXBuildFile; fileRef = 103B181F1D92350500BD00CE /* player.png */; };
+		103B18251D92350500BD00CE /* right.png in Resources */ = {isa = PBXBuildFile; fileRef = 103B18201D92350500BD00CE /* right.png */; };
+		103B18261D92350500BD00CE /* up.png in Resources */ = {isa = PBXBuildFile; fileRef = 103B18211D92350500BD00CE /* up.png */; };
+		103B18271D92350500BD00CE /* wall.png in Resources */ = {isa = PBXBuildFile; fileRef = 103B18221D92350500BD00CE /* wall.png */; };
+		103B18291D92351000BD00CE /* down.png in Resources */ = {isa = PBXBuildFile; fileRef = 103B18281D92351000BD00CE /* down.png */; };
+		103B182B1D92357300BD00CE /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 103B182A1D92357300BD00CE /* play.png */; };
 		10B20FD31D909BD200142CAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B20FD21D909BD200142CAE /* AppDelegate.swift */; };
 		10B20FD51D909BD200142CAE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B20FD41D909BD200142CAE /* ViewController.swift */; };
 		10B20FD81D909BD200142CAE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10B20FD61D909BD200142CAE /* Main.storyboard */; };
@@ -30,6 +37,13 @@
 /* Begin PBXFileReference section */
 		103733481D921F86006B5B0B /* gameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = gameCell.swift; sourceTree = "<group>"; };
 		103B181C1D9226EF00BD00CE /* grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grid.png; sourceTree = "<group>"; };
+		103B181E1D92350500BD00CE /* left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left.png; sourceTree = "<group>"; };
+		103B181F1D92350500BD00CE /* player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player.png; sourceTree = "<group>"; };
+		103B18201D92350500BD00CE /* right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right.png; sourceTree = "<group>"; };
+		103B18211D92350500BD00CE /* up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = up.png; sourceTree = "<group>"; };
+		103B18221D92350500BD00CE /* wall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wall.png; sourceTree = "<group>"; };
+		103B18281D92351000BD00CE /* down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down.png; sourceTree = "<group>"; };
+		103B182A1D92357300BD00CE /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		10B20FCF1D909BD200142CAE /* Code Quest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Code Quest.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		10B20FD21D909BD200142CAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10B20FD41D909BD200142CAE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +103,13 @@
 				10B20FDE1D909BD200142CAE /* Info.plist */,
 				103733481D921F86006B5B0B /* gameCell.swift */,
 				103B181C1D9226EF00BD00CE /* grid.png */,
+				103B181E1D92350500BD00CE /* left.png */,
+				103B181F1D92350500BD00CE /* player.png */,
+				103B18201D92350500BD00CE /* right.png */,
+				103B18211D92350500BD00CE /* up.png */,
+				103B18221D92350500BD00CE /* wall.png */,
+				103B18281D92351000BD00CE /* down.png */,
+				103B182A1D92357300BD00CE /* play.png */,
 			);
 			path = "Code Quest";
 			sourceTree = "<group>";
@@ -187,9 +208,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				10B20FDD1D909BD200142CAE /* LaunchScreen.storyboard in Resources */,
+				103B18291D92351000BD00CE /* down.png in Resources */,
+				103B18231D92350500BD00CE /* left.png in Resources */,
+				103B18271D92350500BD00CE /* wall.png in Resources */,
+				103B18241D92350500BD00CE /* player.png in Resources */,
 				103B181D1D9226EF00BD00CE /* grid.png in Resources */,
 				10B20FDA1D909BD200142CAE /* Assets.xcassets in Resources */,
+				103B182B1D92357300BD00CE /* play.png in Resources */,
 				10B20FD81D909BD200142CAE /* Main.storyboard in Resources */,
+				103B18261D92350500BD00CE /* up.png in Resources */,
+				103B18251D92350500BD00CE /* right.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
