@@ -10,29 +10,30 @@ import UIKit
 
 class ViewController: UIViewController, UICollectionViewDelegate {
     
-    let testGrid = [[2,2,2,2,2,2],
-                    [2,3,1,1,4,2],
-                    [2,2,2,2,2,2]]
+    var level : Level? = nil
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        for y in 0..<testGrid.count {
-            for x in 0..<testGrid[y].count {
-                var cell:gameCell
-                switch testGrid[y][x] {
-                    case 1:
-                        cell = floorCell()
-                    case 2:
-                        cell = wallCell()
-                    case 3:
-                        cell = playerCell()
-                    case 4:
-                        cell = goalCell()
-                    default:
-                        cell = floorCell()
+        if let testGrid = (level?.data)! as [[Int]]? {
+            for y in 0..<testGrid.count {
+                for x in 0..<testGrid[y].count {
+                    var cell:gameCell
+                    switch testGrid[y][x] {
+                        case 1:
+                            cell = floorCell()
+                        case 2:
+                            cell = wallCell()
+                        case 3:
+                            cell = playerCell()
+                        case 4:
+                            cell = goalCell()
+                        default:
+                            cell = floorCell()
+                    }
+                    cell.frame = CGRect(x: 100 + 64*x, y: 100 + 64*y, width: 64, height: 64)
+                    self.view.addSubview(cell)
                 }
-                cell.frame = CGRect(x: 100 + 64*x, y: 100 + 64*y, width: 64, height: 64)
-                self.view.addSubview(cell)
             }
         }
         // Do any additional setup after loading the view, typically from a nib.
