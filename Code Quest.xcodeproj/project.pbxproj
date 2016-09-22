@@ -23,6 +23,12 @@
 		10B20FDA1D909BD200142CAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10B20FD91D909BD200142CAE /* Assets.xcassets */; };
 		10B20FDD1D909BD200142CAE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10B20FDB1D909BD200142CAE /* LaunchScreen.storyboard */; };
 		10B20FE81D909BD200142CAE /* Code_QuestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B20FE71D909BD200142CAE /* Code_QuestTests.swift */; };
+		10BE0A8E1D933B74000CB810 /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BE0A8D1D933B74000CB810 /* Stage.swift */; };
+		10BE0A8F1D933B74000CB810 /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BE0A8D1D933B74000CB810 /* Stage.swift */; };
+		10BE0A911D933DAE000CB810 /* LevelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BE0A901D933DAE000CB810 /* LevelTableViewCell.swift */; };
+		10BE0A921D933DAE000CB810 /* LevelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BE0A901D933DAE000CB810 /* LevelTableViewCell.swift */; };
+		10BE0A941D934783000CB810 /* LevelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BE0A931D934783000CB810 /* LevelTableViewController.swift */; };
+		10BE0A961D9382E3000CB810 /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BE0A951D9382E3000CB810 /* GameController.swift */; };
 		D95015981D9235EF00CFE700 /* wallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95015971D9235EF00CFE700 /* wallCell.swift */; };
 		D950159A1D92362900CFE700 /* playerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95015991D92362900CFE700 /* playerCell.swift */; };
 		D950159C1D92366200CFE700 /* floorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D950159B1D92366200CFE700 /* floorCell.swift */; };
@@ -60,6 +66,10 @@
 		10B20FE31D909BD200142CAE /* Code QuestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Code QuestTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		10B20FE71D909BD200142CAE /* Code_QuestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Code_QuestTests.swift; sourceTree = "<group>"; };
 		10B20FE91D909BD200142CAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		10BE0A8D1D933B74000CB810 /* Stage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stage.swift; sourceTree = "<group>"; };
+		10BE0A901D933DAE000CB810 /* LevelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelTableViewCell.swift; sourceTree = "<group>"; };
+		10BE0A931D934783000CB810 /* LevelTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelTableViewController.swift; sourceTree = "<group>"; };
+		10BE0A951D9382E3000CB810 /* GameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 		D95015971D9235EF00CFE700 /* wallCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = wallCell.swift; sourceTree = "<group>"; };
 		D95015991D92362900CFE700 /* playerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = playerCell.swift; sourceTree = "<group>"; };
 		D950159B1D92366200CFE700 /* floorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = floorCell.swift; sourceTree = "<group>"; };
@@ -92,6 +102,7 @@
 				10B20FD01D909BD200142CAE /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		10B20FD01D909BD200142CAE /* Products */ = {
 			isa = PBXGroup;
@@ -107,7 +118,11 @@
 			children = (
 				10B20FD21D909BD200142CAE /* AppDelegate.swift */,
 				10B20FD41D909BD200142CAE /* ViewController.swift */,
+				10BE0A951D9382E3000CB810 /* GameController.swift */,
 				10B20FD61D909BD200142CAE /* Main.storyboard */,
+				10BE0A931D934783000CB810 /* LevelTableViewController.swift */,
+				10BE0A901D933DAE000CB810 /* LevelTableViewCell.swift */,
+				10BE0A8D1D933B74000CB810 /* Stage.swift */,
 				10B20FD91D909BD200142CAE /* Assets.xcassets */,
 				10B20FDB1D909BD200142CAE /* LaunchScreen.storyboard */,
 				10B20FDE1D909BD200142CAE /* Info.plist */,
@@ -188,7 +203,7 @@
 				TargetAttributes = {
 					10B20FCE1D909BD100142CAE = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 6Y5948ZXSW;
+						DevelopmentTeam = HHW676SF57;
 						ProvisioningStyle = Automatic;
 					};
 					10B20FE21D909BD200142CAE = {
@@ -253,10 +268,14 @@
 			files = (
 				10B20FD51D909BD200142CAE /* ViewController.swift in Sources */,
 				D95015981D9235EF00CFE700 /* wallCell.swift in Sources */,
+				10BE0A8E1D933B74000CB810 /* Stage.swift in Sources */,
 				10B20FD31D909BD200142CAE /* AppDelegate.swift in Sources */,
 				103733491D921F86006B5B0B /* gameCell.swift in Sources */,
+				10BE0A911D933DAE000CB810 /* LevelTableViewCell.swift in Sources */,
 				D950159C1D92366200CFE700 /* floorCell.swift in Sources */,
 				D950159A1D92362900CFE700 /* playerCell.swift in Sources */,
+				10BE0A961D9382E3000CB810 /* GameController.swift in Sources */,
+				10BE0A941D934783000CB810 /* LevelTableViewController.swift in Sources */,
 				D950159E1D923DD300CFE700 /* goalCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,7 +284,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10BE0A8F1D933B74000CB810 /* Stage.swift in Sources */,
 				10B20FE81D909BD200142CAE /* Code_QuestTests.swift in Sources */,
+				10BE0A921D933DAE000CB810 /* LevelTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,11 +417,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 6Y5948ZXSW;
+				DEVELOPMENT_TEAM = HHW676SF57;
 				INFOPLIST_FILE = "Code Quest/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "xyz.Code-Quest";
+				PRODUCT_BUNDLE_IDENTIFIER = "xyz.Code-Quest-2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -410,11 +431,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 6Y5948ZXSW;
+				DEVELOPMENT_TEAM = HHW676SF57;
 				INFOPLIST_FILE = "Code Quest/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "xyz.Code-Quest";
+				PRODUCT_BUNDLE_IDENTIFIER = "xyz.Code-Quest-2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
