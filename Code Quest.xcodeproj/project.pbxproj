@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		100C58D41D9C4937004EE1B2 /* CommandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100C58D31D9C4937004EE1B2 /* CommandView.swift */; };
 		103733491D921F86006B5B0B /* gameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103733481D921F86006B5B0B /* gameCell.swift */; };
 		103B181D1D9226EF00BD00CE /* grid.png in Resources */ = {isa = PBXBuildFile; fileRef = 103B181C1D9226EF00BD00CE /* grid.png */; };
 		103B18231D92350500BD00CE /* left.png in Resources */ = {isa = PBXBuildFile; fileRef = 103B181E1D92350500BD00CE /* left.png */; };
@@ -46,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		100C58D31D9C4937004EE1B2 /* CommandView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandView.swift; sourceTree = "<group>"; };
 		103733481D921F86006B5B0B /* gameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = gameCell.swift; sourceTree = "<group>"; };
 		103B181C1D9226EF00BD00CE /* grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grid.png; sourceTree = "<group>"; };
 		103B181E1D92350500BD00CE /* left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left.png; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				D950159B1D92366200CFE700 /* floorCell.swift */,
 				103B182C1D923D9400BD00CE /* goal.png */,
 				D950159D1D923DD300CFE700 /* goalCell.swift */,
+				100C58D31D9C4937004EE1B2 /* CommandView.swift */,
 			);
 			path = "Code Quest";
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				D95015981D9235EF00CFE700 /* wallCell.swift in Sources */,
 				10BE0A8E1D933B74000CB810 /* Stage.swift in Sources */,
 				10B20FD31D909BD200142CAE /* AppDelegate.swift in Sources */,
+				100C58D41D9C4937004EE1B2 /* CommandView.swift in Sources */,
 				103733491D921F86006B5B0B /* gameCell.swift in Sources */,
 				10BE0A911D933DAE000CB810 /* LevelTableViewCell.swift in Sources */,
 				D950159C1D92366200CFE700 /* floorCell.swift in Sources */,
