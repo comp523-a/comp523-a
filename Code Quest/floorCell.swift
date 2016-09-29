@@ -23,15 +23,15 @@ class floorCell: gameCell {
 		
     }
 	
-	func makePlayer() {
+	func makePlayer() {          //Changes image and VoiceOver label to player
 		isPlayer = true
 		self.image = UIImage(named:"player.png")
 		self.accessibilityLabel = "Player"
 	}
 	
-	func makeNotPlayer() {
+	func makeNotPlayer() {       //Changes image and VoiceOver label to floor
 		isPlayer = false
-		self.image = UIImage(named:"floor.png")
+		self.image = UIImage(named:"grid.png")
 		self.accessibilityLabel = "Floor"
 	}
     

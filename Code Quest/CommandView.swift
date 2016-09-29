@@ -11,7 +11,7 @@ import UIKit
 class CommandView: UIView {
 
 	var commandButtons = [Input]()
-	
+	var gameControllerView : ViewController?
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
@@ -34,6 +34,7 @@ class CommandView: UIView {
 	func commandTapped(commandButton: Input) {
 		let cmdIndex = commandButton.type
 		print("Command pressed \(cmdIndex)")
+		gameControllerView?.getButtonInput(type: commandButton.type)
 		//print(self.parent?.title)
 		
 	}

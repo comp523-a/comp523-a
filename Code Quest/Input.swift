@@ -12,6 +12,7 @@ class Input: UIButton {
 	
 	var type: Int
 	
+	
 	init(type: Int, frame: CGRect) {
 		self.type = type
 		super.init(frame: frame)
