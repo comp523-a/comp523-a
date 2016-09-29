@@ -10,19 +10,20 @@ import UIKit
 
 class CommandView: UIView {
 
-	var commandButtons = [UIButton]()
+	var commandButtons = [Input]()
+	
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		
 		for i in 0..<4 {
-			let command = UIButton(frame: CGRect(x: 0+50*i, y: 0, width: 44, height: 44));
-			command.backgroundColor = UIColor.cyan
+			let command = Input(type: i, frame: CGRect(x: 0+150*i, y: 0, width: 128, height: 128));
+			//command.backgroundColor = UIColor.cyan
 			
 			//command.addTarget(self, action: #selector(CommandView.commandTapped(_:)), for: .Touchdown)
 			command.addTarget(self, action: #selector(CommandView.commandTapped(commandButton:)), for: .touchDown)
 			commandButtons += [command]
-			addSubview(command)
+			self.addSubview(command)
 		}
 	}
 	
@@ -30,10 +31,11 @@ class CommandView: UIView {
 		return CGSize(width: 240, height:44)
 	}*/
 	
-	func commandTapped(commandButton: UIButton) {
-		var cmdIndex : Int?
-		cmdIndex = commandButtons.index(of: commandButton)
+	func commandTapped(commandButton: Input) {
+		let cmdIndex = commandButton.type
 		print("Command pressed \(cmdIndex)")
+		//print(self.parent?.title)
+		
 	}
 	
 }

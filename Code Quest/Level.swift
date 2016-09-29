@@ -11,10 +11,12 @@ import UIKit
 class Level {
     var name: String
     var data: [[Int]]
+	var startingLoc : (Int, Int)
     
-    init(name: String, data: [[Int]]){
+	init(name: String, data: [[Int]], startingLoc: (Int, Int)){
         self.name = name
         self.data = data
+		self.startingLoc = startingLoc
     }
     
     func getDimenions() -> (Int, Int) {
