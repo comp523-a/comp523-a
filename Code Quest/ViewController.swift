@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class ViewController: UIViewController, UICollectionViewDelegate {
     
     @IBOutlet var ButtonView: CommandView!
@@ -16,7 +17,10 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     var level : Level? = nil
 	var playerLoc : (Int, Int) = (0,0)
 	var tileArray : [[gameCell]] = [[]]
-
+	var commandQueue : [Int] = []
+	var currentStep : Int = 0
+    var tickTimer = Timer()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,14 +87,49 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 	}
 	
 	func getButtonInput(type:Int) {
-		switch type {
+		/*switch type {
 			case 0: moveLeft()
 			case 1: moveRight()
 			case 2: moveUp()
 			case 3: moveDown()
 			default: break
+		}*/
+		let imageNames = ["left", "right", "up", "down"]
+		let tempCell = UIImageView(image: UIImage(named:imageNames[type] + ".png"))
+		tempCell.frame = CGRect(x:70*commandQueue.count, y:512, width: 64, height:64)
+		tempCell.isAccessibilityElement = true
+		tempCell.accessibilityTraits = UIAccessibilityTraitImage
+		tempCell.accessibilityLabel = imageNames[type]
+		self.view.addSubview(tempCell)
+		commandQueue.append(type)
+        
+	}
+	
+
+    @IBAction func PlayButton(_ sender: UIButton) {
+        setPlayerLocation(newCoords: level!.startingLoc)
+		currentStep = 0
+		tickTimer = Timer.scheduledTimer(timeInterval: 0.5, target:self, selector:#selector(ViewController.loopCommando), userInfo:nil, repeats: true)
+		
+    }
+	
+	func loopCommando() {
+		print(currentStep)
+		print(commandQueue.count)
+		if currentStep < commandQueue.count {
+			switch commandQueue[currentStep] {
+			case 0: moveLeft()
+			case 1: moveRight()
+			case 2: moveUp()
+			case 3: moveDown()
+			default: break
+			}
+		}
+		currentStep += 1
+		if currentStep >= commandQueue.count {
+			print("invalidating...")
+			tickTimer.invalidate()
 		}
 	}
-
 }
 
