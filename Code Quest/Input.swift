@@ -19,12 +19,16 @@ class Input: UIButton {
 		switch type {
 		case 0:
 			self.setImage(UIImage(named:"left.png"), for: UIControlState.normal)
+			self.accessibilityLabel = "Left"
 		case 1:
 			self.setImage(UIImage(named:"right.png"), for: UIControlState.normal)
+			self.accessibilityLabel = "Right"
 		case 2:
 			self.setImage(UIImage(named:"up.png"), for: UIControlState.normal)
+			self.accessibilityLabel = "Up"
 		default:
 			self.setImage(UIImage(named:"down.png"), for: UIControlState.normal)
+			self.accessibilityLabel = "Down"
 		}
 		
 		
