@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 
 class ViewController: UIViewController, UICollectionViewDelegate {
@@ -20,8 +21,14 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 	var commandQueue : [Int] = []
 	var currentStep : Int = 0
     var tickTimer = Timer()
+	var leftSound = URL(fileURLWithPath: Bundle.main.path(forResource: "lefto", ofType:"wav")!);
+	var rightSound = URL(fileURLWithPath: Bundle.main.path(forResource: "righto", ofType:"wav")!);
+	var upSound = URL(fileURLWithPath: Bundle.main.path(forResource: "upo", ofType:"wav")!);
+	var downSound = URL(fileURLWithPath: Bundle.main.path(forResource: "downo", ofType:"wav")!);
+	var bumpSound = URL(fileURLWithPath: Bundle.main.path(forResource: "bumpo", ofType:"wav")!);
+	var audioPlayer = AVAudioPlayer()
     
-    
+	
     override func viewDidLoad() {
         super.viewDidLoad()
         if let testGrid = (level?.data)! as [[Int]]? {
@@ -67,34 +74,45 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 			oldLoc.makeNotPlayer()
 			playerLoc = newCoords
 			newLoc.makePlayer()
+		} else {
+			playSound(sound:bumpSound)
 		}
 	}
 	
+	func playSound(sound: URL) {
+		do {
+			try audioPlayer = AVAudioPlayer(contentsOf: sound)
+			audioPlayer.prepareToPlay()
+			audioPlayer.play()
+		} catch{
+			print ("oops!")
+	}
+	}
+	
 	func moveLeft() {
+		playSound(sound: leftSound)
 		setPlayerLocation(newCoords: (playerLoc.0 - 1, playerLoc.1))
 	}
 	
 	func moveRight() {
+		playSound(sound: rightSound)
 		setPlayerLocation(newCoords: (playerLoc.0 + 1, playerLoc.1))
 	}
 	
 	func moveUp() {
+		playSound(sound: upSound)
 		setPlayerLocation(newCoords: (playerLoc.0, playerLoc.1 - 1))
 	}
 	
 	func moveDown() {
+		playSound(sound: downSound)
 		setPlayerLocation(newCoords: (playerLoc.0, playerLoc.1 + 1))
 	}
 	
 	func getButtonInput(type:Int) {
-		/*switch type {
-			case 0: moveLeft()
-			case 1: moveRight()
-			case 2: moveUp()
-			case 3: moveDown()
-			default: break
-		}*/
+
 		let imageNames = ["left", "right", "up", "down"]
+		let sounds = [leftSound, rightSound, upSound, downSound]
 		let tempCell = UIImageView(image: UIImage(named:imageNames[type] + ".png"))
 		tempCell.frame = CGRect(x:70*commandQueue.count, y:512, width: 64, height:64)
 		tempCell.isAccessibilityElement = true
@@ -102,6 +120,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 		tempCell.accessibilityLabel = imageNames[type]
 		self.view.addSubview(tempCell)
 		commandQueue.append(type)
+		playSound(sound: sounds[type])
         
 	}
 	
@@ -114,8 +133,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     }
 	
 	func loopCommando() {
-		print(currentStep)
-		print(commandQueue.count)
+
 		if currentStep < commandQueue.count {
 			switch commandQueue[currentStep] {
 			case 0: moveLeft()
@@ -127,7 +145,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 		}
 		currentStep += 1
 		if currentStep >= commandQueue.count {
-			print("invalidating...")
+
 			tickTimer.invalidate()
 		}
 	}

@@ -19,6 +19,11 @@
 		103B182B1D92357300BD00CE /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 103B182A1D92357300BD00CE /* play.png */; };
 		103B182D1D923D9400BD00CE /* goal.png in Resources */ = {isa = PBXBuildFile; fileRef = 103B182C1D923D9400BD00CE /* goal.png */; };
 		108FBD241D9CA6A200043A08 /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108FBD231D9CA6A200043A08 /* Input.swift */; };
+		108FBD291D9CE03C00043A08 /* downo.wav in Resources */ = {isa = PBXBuildFile; fileRef = 108FBD251D9CE03C00043A08 /* downo.wav */; };
+		108FBD2A1D9CE03C00043A08 /* lefto.wav in Resources */ = {isa = PBXBuildFile; fileRef = 108FBD261D9CE03C00043A08 /* lefto.wav */; };
+		108FBD2B1D9CE03C00043A08 /* righto.wav in Resources */ = {isa = PBXBuildFile; fileRef = 108FBD271D9CE03C00043A08 /* righto.wav */; };
+		108FBD2C1D9CE03C00043A08 /* upo.wav in Resources */ = {isa = PBXBuildFile; fileRef = 108FBD281D9CE03C00043A08 /* upo.wav */; };
+		108FBD2E1D9CE45300043A08 /* bumpo.wav in Resources */ = {isa = PBXBuildFile; fileRef = 108FBD2D1D9CE45300043A08 /* bumpo.wav */; };
 		10B20FD31D909BD200142CAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B20FD21D909BD200142CAE /* AppDelegate.swift */; };
 		10B20FD51D909BD200142CAE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B20FD41D909BD200142CAE /* ViewController.swift */; };
 		10B20FD81D909BD200142CAE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10B20FD61D909BD200142CAE /* Main.storyboard */; };
@@ -59,6 +64,11 @@
 		103B182A1D92357300BD00CE /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		103B182C1D923D9400BD00CE /* goal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goal.png; sourceTree = "<group>"; };
 		108FBD231D9CA6A200043A08 /* Input.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
+		108FBD251D9CE03C00043A08 /* downo.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = downo.wav; sourceTree = "<group>"; };
+		108FBD261D9CE03C00043A08 /* lefto.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = lefto.wav; sourceTree = "<group>"; };
+		108FBD271D9CE03C00043A08 /* righto.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = righto.wav; sourceTree = "<group>"; };
+		108FBD281D9CE03C00043A08 /* upo.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = upo.wav; sourceTree = "<group>"; };
+		108FBD2D1D9CE45300043A08 /* bumpo.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bumpo.wav; sourceTree = "<group>"; };
 		10B20FCF1D909BD200142CAE /* Code Quest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Code Quest.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		10B20FD21D909BD200142CAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10B20FD41D909BD200142CAE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +153,11 @@
 				103B182C1D923D9400BD00CE /* goal.png */,
 				D950159D1D923DD300CFE700 /* goalCell.swift */,
 				100C58D31D9C4937004EE1B2 /* CommandView.swift */,
+				108FBD251D9CE03C00043A08 /* downo.wav */,
+				108FBD261D9CE03C00043A08 /* lefto.wav */,
+				108FBD271D9CE03C00043A08 /* righto.wav */,
+				108FBD281D9CE03C00043A08 /* upo.wav */,
+				108FBD2D1D9CE45300043A08 /* bumpo.wav */,
 			);
 			path = "Code Quest";
 			sourceTree = "<group>";
@@ -247,11 +262,16 @@
 				103B18271D92350500BD00CE /* wall.png in Resources */,
 				103B18241D92350500BD00CE /* player.png in Resources */,
 				103B181D1D9226EF00BD00CE /* grid.png in Resources */,
+				108FBD2C1D9CE03C00043A08 /* upo.wav in Resources */,
 				10B20FDA1D909BD200142CAE /* Assets.xcassets in Resources */,
+				108FBD291D9CE03C00043A08 /* downo.wav in Resources */,
 				103B182B1D92357300BD00CE /* play.png in Resources */,
 				10B20FD81D909BD200142CAE /* Main.storyboard in Resources */,
+				108FBD2A1D9CE03C00043A08 /* lefto.wav in Resources */,
+				108FBD2E1D9CE45300043A08 /* bumpo.wav in Resources */,
 				103B18261D92350500BD00CE /* up.png in Resources */,
 				103B18251D92350500BD00CE /* right.png in Resources */,
+				108FBD2B1D9CE03C00043A08 /* righto.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
