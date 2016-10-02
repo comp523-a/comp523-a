@@ -8,9 +8,14 @@
 
 import UIKit
 
+///Contains initialization data for a level
 class Level {
+	
+	///Level's name
     var name: String
+	///Array of (to be) enums specifying level data, accessed `data[y][x]`
     var data: [[Int]]
+	///The player's starting location, `(x,y)`
 	var startingLoc : (Int, Int)
     
 	init(name: String, data: [[Int]], startingLoc: (Int, Int)){
@@ -18,7 +23,12 @@ class Level {
         self.data = data
 		self.startingLoc = startingLoc
     }
-    
+	
+	/**
+	Returns the dimensions of the player grid
+	
+	-returns: dimensions of the grid as `(x,y)`
+	*/
     func getDimenions() -> (Int, Int) {
         let yd = data.count
         let xd = data[0].count

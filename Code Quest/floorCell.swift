@@ -8,8 +8,11 @@
 
 import UIKit
 
+
+///Floor cells, which current can be empty or contain the player
 class floorCell: gameCell {
 
+	///Indicates whether or not the cell contains the player
 	var isPlayer: Bool = false
 	
 	init() {
@@ -23,13 +26,15 @@ class floorCell: gameCell {
 		
     }
 	
-	func makePlayer() {          //Changes image and VoiceOver label to player
+	///Changes image and VoiceOver label to player
+	func makePlayer() {
 		isPlayer = true
 		self.image = UIImage(named:"player.png")
 		self.accessibilityLabel = "Player"
 	}
 	
-	func makeNotPlayer() {       //Changes image and VoiceOver label to floor
+	///Changes image and VoiceOver label to floor
+	func makeNotPlayer() {
 		isPlayer = false
 		self.image = UIImage(named:"grid.png")
 		self.accessibilityLabel = "Floor"

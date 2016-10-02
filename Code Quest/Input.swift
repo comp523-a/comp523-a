@@ -8,8 +8,10 @@
 
 import UIKit
 
+///Buttons that render in the instruction pane
 class Input: UIButton {
 	
+	///(To be) enum describing what type of command this button corresponds to 
 	var type: Int
 	
 	

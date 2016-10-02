@@ -8,6 +8,7 @@
 
 import UIKit
 
+///Superclass for  cells that render on the grid 
 class gameCell: UIImageView {
 
     /*

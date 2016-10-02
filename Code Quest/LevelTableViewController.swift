@@ -8,16 +8,20 @@
 
 import UIKit
 
+/// Renders level select screen
 class LevelTableViewController: UITableViewController {
-    
+	
+	///Array of level objects
     var levels = [Level]()
 
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 
         loadDefaultLevels()
     }
-    
+	
+	/// Contains data for built in levels and adds them to level array
     func loadDefaultLevels() {
         let data1 = [[2,2,2,2,2,2],
                      [2,1,1,1,4,2],

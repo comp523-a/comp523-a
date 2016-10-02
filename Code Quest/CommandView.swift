@@ -8,9 +8,12 @@
 
 import UIKit
 
+///View that contains command butotns
 class CommandView: UIView {
 
+	///Array of command buttons
 	var commandButtons = [Input]()
+	///The game controller that is this view's parent
 	var gameControllerView : ViewController?
 	
 	required init?(coder aDecoder: NSCoder) {

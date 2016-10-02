@@ -9,26 +9,38 @@
 import UIKit
 import AVFoundation
 
-
+/// Primary game controller. Contains most game state information
 class ViewController: UIViewController, UICollectionViewDelegate {
-    
+	
+	/// Child view that contains command butotns
     @IBOutlet var ButtonView: CommandView!
 	
-    
+    /// Level data for this stage
     var level : Level? = nil
+	/// Player's current location
 	var playerLoc : (Int, Int) = (0,0)
+	/// Array of gameCells representing the player's current location
 	var tileArray : [[gameCell]] = [[]]
+	/// Queue of current commands
 	var commandQueue : [Int] = []
+	/// Current location in commandQueue
 	var currentStep : Int = 0
+	/// Timer that controls player movement
     var tickTimer = Timer()
+	/// Sound that plays when moving left
 	var leftSound = URL(fileURLWithPath: Bundle.main.path(forResource: "lefto", ofType:"wav")!);
+	/// Sound that plays when moving right
 	var rightSound = URL(fileURLWithPath: Bundle.main.path(forResource: "righto", ofType:"wav")!);
+	/// Sound that plays when moving up
 	var upSound = URL(fileURLWithPath: Bundle.main.path(forResource: "upo", ofType:"wav")!);
+	/// Sound that plays when moving down
 	var downSound = URL(fileURLWithPath: Bundle.main.path(forResource: "downo", ofType:"wav")!);
+	/// Sound that plays when bumping into a wall
 	var bumpSound = URL(fileURLWithPath: Bundle.main.path(forResource: "bumpo", ofType:"wav")!);
+	/// Audio player for sound effects
 	var audioPlayer = AVAudioPlayer()
     
-	
+	/// Controls game logic
     override func viewDidLoad() {
         super.viewDidLoad()
         if let testGrid = (level?.data)! as [[Int]]? {
@@ -69,7 +81,13 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         // Dispose of any resources that can be recreated.
     }
 	
-	func setPlayerLocation(newCoords: (Int, Int)) {     //Changes player location coordinates and draws player on floor cell
+	/**
+	Sets the player to a location if its an empty cell, otherwise plays a noise
+	
+	- parameter newCoords: Desired location in (x,y)
+	
+	*/
+	func setPlayerLocation(newCoords: (Int, Int)) {
 		if let oldLoc = tileArray[playerLoc.1][playerLoc.0] as? floorCell, let newLoc = tileArray[newCoords.1][newCoords.0] as? floorCell {
 			oldLoc.makeNotPlayer()
 			playerLoc = newCoords
@@ -79,6 +97,11 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 		}
 	}
 	
+	/**
+	Plays a sound effect specified by a URL ()
+	
+	- parameter sound: Desired sound effect
+	*/
 	func playSound(sound: URL) {
 		do {
 			try audioPlayer = AVAudioPlayer(contentsOf: sound)
@@ -86,29 +109,40 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 			audioPlayer.play()
 		} catch{
 			print ("oops!")
-	}
+		}
 	}
 	
+	/// Tries to move the player one tile left
 	func moveLeft() {
 		playSound(sound: leftSound)
 		setPlayerLocation(newCoords: (playerLoc.0 - 1, playerLoc.1))
 	}
 	
+	/// Tries to move the player one tile right
 	func moveRight() {
 		playSound(sound: rightSound)
 		setPlayerLocation(newCoords: (playerLoc.0 + 1, playerLoc.1))
 	}
 	
+	/// Tries to move the player one tile up
 	func moveUp() {
 		playSound(sound: upSound)
 		setPlayerLocation(newCoords: (playerLoc.0, playerLoc.1 - 1))
 	}
 	
+	/// Tries to move the player one tile down
 	func moveDown() {
 		playSound(sound: downSound)
 		setPlayerLocation(newCoords: (playerLoc.0, playerLoc.1 + 1))
 	}
 	
+	/**
+	Gets button input from the Input controller
+	
+	- parameter type: (To be) enum specifying type of button
+	
+	
+	*/
 	func getButtonInput(type:Int) {
 
 		let imageNames = ["left", "right", "up", "down"]
@@ -124,7 +158,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         
 	}
 	
-
+	/// Action for Play Button
     @IBAction func PlayButton(_ sender: UIButton) {
         setPlayerLocation(newCoords: level!.startingLoc)
 		currentStep = 0
@@ -132,6 +166,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 		
     }
 	
+	/// Executes one step of the game loop
 	func loopCommando() {
 
 		if currentStep < commandQueue.count {

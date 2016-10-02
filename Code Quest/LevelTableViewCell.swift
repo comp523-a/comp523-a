@@ -8,6 +8,7 @@
 
 import UIKit
 
+///Prototype cell for level selector
 class LevelTableViewCell: UITableViewCell {
 
     //@IBOutlet weak var levelLabel: UIView!
