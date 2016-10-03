@@ -14,15 +14,15 @@ class CommandHandler {
 	/// Cell-based representation of the level
 	var level: [[gameCell]]
 	/// Sound that plays when moving left
-	var leftSound = URL(fileURLWithPath: Bundle.main.path(forResource: "lefto", ofType:"wav")!);
+	var leftSound = URL(fileURLWithPath: Bundle.main.path(forResource: "left", ofType:"wav")!);
 	/// Sound that plays when moving right
-	var rightSound = URL(fileURLWithPath: Bundle.main.path(forResource: "righto", ofType:"wav")!);
+	var rightSound = URL(fileURLWithPath: Bundle.main.path(forResource: "right", ofType:"wav")!);
 	/// Sound that plays when moving up
-	var upSound = URL(fileURLWithPath: Bundle.main.path(forResource: "upo", ofType:"wav")!);
+	var upSound = URL(fileURLWithPath: Bundle.main.path(forResource: "up", ofType:"wav")!);
 	/// Sound that plays when moving down
-	var downSound = URL(fileURLWithPath: Bundle.main.path(forResource: "downo", ofType:"wav")!);
+	var downSound = URL(fileURLWithPath: Bundle.main.path(forResource: "down", ofType:"wav")!);
 	/// Sound that plays when bumping into a wall
-	var bumpSound = URL(fileURLWithPath: Bundle.main.path(forResource: "bumpo", ofType:"wav")!);
+	var bumpSound = URL(fileURLWithPath: Bundle.main.path(forResource: "bump", ofType:"wav")!);
 	/// Audio player for sound effects
 	var audioPlayer = AVAudioPlayer()
 	

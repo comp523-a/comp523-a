@@ -73,9 +73,6 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 			}
         }
 		
-		// TODO: Find out why this constructor causes app to crash
-		//			-inout pass is not causing the crash
-		//			-crash occurs even w/ empty constructor
 		self.cmdHandler = CommandHandler(level: &tileArray)
 		
 		ButtonView.gameControllerView = self
