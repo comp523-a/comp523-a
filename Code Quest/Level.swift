@@ -17,7 +17,7 @@ class Level {
     var data: [[Int]]
 	///The player's starting location, `(x,y)`
 	var startingLoc : (Int, Int)
-    
+	
 	init(name: String, data: [[Int]], startingLoc: (Int, Int)){
         self.name = name
         self.data = data

@@ -28,17 +28,19 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 	/// Timer that controls player movement
     var tickTimer = Timer()
 	/// Sound that plays when moving left
-	var leftSound = URL(fileURLWithPath: Bundle.main.path(forResource: "lefto", ofType:"wav")!);
+	var leftSound = URL(fileURLWithPath: Bundle.main.path(forResource: "left", ofType:"wav")!);
 	/// Sound that plays when moving right
-	var rightSound = URL(fileURLWithPath: Bundle.main.path(forResource: "righto", ofType:"wav")!);
+	var rightSound = URL(fileURLWithPath: Bundle.main.path(forResource: "right", ofType:"wav")!);
 	/// Sound that plays when moving up
-	var upSound = URL(fileURLWithPath: Bundle.main.path(forResource: "upo", ofType:"wav")!);
+	var upSound = URL(fileURLWithPath: Bundle.main.path(forResource: "up", ofType:"wav")!);
 	/// Sound that plays when moving down
-	var downSound = URL(fileURLWithPath: Bundle.main.path(forResource: "downo", ofType:"wav")!);
+	var downSound = URL(fileURLWithPath: Bundle.main.path(forResource: "down", ofType:"wav")!);
 	/// Sound that plays when bumping into a wall
-	var bumpSound = URL(fileURLWithPath: Bundle.main.path(forResource: "bumpo", ofType:"wav")!);
+	var bumpSound = URL(fileURLWithPath: Bundle.main.path(forResource: "bump", ofType:"wav")!);
 	/// Audio player for sound effects
 	var audioPlayer = AVAudioPlayer()
+	/// Command handler object
+	var cmdHandler : CommandHandler? = nil
     
 	/// Controls game logic
     override func viewDidLoad() {
@@ -70,6 +72,11 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 				player.makePlayer()       //Draw player on starting position cell
 			}
         }
+		
+		// TODO: Find out why this constructor causes app to crash
+		//			-inout pass is not causing the crash
+		//			-crash occurs even w/ empty constructor
+		self.cmdHandler = CommandHandler(level: &tileArray)
 		
 		ButtonView.gameControllerView = self
 		
@@ -170,6 +177,8 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 	func loopCommando() {
 
 		if currentStep < commandQueue.count {
+			cmdHandler?.handleCmd(input: commandQueue[currentStep], playerLoc: &playerLoc)
+			/*
 			switch commandQueue[currentStep] {
 			case 0: moveLeft()
 			case 1: moveRight()
@@ -177,6 +186,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 			case 3: moveDown()
 			default: break
 			}
+			*/
 		}
 		currentStep += 1
 		if currentStep >= commandQueue.count {
