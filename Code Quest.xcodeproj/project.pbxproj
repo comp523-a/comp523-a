@@ -36,6 +36,7 @@
 		3AB088F21DA2E5350061F4D9 /* left.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3AB088ED1DA2E5350061F4D9 /* left.wav */; };
 		3AB088F31DA2E5350061F4D9 /* right.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3AB088EE1DA2E5350061F4D9 /* right.wav */; };
 		3AB088F41DA2E5350061F4D9 /* up.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3AB088EF1DA2E5350061F4D9 /* up.wav */; };
+		3AB088F61DA2FF570061F4D9 /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB088F51DA2FF570061F4D9 /* SoundPlayer.swift */; };
 		D95015981D9235EF00CFE700 /* wallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95015971D9235EF00CFE700 /* wallCell.swift */; };
 		D950159A1D92362900CFE700 /* playerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95015991D92362900CFE700 /* playerCell.swift */; };
 		D950159C1D92366200CFE700 /* floorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D950159B1D92366200CFE700 /* floorCell.swift */; };
@@ -84,6 +85,7 @@
 		3AB088ED1DA2E5350061F4D9 /* left.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = left.wav; sourceTree = "<group>"; };
 		3AB088EE1DA2E5350061F4D9 /* right.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = right.wav; sourceTree = "<group>"; };
 		3AB088EF1DA2E5350061F4D9 /* up.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = up.wav; sourceTree = "<group>"; };
+		3AB088F51DA2FF570061F4D9 /* SoundPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
 		D95015971D9235EF00CFE700 /* wallCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = wallCell.swift; sourceTree = "<group>"; };
 		D95015991D92362900CFE700 /* playerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = playerCell.swift; sourceTree = "<group>"; };
 		D950159B1D92366200CFE700 /* floorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = floorCell.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				D950159D1D923DD300CFE700 /* goalCell.swift */,
 				100C58D31D9C4937004EE1B2 /* CommandView.swift */,
 				3AB088E91DA2E0D50061F4D9 /* CommandHandler.swift */,
+				3AB088F51DA2FF570061F4D9 /* SoundPlayer.swift */,
 			);
 			path = "Code Quest";
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				103733491D921F86006B5B0B /* gameCell.swift in Sources */,
 				10BE0A911D933DAE000CB810 /* LevelTableViewCell.swift in Sources */,
 				D950159C1D92366200CFE700 /* floorCell.swift in Sources */,
+				3AB088F61DA2FF570061F4D9 /* SoundPlayer.swift in Sources */,
 				3AB088EA1DA2E0D50061F4D9 /* CommandHandler.swift in Sources */,
 				D950159A1D92362900CFE700 /* playerCell.swift in Sources */,
 				10BE0A941D934783000CB810 /* LevelTableViewController.swift in Sources */,

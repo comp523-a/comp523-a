@@ -13,23 +13,19 @@ class CommandHandler {
 	
 	/// Cell-based representation of the level
 	var level: [[gameCell]]
-	/// Sound that plays when moving left
-	var leftSound = URL(fileURLWithPath: Bundle.main.path(forResource: "left", ofType:"wav")!);
-	/// Sound that plays when moving right
-	var rightSound = URL(fileURLWithPath: Bundle.main.path(forResource: "right", ofType:"wav")!);
-	/// Sound that plays when moving up
-	var upSound = URL(fileURLWithPath: Bundle.main.path(forResource: "up", ofType:"wav")!);
-	/// Sound that plays when moving down
-	var downSound = URL(fileURLWithPath: Bundle.main.path(forResource: "down", ofType:"wav")!);
-	/// Sound that plays when bumping into a wall
-	var bumpSound = URL(fileURLWithPath: Bundle.main.path(forResource: "bump", ofType:"wav")!);
-	/// Audio player for sound effects
-	var audioPlayer = AVAudioPlayer()
+	let soundPlayer = SoundPlayer()
 	
 	init(level : inout [[gameCell]]) {
 		self.level = level
 	}
 	
+	/**
+	Handles a single command
+	
+	- parameter input: integer indicating selected command
+	- parameter playerLoc: tuple indicating the coordinates of the player
+	
+	*/
 	func handleCmd(input: Int, playerLoc: inout(Int, Int)) {
 		// Switch command input type, call appropriate functions
 		// Current encoding:	0 - Left
@@ -51,50 +47,42 @@ class CommandHandler {
 		// Get player location offsets from move direction
 		var dx = 0
 		var dy = 0
-		var sound = leftSound
+		var sound = SoundEffect.LEFT
 		
 		switch input {
 			case 0:
 				dx = -1
 			case 1:
-				sound = rightSound
+				sound = SoundEffect.RIGHT
 				dx = 1
 			case 2:
-				sound = upSound
+				sound = SoundEffect.UP
 				dy = -1
 			case 3:
-				sound = downSound
+				sound = SoundEffect.DOWN
 				dy = 1
 			default:
 				print("Out of range input to moveCmd: \(input)")
 		}
 		let newCoords = (playerLoc.0 + dx, playerLoc.1 + dy)
-		setPlayerLoc(playerLoc: &playerLoc, newCoords: newCoords)
-		playSound(sound: sound)
+		if(setPlayerLoc(playerLoc: &playerLoc, newCoords: newCoords)) {
+			soundPlayer.playSound(sound: sound)
+		} else {
+			soundPlayer.playSound(sound: SoundEffect.BUMP)
+		}
 	}
 	
 	// Utility functions
 	
-	func setPlayerLoc(playerLoc: inout (Int, Int), newCoords: (Int, Int)) {
+	func setPlayerLoc(playerLoc: inout (Int, Int), newCoords: (Int, Int)) -> Bool {
 		if let oldLoc = level[playerLoc.1][playerLoc.0] as? floorCell, let newLoc = level[newCoords.1][newCoords.0] as? floorCell {
 			oldLoc.makeNotPlayer()
 			playerLoc = newCoords
 			newLoc.makePlayer()
+			return true
 		} else {
-			playSound(sound:bumpSound)
+			return false
 		}
 	}
-	
-	func playSound(sound: URL) {
-		do {
-			try audioPlayer = AVAudioPlayer(contentsOf: sound)
-			audioPlayer.prepareToPlay()
-			audioPlayer.play()
-		} catch{
-			print ("oops!")
-		}
-	}
-	
-	
 	
 }

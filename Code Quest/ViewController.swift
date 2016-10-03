@@ -27,20 +27,10 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 	var currentStep : Int = 0
 	/// Timer that controls player movement
     var tickTimer = Timer()
-	/// Sound that plays when moving left
-	var leftSound = URL(fileURLWithPath: Bundle.main.path(forResource: "left", ofType:"wav")!);
-	/// Sound that plays when moving right
-	var rightSound = URL(fileURLWithPath: Bundle.main.path(forResource: "right", ofType:"wav")!);
-	/// Sound that plays when moving up
-	var upSound = URL(fileURLWithPath: Bundle.main.path(forResource: "up", ofType:"wav")!);
-	/// Sound that plays when moving down
-	var downSound = URL(fileURLWithPath: Bundle.main.path(forResource: "down", ofType:"wav")!);
-	/// Sound that plays when bumping into a wall
-	var bumpSound = URL(fileURLWithPath: Bundle.main.path(forResource: "bump", ofType:"wav")!);
-	/// Audio player for sound effects
-	var audioPlayer = AVAudioPlayer()
 	/// Command handler object
-	var cmdHandler : CommandHandler? = nil
+	var cmdHandler: CommandHandler? = nil
+	/// Sound player object
+	let soundPlayer = SoundPlayer()
     
 	/// Controls game logic
     override func viewDidLoad() {
@@ -84,33 +74,17 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-	
-	/**
-	Plays a sound effect specified by a URL ()
-	
-	- parameter sound: Desired sound effect
-	*/
-	func playSound(sound: URL) {
-		do {
-			try audioPlayer = AVAudioPlayer(contentsOf: sound)
-			audioPlayer.prepareToPlay()
-			audioPlayer.play()
-		} catch{
-			print ("oops!")
-		}
-	}
-	
+
 	/**
 	Gets button input from the Input controller
 	
 	- parameter type: (To be) enum specifying type of button
-	
-	
+
 	*/
 	func getButtonInput(type:Int) {
 
 		let imageNames = ["left", "right", "up", "down"]
-		let sounds = [leftSound, rightSound, upSound, downSound]
+		let sounds = [SoundEffect.LEFT, SoundEffect.RIGHT, SoundEffect.UP, SoundEffect.DOWN]
 		let tempCell = UIImageView(image: UIImage(named:imageNames[type] + ".png"))
 		tempCell.frame = CGRect(x:70*commandQueue.count, y:512, width: 64, height:64)
 		tempCell.isAccessibilityElement = true
@@ -118,8 +92,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 		tempCell.accessibilityLabel = imageNames[type]
 		self.view.addSubview(tempCell)
 		commandQueue.append(type)
-		playSound(sound: sounds[type])
-        
+		soundPlayer.playSound(sound: sounds[type])
 	}
 	
 	/// Action for Play Button
@@ -130,12 +103,11 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 		cmdHandler?.setPlayerLoc(playerLoc: &playerLoc, newCoords: level!.startingLoc)
 		
 		currentStep = 0
-		tickTimer = Timer.scheduledTimer(timeInterval: 0.5, target:self, selector:#selector(ViewController.loopCommando), userInfo:nil, repeats: true)
-		
+		tickTimer = Timer.scheduledTimer(timeInterval: 0.5, target:self, selector:#selector(ViewController.runCommands), userInfo:nil, repeats: true)
     }
 	
 	/// Executes one step of the game loop
-	func loopCommando() {
+	func runCommands() {
 
 		if currentStep < commandQueue.count {
 			cmdHandler?.handleCmd(input: commandQueue[currentStep], playerLoc: &playerLoc)
