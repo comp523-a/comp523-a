@@ -86,22 +86,6 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     }
 	
 	/**
-	Sets the player to a location if its an empty cell, otherwise plays a noise
-	
-	- parameter newCoords: Desired location in (x,y)
-	
-	*/
-	func setPlayerLocation(newCoords: (Int, Int)) {
-		if let oldLoc = tileArray[playerLoc.1][playerLoc.0] as? floorCell, let newLoc = tileArray[newCoords.1][newCoords.0] as? floorCell {
-			oldLoc.makeNotPlayer()
-			playerLoc = newCoords
-			newLoc.makePlayer()
-		} else {
-			playSound(sound:bumpSound)
-		}
-	}
-	
-	/**
 	Plays a sound effect specified by a URL ()
 	
 	- parameter sound: Desired sound effect
@@ -114,30 +98,6 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 		} catch{
 			print ("oops!")
 		}
-	}
-	
-	/// Tries to move the player one tile left
-	func moveLeft() {
-		playSound(sound: leftSound)
-		setPlayerLocation(newCoords: (playerLoc.0 - 1, playerLoc.1))
-	}
-	
-	/// Tries to move the player one tile right
-	func moveRight() {
-		playSound(sound: rightSound)
-		setPlayerLocation(newCoords: (playerLoc.0 + 1, playerLoc.1))
-	}
-	
-	/// Tries to move the player one tile up
-	func moveUp() {
-		playSound(sound: upSound)
-		setPlayerLocation(newCoords: (playerLoc.0, playerLoc.1 - 1))
-	}
-	
-	/// Tries to move the player one tile down
-	func moveDown() {
-		playSound(sound: downSound)
-		setPlayerLocation(newCoords: (playerLoc.0, playerLoc.1 + 1))
 	}
 	
 	/**
@@ -164,7 +124,11 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 	
 	/// Action for Play Button
     @IBAction func PlayButton(_ sender: UIButton) {
-        setPlayerLocation(newCoords: level!.startingLoc)
+		
+		// Later, instead of accessing one of cmdHandler's helper methods,
+		// simply send a reset command
+		cmdHandler?.setPlayerLoc(playerLoc: &playerLoc, newCoords: level!.startingLoc)
+		
 		currentStep = 0
 		tickTimer = Timer.scheduledTimer(timeInterval: 0.5, target:self, selector:#selector(ViewController.loopCommando), userInfo:nil, repeats: true)
 		
@@ -175,15 +139,6 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 
 		if currentStep < commandQueue.count {
 			cmdHandler?.handleCmd(input: commandQueue[currentStep], playerLoc: &playerLoc)
-			/*
-			switch commandQueue[currentStep] {
-			case 0: moveLeft()
-			case 1: moveRight()
-			case 2: moveUp()
-			case 3: moveDown()
-			default: break
-			}
-			*/
 		}
 		currentStep += 1
 		if currentStep >= commandQueue.count {

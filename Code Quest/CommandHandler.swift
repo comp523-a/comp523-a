@@ -69,20 +69,21 @@ class CommandHandler {
 				print("Out of range input to moveCmd: \(input)")
 		}
 		let newCoords = (playerLoc.0 + dx, playerLoc.1 + dy)
-		
-		
-		// Execute move
+		setPlayerLoc(playerLoc: &playerLoc, newCoords: newCoords)
+		playSound(sound: sound)
+	}
+	
+	// Utility functions
+	
+	func setPlayerLoc(playerLoc: inout (Int, Int), newCoords: (Int, Int)) {
 		if let oldLoc = level[playerLoc.1][playerLoc.0] as? floorCell, let newLoc = level[newCoords.1][newCoords.0] as? floorCell {
 			oldLoc.makeNotPlayer()
 			playerLoc = newCoords
 			newLoc.makePlayer()
-			playSound(sound: sound)
 		} else {
 			playSound(sound:bumpSound)
 		}
 	}
-	
-	// Utility functions
 	
 	func playSound(sound: URL) {
 		do {
