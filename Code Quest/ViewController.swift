@@ -29,8 +29,6 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     var tickTimer = Timer()
 	/// Command handler object
 	var cmdHandler: CommandHandler? = nil
-	/// Sound player object
-	let soundPlayer = SoundPlayer()
     
 	/// Controls game logic
     override func viewDidLoad() {
@@ -84,7 +82,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 	func getButtonInput(type:Int) {
 
 		let imageNames = ["left", "right", "up", "down"]
-		let sounds = [SoundEffect.LEFT, SoundEffect.RIGHT, SoundEffect.UP, SoundEffect.DOWN]
+		let sounds = [leftSound, rightSound, upSound, downSound]
 		let tempCell = UIImageView(image: UIImage(named:imageNames[type] + ".png"))
 		tempCell.frame = CGRect(x:70*commandQueue.count, y:512, width: 64, height:64)
 		tempCell.isAccessibilityElement = true
@@ -92,7 +90,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 		tempCell.accessibilityLabel = imageNames[type]
 		self.view.addSubview(tempCell)
 		commandQueue.append(type)
-		soundPlayer.playSound(sound: sounds[type])
+        playSound(sound: sounds[type])
 	}
 	
 	/// Action for Play Button

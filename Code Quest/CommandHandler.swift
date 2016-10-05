@@ -13,7 +13,6 @@ class CommandHandler {
 	
 	/// Cell-based representation of the level
 	var level: [[gameCell]]
-	let soundPlayer = SoundPlayer()
 	
 	init(level : inout [[gameCell]]) {
 		self.level = level
@@ -47,33 +46,38 @@ class CommandHandler {
 		// Get player location offsets from move direction
 		var dx = 0
 		var dy = 0
-		var sound = SoundEffect.LEFT
+		var sounds = [leftSound, rightSound, upSound, downSound]
 		
 		switch input {
 			case 0:
 				dx = -1
 			case 1:
-				sound = SoundEffect.RIGHT
 				dx = 1
 			case 2:
-				sound = SoundEffect.UP
 				dy = -1
 			case 3:
-				sound = SoundEffect.DOWN
 				dy = 1
 			default:
 				print("Out of range input to moveCmd: \(input)")
 		}
 		let newCoords = (playerLoc.0 + dx, playerLoc.1 + dy)
 		if(setPlayerLoc(playerLoc: &playerLoc, newCoords: newCoords)) {
-			soundPlayer.playSound(sound: sound)
+			playSound(sound: sounds[input])
 		} else {
-			soundPlayer.playSound(sound: SoundEffect.BUMP)
+			playSound(sound: bumpSound)
 		}
 	}
 	
 	// Utility functions
 	
+	/**
+	Updates the level tile grid to reflect a new player position, if the player
+	is allowed to be there
+	
+	-parameter playerLoc: current player loc
+	-parameter newCoords: coordinates to try to move the player to
+	
+	*/
 	func setPlayerLoc(playerLoc: inout (Int, Int), newCoords: (Int, Int)) -> Bool {
 		if let oldLoc = level[playerLoc.1][playerLoc.0] as? floorCell, let newLoc = level[newCoords.1][newCoords.0] as? floorCell {
 			oldLoc.makeNotPlayer()
