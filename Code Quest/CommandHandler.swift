@@ -14,6 +14,16 @@ class CommandHandler {
 	/// Cell-based representation of the level
 	var level: [[gameCell]]
 	
+	/*
+		NOTE:	Make sure that the level is working as intended, i.e. providing
+				level as an inout parameter actually gives a pointer to the tile array
+				rather than copying in then copying back after the constructor is run.
+				If it is doing the latter, it may appear to work because playerLoc is being
+				copied in and back as well, and the player location is the only thing that can
+				visibly change so far. In this case, it's possible that other commands
+				implemented here may change elements of the grid other than the player location
+				and that change won't be reflected in the ViewController.
+	*/
 	init(level : inout [[gameCell]]) {
 		self.level = level
 	}
