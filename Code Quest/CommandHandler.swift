@@ -13,19 +13,11 @@ class CommandHandler {
 	
 	/// Cell-based representation of the level
 	var level: [[gameCell]]
-	
-	/*
-		NOTE:	Make sure that the level is working as intended, i.e. providing
-				level as an inout parameter actually gives a pointer to the tile array
-				rather than copying in then copying back after the constructor is run.
-				If it is doing the latter, it may appear to work because playerLoc is being
-				copied in and back as well, and the player location is the only thing that can
-				visibly change so far. In this case, it's possible that other commands
-				implemented here may change elements of the grid other than the player location
-				and that change won't be reflected in the ViewController.
-	*/
-	init(level : inout [[gameCell]]) {
+	var playerLoc: (Int, Int)
+
+	init(level : inout [[gameCell]], playerLoc : inout (Int, Int)) {
 		self.level = level
+		self.playerLoc = playerLoc
 	}
 	
 	/**
@@ -43,7 +35,7 @@ class CommandHandler {
 		//						3 - Down
 		
 		if (input == 0 || input == 1 || input == 2 || input == 3) {
-			self.moveCmd(input: input, playerLoc: &playerLoc)
+			self.moveCmd(input: input)
 		} else {
 			print("Unrecognized command index: \(input)")
 		}
@@ -51,7 +43,7 @@ class CommandHandler {
 	
 	// Specialized command handling functions
 	
-	func moveCmd(input: Int, playerLoc: inout (Int, Int)) {
+	func moveCmd(input: Int) {
 		
 		// Get player location offsets from move direction
 		var dx = 0
@@ -71,7 +63,7 @@ class CommandHandler {
 				print("Out of range input to moveCmd: \(input)")
 		}
 		let newCoords = (playerLoc.0 + dx, playerLoc.1 + dy)
-		if(setPlayerLoc(playerLoc: &playerLoc, newCoords: newCoords)) {
+		if(setPlayerLoc(newCoords: newCoords)) {
 			playSound(sound: sounds[input])
 		} else {
 			playSound(sound: bumpSound)
@@ -82,13 +74,13 @@ class CommandHandler {
 	
 	/**
 	Updates the level tile grid to reflect a new player position, if the player
-	is allowed to be there
+	is allowed to be there. Returns true if the player successfully moved.
 	
 	-parameter playerLoc: current player loc
 	-parameter newCoords: coordinates to try to move the player to
 	
 	*/
-	func setPlayerLoc(playerLoc: inout (Int, Int), newCoords: (Int, Int)) -> Bool {
+	func setPlayerLoc(newCoords: (Int, Int)) -> Bool {
 		if let oldLoc = level[playerLoc.1][playerLoc.0] as? floorCell, let newLoc = level[newCoords.1][newCoords.0] as? floorCell {
 			oldLoc.makeNotPlayer()
 			playerLoc = newCoords

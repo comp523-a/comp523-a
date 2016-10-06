@@ -61,7 +61,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 			}
         }
 		
-		self.cmdHandler = CommandHandler(level: &tileArray)
+		self.cmdHandler = CommandHandler(level: &tileArray, playerLoc: &playerLoc)
 		
 		ButtonView.gameControllerView = self
 		
@@ -98,7 +98,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 		
 		// Later, instead of accessing one of cmdHandler's helper methods,
 		// simply send a reset command
-		cmdHandler?.setPlayerLoc(playerLoc: &playerLoc, newCoords: level!.startingLoc)
+		cmdHandler?.setPlayerLoc(newCoords: level!.startingLoc)
 		
 		currentStep = 0
 		tickTimer = Timer.scheduledTimer(timeInterval: 0.5, target:self, selector:#selector(ViewController.runCommands), userInfo:nil, repeats: true)
