@@ -8,12 +8,37 @@
 
 import UIKit
 
+
+///Floor cells, which current can be empty or contain the player
 class floorCell: gameCell {
 
-    init() {
-        super.init(image: UIImage(named:"grid.png"))
-        self.accessibilityLabel = "Floor"
+	///Indicates whether or not the cell contains the player
+	var isPlayer: Bool = false
+	
+	init() {
+		if isPlayer {
+			super.init(image: UIImage(named:"player.png"))
+			self.accessibilityLabel = "Player"
+		} else {
+			super.init(image: UIImage(named:"grid.png"))
+			self.accessibilityLabel = "Floor"
+		}
+		
     }
+	
+	///Changes image and VoiceOver label to player
+	func makePlayer() {
+		isPlayer = true
+		self.image = UIImage(named:"player.png")
+		self.accessibilityLabel = "Player"
+	}
+	
+	///Changes image and VoiceOver label to floor
+	func makeNotPlayer() {
+		isPlayer = false
+		self.image = UIImage(named:"grid.png")
+		self.accessibilityLabel = "Floor"
+	}
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

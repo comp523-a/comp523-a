@@ -8,6 +8,7 @@
 
 import UIKit
 
+///Cell that contains the goal
 class goalCell: gameCell {
 
     init() {

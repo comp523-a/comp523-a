@@ -8,6 +8,7 @@
 
 import UIKit
 
+///A wall cell, which the player cannot cross
 class wallCell: gameCell {
 
     init() {
