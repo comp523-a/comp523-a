@@ -27,7 +27,7 @@ class CommandHandler {
 	- parameter playerLoc: tuple indicating the coordinates of the player
 	
 	*/
-	func handleCmd(input: Int, playerLoc: inout(Int, Int)) {
+	func handleCmd(input: Int) {
 		// Switch command input type, call appropriate functions
 		// Current encoding:	0 - Left
 		//						1 - Right

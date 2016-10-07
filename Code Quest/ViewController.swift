@@ -108,7 +108,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 	func runCommands() {
 
 		if currentStep < commandQueue.count {
-			cmdHandler?.handleCmd(input: commandQueue[currentStep], playerLoc: &playerLoc)
+			cmdHandler?.handleCmd(input: commandQueue[currentStep])
 		}
 		currentStep += 1
 		if currentStep >= commandQueue.count {
