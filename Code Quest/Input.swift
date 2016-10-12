@@ -9,28 +9,43 @@
 import UIKit
 
 ///Buttons that render in the instruction pane
+enum ButtonType:Int {
+	case LEFT = 0
+	case RIGHT = 1
+	case UP = 2
+	case DOWN = 3
+	case ERASE1 = 4
+	case ERASEALL = 5
+}
+
 class Input: UIButton {
 	
 	///(To be) enum describing what type of command this button corresponds to 
-	var type: Int
+	var type: ButtonType
 	
 	
-	init(type: Int, frame: CGRect) {
+	init(type: ButtonType, frame: CGRect) {
 		self.type = type
 		super.init(frame: frame)
 		switch type {
-		case 0:
+		case ButtonType.LEFT:
 			self.setImage(UIImage(named:"left.png"), for: UIControlState.normal)
 			self.accessibilityLabel = "Left"
-		case 1:
+		case ButtonType.RIGHT:
 			self.setImage(UIImage(named:"right.png"), for: UIControlState.normal)
 			self.accessibilityLabel = "Right"
-		case 2:
+		case ButtonType.UP:
 			self.setImage(UIImage(named:"up.png"), for: UIControlState.normal)
 			self.accessibilityLabel = "Up"
-		default:
+		case ButtonType.DOWN:
 			self.setImage(UIImage(named:"down.png"), for: UIControlState.normal)
 			self.accessibilityLabel = "Down"
+		case ButtonType.ERASE1:
+			self.setImage(UIImage(named:"erase1.png"), for: UIControlState.normal)
+			self.accessibilityLabel = "Erase last command"
+		case ButtonType.ERASEALL:
+			self.setImage(UIImage(named:"eraseall.png"), for: UIControlState.normal)
+			self.accessibilityLabel = "Erase all commands"
 		}
 		
 		

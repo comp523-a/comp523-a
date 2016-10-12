@@ -79,18 +79,18 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 	- parameter type: (To be) enum specifying type of button
 
 	*/
-	func getButtonInput(type:Int) {
+	func getButtonInput(type:ButtonType) {
 
 		let imageNames = ["left", "right", "up", "down"]
 		let sounds = [leftSound, rightSound, upSound, downSound]
-		let tempCell = UIImageView(image: UIImage(named:imageNames[type] + ".png"))
+		let tempCell = UIImageView(image: UIImage(named:imageNames[type.rawValue] + ".png"))
 		tempCell.frame = CGRect(x:70*commandQueue.count, y:512, width: 64, height:64)
 		tempCell.isAccessibilityElement = true
 		tempCell.accessibilityTraits = UIAccessibilityTraitImage
-		tempCell.accessibilityLabel = imageNames[type]
+		tempCell.accessibilityLabel = imageNames[type.rawValue]
 		self.view.addSubview(tempCell)
-		commandQueue.append(type)
-        playSound(sound: sounds[type])
+		commandQueue.append(type.rawValue)
+        playSound(sound: sounds[type.rawValue])
 	}
 	
 	/// Action for Play Button
