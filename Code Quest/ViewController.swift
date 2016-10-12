@@ -23,12 +23,16 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 	var tileArray : [[gameCell]] = [[]]
 	/// Queue of current commands
 	var commandQueue : [Int] = []
+    /// List of queued command views corresponding to elements of commmandQueue
+    var commandQueueViews : [UIView] = []
 	/// Current location in commandQueue
 	var currentStep : Int = 0
 	/// Timer that controls player movement
     var tickTimer = Timer()
 	/// Command handler object
 	var cmdHandler: CommandHandler? = nil
+    /// Boolean to determine whether to accept commands
+    var takeInput: Bool = true
     
 	/// Controls game logic
     override func viewDidLoad() {
@@ -79,29 +83,50 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 	- parameter type: (To be) enum specifying type of button
 
 	*/
+    
+    // TODO: Rewrite this function as a switch over ButtonTypes
 	func getButtonInput(type:ButtonType) {
-
-		let imageNames = ["left", "right", "up", "down"]
-		let sounds = [leftSound, rightSound, upSound, downSound]
-		let tempCell = UIImageView(image: UIImage(named:imageNames[type.rawValue] + ".png"))
-		tempCell.frame = CGRect(x:70*commandQueue.count, y:512, width: 64, height:64)
-		tempCell.isAccessibilityElement = true
-		tempCell.accessibilityTraits = UIAccessibilityTraitImage
-		tempCell.accessibilityLabel = imageNames[type.rawValue]
-		self.view.addSubview(tempCell)
-		commandQueue.append(type.rawValue)
-        playSound(sound: sounds[type.rawValue])
+        if (takeInput) {
+            if (type.rawValue < 4) { // If command is to be added to queue
+                let imageNames = ["left", "right", "up", "down"]
+                let sounds = [leftSound, rightSound, upSound, downSound]
+                let tempCell = UIImageView(image: UIImage(named:imageNames[type.rawValue] + ".png"))
+                tempCell.frame = CGRect(x:70*commandQueue.count, y:512, width: 64, height:64)
+                tempCell.isAccessibilityElement = true
+                tempCell.accessibilityTraits = UIAccessibilityTraitImage
+                tempCell.accessibilityLabel = imageNames[type.rawValue]
+                self.view.addSubview(tempCell)
+                commandQueue.append(type.rawValue)
+                commandQueueViews.append(tempCell)
+                playSound(sound: sounds[type.rawValue])
+            } else { // Command is to be executed immediately
+                if (type == ButtonType.ERASE1) {
+                    commandQueueViews.popLast()?.removeFromSuperview()
+                    commandQueue.popLast()
+                } else if (type == ButtonType.ERASEALL) {
+                    for view in commandQueueViews {
+                        view.removeFromSuperview()
+                    }
+                    commandQueueViews.removeAll()
+                    commandQueue.removeAll()
+                }
+            }
+        }
 	}
 	
 	/// Action for Play Button
     @IBAction func PlayButton(_ sender: UIButton) {
-		
-		// Later, instead of accessing one of cmdHandler's helper methods,
-		// simply send a reset command
-		cmdHandler?.setPlayerLoc(newCoords: level!.startingLoc)
-		
-		currentStep = 0
-		tickTimer = Timer.scheduledTimer(timeInterval: 0.5, target:self, selector:#selector(ViewController.runCommands), userInfo:nil, repeats: true)
+        if (takeInput) {
+            // Don't take input while commands are running
+            takeInput = false
+            
+            // Later, instead of accessing one of cmdHandler's helper methods,
+            // simply send a reset command
+            cmdHandler?.setPlayerLoc(newCoords: level!.startingLoc)
+            
+            currentStep = 0
+            tickTimer = Timer.scheduledTimer(timeInterval: 0.5, target:self, selector:#selector(ViewController.runCommands), userInfo:nil, repeats: true)
+        }
     }
 	
 	/// Executes one step of the game loop
@@ -112,8 +137,10 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 		}
 		currentStep += 1
 		if currentStep >= commandQueue.count {
-
 			tickTimer.invalidate()
+            
+            // All commands run, ready to take input again
+            takeInput = true
 		}
 	}
 }

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-let num_buttons = 4
+let num_command_buttons = 6
 
 ///View that contains command butotns
 class CommandView: UIView {
@@ -20,7 +20,7 @@ class CommandView: UIView {
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		
-		for i in 0..<num_buttons {
+		for i in 0..<num_command_buttons {
 			let command = Input(type: ButtonType(rawValue : i)!, frame: CGRect(x: 0+150*i, y: 0, width: 128, height: 128));
 			//command.backgroundColor = UIColor.cyan
 			
