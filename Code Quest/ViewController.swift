@@ -19,6 +19,8 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     var level : Level? = nil
 	/// Player's current location
 	var playerLoc : (Int, Int) = (0,0)
+	/// Goal location
+	var goalLoc : (Int, Int) = (0,0)
 	/// Array of gameCells representing the player's current location
 	var tileArray : [[gameCell]] = [[]]
 	/// Queue of current commands
@@ -39,6 +41,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         super.viewDidLoad()
         if let testGrid = (level?.data)! as [[Int]]? {
 			playerLoc = level!.startingLoc
+			goalLoc = level!.goalLoc
             for y in 0..<testGrid.count {
 				tileArray.append([])
                 for x in 0..<testGrid[y].count {
@@ -50,8 +53,8 @@ class ViewController: UIViewController, UICollectionViewDelegate {
                             cell = wallCell()
                         case 3:
 							cell = floorCell()
-                        case 4:
-                            cell = goalCell()
+                        //case 4:
+                        //    cell = goalCell()
                         default:
 							cell = floorCell()
                     }
@@ -63,9 +66,12 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 			if let player = tileArray[playerLoc.1][playerLoc.0] as? floorCell {
 				player.makePlayer()       //Draw player on starting position cell
 			}
+			if let goal = tileArray[goalLoc.1][goalLoc.0] as? floorCell {
+				goal.makeGoal()           //Draw goal on position cell
+			}
         }
 		
-		self.cmdHandler = CommandHandler(level: &tileArray, playerLoc: &playerLoc)
+		self.cmdHandler = CommandHandler(level: &tileArray, playerLoc: &playerLoc, goalLoc: &goalLoc)
 		
 		ButtonView.gameControllerView = self
 		
@@ -123,6 +129,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
             // Later, instead of accessing one of cmdHandler's helper methods,
             // simply send a reset command
             cmdHandler?.setPlayerLoc(newCoords: level!.startingLoc)
+			cmdHandler?.resetGoal(coords: level!.goalLoc)
             
             currentStep = 0
             tickTimer = Timer.scheduledTimer(timeInterval: 0.5, target:self, selector:#selector(ViewController.runCommands), userInfo:nil, repeats: true)

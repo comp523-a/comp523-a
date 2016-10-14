@@ -14,6 +14,8 @@ class floorCell: gameCell {
 
 	///Indicates whether or not the cell contains the player
 	var isPlayer: Bool = false
+	///Indicates whether or not the cell contains the goal
+	var isGoal: Bool = false
 	
 	init() {
 		if isPlayer {
@@ -38,6 +40,13 @@ class floorCell: gameCell {
 		isPlayer = false
 		self.image = UIImage(named:"grid.png")
 		self.accessibilityLabel = "Floor"
+	}
+	
+	///Changes image and VoiceOver label to goal
+	func makeGoal() {
+		isGoal = true
+		self.image = UIImage(named:"goal.png")
+		self.accessibilityLabel = "Goal"
 	}
     
     required init?(coder aDecoder: NSCoder) {

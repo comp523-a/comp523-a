@@ -14,10 +14,12 @@ class CommandHandler {
 	/// Cell-based representation of the level
 	var level: [[gameCell]]
 	var playerLoc: (Int, Int)
+	var goalLoc: (Int, Int)
 
-	init(level : inout [[gameCell]], playerLoc : inout (Int, Int)) {
+	init(level : inout [[gameCell]], playerLoc : inout (Int, Int), goalLoc : inout (Int, Int)) {
 		self.level = level
 		self.playerLoc = playerLoc
+		self.goalLoc = goalLoc
 	}
 	
 	/**
@@ -85,6 +87,16 @@ class CommandHandler {
 			oldLoc.makeNotPlayer()
 			playerLoc = newCoords
 			newLoc.makePlayer()
+			return true
+		} else {
+			return false
+		}
+	}
+	
+	///For reset of level (e.g.pressing play) - restores goal image/label on goal cell
+	func resetGoal(coords: (Int, Int)) -> Bool {
+		if let loc = level[goalLoc.1][goalLoc.0] as? floorCell {
+			loc.makeGoal()
 			return true
 		} else {
 			return false
