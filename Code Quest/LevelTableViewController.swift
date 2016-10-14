@@ -24,22 +24,22 @@ class LevelTableViewController: UITableViewController {
 	/// Contains data for built in levels and adds them to level array
     func loadDefaultLevels() {
         let data1 = [[2,2,2,2,2,2],
-                     [2,1,1,1,4,2],
+                     [2,1,1,1,1,2],
                      [2,2,2,2,2,2]]
-		let level1 = Level(name: "Level 1", data: data1, startingLoc: (1, 1))
+		let level1 = Level(name: "Level 1", data: data1, startingLoc: (1, 1), goalLoc: (4, 1))
         let data2 = [[2,2,2],
                      [2,1,2],
                      [2,1,2],
                      [2,1,2],
                      [2,4,2],
                      [2,2,2]]
-        let level2 = Level(name: "Level 2", data: data2, startingLoc: (1, 1))
+		let level2 = Level(name: "Level 2", data: data2, startingLoc: (1, 1), goalLoc: (1, 4))
         let data3 = [[2,2,2,2,2,2],
                      [2,1,1,1,4,2],
                      [2,1,1,1,1,2],
                      [2,1,1,1,1,2],
                      [2,2,2,2,2,2]]
-        let level3 = Level(name: "Level 3", data: data3, startingLoc: (1, 3))
+		let level3 = Level(name: "Level 3", data: data3, startingLoc: (1, 3), goalLoc: (4, 1))
 
         levels += [level1, level2, level3]
     }
