@@ -8,6 +8,7 @@
 
 import Foundation
 import AVFoundation
+import UIKit
 
 class CommandHandler {
 	
@@ -15,6 +16,7 @@ class CommandHandler {
 	var level: [[gameCell]]
 	var playerLoc: (Int, Int)
 	var goalLoc: (Int, Int)
+	var commandCount: Int = 0
 
 	init(level : inout [[gameCell]], playerLoc : inout (Int, Int), goalLoc : inout (Int, Int)) {
 		self.level = level
@@ -23,13 +25,13 @@ class CommandHandler {
 	}
 	
 	/**
-	Handles a single command
+	Handles a single command. Returns true if the player wins.
 	
 	- parameter input: integer indicating selected command
 	- parameter playerLoc: tuple indicating the coordinates of the player
 	
 	*/
-	func handleCmd(input: Int) {
+	func handleCmd(input: Int) -> Bool{
 		// Switch command input type, call appropriate functions
 		// Current encoding:	0 - Left
 		//						1 - Right
@@ -37,21 +39,22 @@ class CommandHandler {
 		//						3 - Down
 		
 		if (input == 0 || input == 1 || input == 2 || input == 3) {
-			self.moveCmd(input: input)
+			return self.moveCmd(input: input)
 		} else {
 			print("Unrecognized command index: \(input)")
+			return false
 		}
 	}
 	
 	// Specialized command handling functions
 	
-	func moveCmd(input: Int) {
+	///Returns True if the player wins
+	func moveCmd(input: Int) -> Bool {
 		
 		// Get player location offsets from move direction
 		var dx = 0
 		var dy = 0
 		var sounds = [leftSound, rightSound, upSound, downSound]
-		
 		switch input {
 			case 0:
 				dx = -1
@@ -65,31 +68,40 @@ class CommandHandler {
 				print("Out of range input to moveCmd: \(input)")
 		}
 		let newCoords = (playerLoc.0 + dx, playerLoc.1 + dy)
-		if(setPlayerLoc(newCoords: newCoords)) {
+		let (moved, won) = setPlayerLoc(newCoords: newCoords)
+		if(moved) {
 			playSound(sound: sounds[input])
+			if (won) {
+				playSound(sound: cheerSound)
+				///TODO: Move to view
+							}
+			
 		} else {
 			playSound(sound: bumpSound)
 		}
+		return won
 	}
 	
 	// Utility functions
 	
 	/**
 	Updates the level tile grid to reflect a new player position, if the player
-	is allowed to be there. Returns true if the player successfully moved.
+	is allowed to be there. Returns a tuple whose first value is true if the player successfully moved,
+	and whose second value is true if the player moved to the goal.
 	
 	-parameter playerLoc: current player loc
 	-parameter newCoords: coordinates to try to move the player to
 	
 	*/
-	func setPlayerLoc(newCoords: (Int, Int)) -> Bool {
+	func setPlayerLoc(newCoords: (Int, Int)) -> (Bool, Bool) {
 		if let oldLoc = level[playerLoc.1][playerLoc.0] as? floorCell, let newLoc = level[newCoords.1][newCoords.0] as? floorCell {
 			oldLoc.makeNotPlayer()
 			playerLoc = newCoords
+			let isGoal = newLoc.isGoal
 			newLoc.makePlayer()
-			return true
+			return (true, isGoal)
 		} else {
-			return false
+			return (false, false)
 		}
 	}
 	

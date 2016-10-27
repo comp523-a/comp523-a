@@ -138,9 +138,9 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 	
 	/// Executes one step of the game loop
 	func runCommands() {
-
+		var won = false
 		if currentStep < commandQueue.count {
-			cmdHandler?.handleCmd(input: commandQueue[currentStep])
+			won = (cmdHandler?.handleCmd(input: commandQueue[currentStep]))!
 		}
 		currentStep += 1
 		if currentStep >= commandQueue.count {
@@ -148,7 +148,15 @@ class ViewController: UIViewController, UICollectionViewDelegate {
             
             // All commands run, ready to take input again
             takeInput = true
+			
+			if (won) {
+				let alert = UIAlertController(title: "You win!", message: "You took \(commandQueue.count) steps", preferredStyle: UIAlertControllerStyle.alert)
+				alert.addAction(UIAlertAction(title: "Yay!", style: UIAlertActionStyle.default, handler: nil))
+				self.present(alert, animated: true, completion: nil)
+
+			}
 		}
+		
 	}
 }
 
