@@ -35,10 +35,33 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 	var cmdHandler: CommandHandler? = nil
     /// Boolean to determine whether to accept commands
     var takeInput: Bool = true
+	
+	let music: URL = URL(fileURLWithPath: Bundle.main.path(forResource: "song", ofType:"wav")!);
+	var musicPlayer = AVAudioPlayer()
+	let drum = URL(fileURLWithPath: Bundle.main.path(forResource: "drum", ofType:"wav")!);
+	var drumPlayer = AVAudioPlayer()
+	
+
     
 	/// Controls game logic
     override func viewDidLoad() {
         super.viewDidLoad()
+		do {
+			try musicPlayer = AVAudioPlayer(contentsOf: music)
+			try drumPlayer = AVAudioPlayer(contentsOf: drum)
+			musicPlayer.numberOfLoops = -1
+			drumPlayer.numberOfLoops = -1
+			musicPlayer.volume = 0.6
+			drumPlayer.volume = 0
+			let sdelay : TimeInterval = 0.1
+			let now = musicPlayer.deviceCurrentTime
+			musicPlayer.play(atTime: now+sdelay)
+			drumPlayer.play(atTime: now+sdelay)
+		} catch {
+			print ("music failed")
+		}
+		
+		
         if let testGrid = (level?.data)! as [[Int]]? {
 			playerLoc = level!.startingLoc
 			goalLoc = level!.goalLoc
@@ -138,6 +161,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 	
 	/// Executes one step of the game loop
 	func runCommands() {
+		drumPlayer.volume = 1
 		var won = false
 		if currentStep < commandQueue.count {
 			won = (cmdHandler?.handleCmd(input: commandQueue[currentStep]))!
@@ -151,12 +175,21 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 			
 			if (won) {
 				let alert = UIAlertController(title: "You win!", message: "You took \(commandQueue.count) steps", preferredStyle: UIAlertControllerStyle.alert)
-				alert.addAction(UIAlertAction(title: "Yay!", style: UIAlertActionStyle.default, handler: nil))
+				alert.addAction(UIAlertAction(title: "Yay!", style: UIAlertActionStyle.default, handler: {(action: UIAlertAction!) in self.drumPlayer.volume = 0}))
 				self.present(alert, animated: true, completion: nil)
 
+			} else {
+				drumPlayer.volume = 0
 			}
 		}
 		
+		
+	}
+	
+	override func viewWillDisappear(_ animated : Bool) {
+		super.viewWillDisappear(animated)
+		musicPlayer.stop()
+		drumPlayer.stop()
 	}
 }
 
