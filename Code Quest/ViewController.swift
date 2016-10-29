@@ -9,6 +9,9 @@
 import UIKit
 import AVFoundation
 
+let imageNames = ["left", "right", "up", "down"]
+let commandSounds = [leftSound, rightSound, upSound, downSound]
+
 /// Primary game controller. Contains most game state information
 class ViewController: UIViewController, UICollectionViewDelegate {
 	
@@ -94,8 +97,6 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 	func getButtonInput(type:ButtonType) {
         if (takeInput) {
             if (type.rawValue < 4) { // If command is to be added to queue
-                let imageNames = ["left", "right", "up", "down"]
-                let sounds = [leftSound, rightSound, upSound, downSound]
                 let tempCell = UIImageView(image: UIImage(named:imageNames[type.rawValue] + ".png"))
                 tempCell.frame = CGRect(x:70*commandQueue.count, y:512, width: 64, height:64)
                 tempCell.isAccessibilityElement = true
@@ -104,7 +105,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
                 self.view.addSubview(tempCell)
                 commandQueue.append(type.rawValue)
                 commandQueueViews.append(tempCell)
-                playSound(sound: sounds[type.rawValue])
+                playSound(sound: commandSounds[type.rawValue])
             } else { // Command is to be executed immediately
                 if (type == ButtonType.ERASE1) {
                     commandQueueViews.popLast()?.removeFromSuperview()
@@ -115,7 +116,13 @@ class ViewController: UIViewController, UICollectionViewDelegate {
                     }
                     commandQueueViews.removeAll()
                     commandQueue.removeAll()
-                }
+				} else if (type == ButtonType.QUEUESOUND) {
+					takeInput = false
+					currentStep = 0
+					tickTimer = Timer.scheduledTimer(timeInterval: 0.5, target:self,
+						selector:#selector(ViewController.runQueueSounds),
+						userInfo:nil, repeats: true)
+				}
             }
         }
 	}
@@ -157,6 +164,19 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 			}
 		}
 		
+	}
+	
+	// Plays the sound associated with the command in commandQueue[currentStep]
+	// Note that commands and queue sounds will never be running at the same time, so it
+	// should be safe to reuse tickTimer and currentStep here
+	func runQueueSounds() {
+		if (currentStep < commandQueue.count) {
+			playSound(sound: commandSounds[commandQueue[currentStep]])
+			currentStep += 1
+		} else {
+			tickTimer.invalidate()
+			takeInput = true
+		}
 	}
 }
 
