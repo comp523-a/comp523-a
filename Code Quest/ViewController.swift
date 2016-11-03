@@ -61,7 +61,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
                         default:
 							cell = floorCell()
                     }
-                    cell.frame = CGRect(x: 100 + 64*x, y: 100 + 64*y, width: 64, height: 64)
+                    cell.frame = CGRect(x: 96*x, y: 64+96*y, width: 96, height: 96)
                     self.view.addSubview(cell)
 					self.tileArray[y].append(cell)  //Store gameCells in array for accessing
                 }
@@ -96,9 +96,9 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     // TODO: Rewrite this function as a switch over ButtonTypes
 	func getButtonInput(type:ButtonType) {
         if (takeInput) {
-            if (type.rawValue < 4) { // If command is to be added to queue
+            if (type.rawValue < 4 && commandQueue.count < 14) { // If command is to be added to queue and queue is not full
                 let tempCell = UIImageView(image: UIImage(named:imageNames[type.rawValue] + ".png"))
-                tempCell.frame = CGRect(x:70*commandQueue.count, y:512, width: 64, height:64)
+                tempCell.frame = CGRect(x:70*commandQueue.count, y:512+84, width: 64, height:64)
                 tempCell.isAccessibilityElement = true
                 tempCell.accessibilityTraits = UIAccessibilityTraitImage
                 tempCell.accessibilityLabel = imageNames[type.rawValue]
@@ -106,6 +106,10 @@ class ViewController: UIViewController, UICollectionViewDelegate {
                 commandQueue.append(type.rawValue)
                 commandQueueViews.append(tempCell)
                 playSound(sound: commandSounds[type.rawValue])
+			} else if(type.rawValue < 4 && commandQueue.count >= 14) {
+				
+				//TODO: add sound for failed add
+				
             } else { // Command is to be executed immediately
                 if (type == ButtonType.ERASE1) {
                     commandQueueViews.popLast()?.removeFromSuperview()
