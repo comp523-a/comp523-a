@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import SpriteKit
 
 let imageNames = ["left", "right", "up", "down"]
 let commandSounds = [leftSound, rightSound, upSound, downSound]
@@ -38,6 +39,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 	var cmdHandler: CommandHandler? = nil
     /// Boolean to determine whether to accept commands
     var takeInput: Bool = true
+	var scene : GameScene? = nil
 	
 	let music: URL = URL(fileURLWithPath: Bundle.main.path(forResource: "song", ofType:"wav")!);
 	var musicPlayer = AVAudioPlayer()
@@ -119,6 +121,13 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 		self.cmdHandler = CommandHandler(level: &tileArray, playerLoc: &playerLoc, goalLoc: &goalLoc)
 		
 		ButtonView.gameControllerView = self
+		let skView = SKView(frame: view.bounds)
+		skView.isUserInteractionEnabled = false
+		skView.allowsTransparency = true
+		self.view.addSubview(skView)
+		self.scene = GameScene(size: view.bounds.size)
+		scene?.playerPosition = playerLoc
+		skView.presentScene(scene)
 		
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -187,6 +196,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
             
             // Later, instead of accessing one of cmdHandler's helper methods,
             // simply send a reset command
+			scene?.setPlayerPos(newPos: level!.startingLoc)
             cmdHandler?.setPlayerLoc(newCoords: level!.startingLoc)
 			cmdHandler?.resetGoal(coords: level!.goalLoc)
             
@@ -201,6 +211,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 		var won = false
 		if currentStep < commandQueue.count {
 			won = (cmdHandler?.handleCmd(input: commandQueue[currentStep]))!
+			scene?.movePlayer(newPos: (cmdHandler?.playerLoc)!)
 		}
 		currentStep += 1
 		if currentStep >= commandQueue.count {
