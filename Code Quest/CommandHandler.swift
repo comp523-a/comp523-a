@@ -31,7 +31,7 @@ class CommandHandler {
 	- parameter playerLoc: tuple indicating the coordinates of the player
 	
 	*/
-	func handleCmd(input: Int) -> Bool{
+	func handleCmd(input: Int) -> (Bool, Bool){
 		// Switch command input type, call appropriate functions
 		// Current encoding:	0 - Left
 		//						1 - Right
@@ -42,32 +42,36 @@ class CommandHandler {
 			return self.moveCmd(input: input)
 		} else {
 			print("Unrecognized command index: \(input)")
-			return false
+			return (false, false)
 		}
 	}
 	
 	// Specialized command handling functions
 	
-	///Returns True if the player wins
-	func moveCmd(input: Int) -> Bool {
-		
+	func newCoordsFromCommand(input: Int) -> (Int, Int) {
 		// Get player location offsets from move direction
 		var dx = 0
 		var dy = 0
-		var sounds = [leftSound, rightSound, upSound, downSound]
+		
 		switch input {
-			case 0:
-				dx = -1
-			case 1:
-				dx = 1
-			case 2:
-				dy = -1
-			case 3:
-				dy = 1
-			default:
-				print("Out of range input to moveCmd: \(input)")
+		case 0:
+			dx = -1
+		case 1:
+			dx = 1
+		case 2:
+			dy = -1
+		case 3:
+			dy = 1
+		default:
+			print("Out of range input to moveCmd: \(input)")
 		}
-		let newCoords = (playerLoc.0 + dx, playerLoc.1 + dy)
+		return (playerLoc.0 + dx, playerLoc.1 + dy)
+	}
+	
+	///Returns True if the player wins
+	func moveCmd(input: Int) -> (Bool, Bool) {
+		var sounds = [leftSound, rightSound, upSound, downSound]
+		let newCoords = newCoordsFromCommand(input: input)
 		let (moved, won) = setPlayerLoc(newCoords: newCoords)
 		if(moved) {
 			playSound(sound: sounds[input])
@@ -79,7 +83,7 @@ class CommandHandler {
 		} else {
 			playSound(sound: bumpSound)
 		}
-		return won
+		return (moved, won)
 	}
 	
 	// Utility functions

@@ -209,9 +209,14 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 	func runCommands() {
 		musicPlayer.volume = 0.1
 		var won = false
+		var moved = false
 		if currentStep < commandQueue.count {
-			won = (cmdHandler?.handleCmd(input: commandQueue[currentStep]))!
-			scene?.movePlayer(newPos: (cmdHandler?.playerLoc)!)
+			(moved, won) = (cmdHandler?.handleCmd(input: commandQueue[currentStep]))!
+			if (moved) {
+				scene?.movePlayer(newPos: (cmdHandler?.playerLoc)!)
+			} else {
+				scene?.tryToMoveTo(newPos: (cmdHandler?.newCoordsFromCommand(input: commandQueue[currentStep]))!)
+			}
 		}
 		currentStep += 1
 		if currentStep >= commandQueue.count {
