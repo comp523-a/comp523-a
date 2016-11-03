@@ -26,20 +26,20 @@ class LevelTableViewController: UITableViewController {
         let data1 = [[2,2,2,2,2,2],
                      [2,1,1,1,1,2],
                      [2,2,2,2,2,2]]
-		let level1 = Level(name: "Level 1", data: data1, startingLoc: (1, 1), goalLoc: (4, 1))
+		let level1 = Level(name: "Level 1", data: data1, startingLoc: (1, 1), goalLoc: (4, 1), tutorial: "Bring the player to the goal!")
         let data2 = [[2,2,2],
                      [2,1,2],
                      [2,1,2],
                      [2,1,2],
                      [2,4,2],
                      [2,2,2]]
-		let level2 = Level(name: "Level 2", data: data2, startingLoc: (1, 1), goalLoc: (1, 4))
+		let level2 = Level(name: "Level 2", data: data2, startingLoc: (1, 1), goalLoc: (1, 4), tutorial: "This is the second level!")
         let data3 = [[2,2,2,2,2,2],
                      [2,1,1,1,4,2],
                      [2,1,1,1,1,2],
                      [2,1,1,1,1,2],
                      [2,2,2,2,2,2]]
-		let level3 = Level(name: "Level 3", data: data3, startingLoc: (1, 3), goalLoc: (4, 1))
+		let level3 = Level(name: "Level 3", data: data3, startingLoc: (1, 3), goalLoc: (4, 1), tutorial: "This is your ultimate challenge!")
 
         levels += [level1, level2, level3]
     }

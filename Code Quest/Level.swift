@@ -19,13 +19,15 @@ class Level {
 	var startingLoc : (Int, Int)
 	///The goal's location `(x,y)`
 	var goalLoc : (Int, Int)
+	///The text that appears upon starting a level
+	var tutorialText : String
 	
-	init(name: String, data: [[Int]], startingLoc: (Int, Int), goalLoc: (Int, Int)){
+	init(name: String, data: [[Int]], startingLoc: (Int, Int), goalLoc: (Int, Int), tutorial: String){
         self.name = name
         self.data = data
 		self.startingLoc = startingLoc
 		self.goalLoc = goalLoc
-		
+		self.tutorialText = tutorial
     }
 	
 	/**

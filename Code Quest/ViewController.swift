@@ -97,6 +97,13 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 			}
         }
 		
+		if let tutorialString = (level?.tutorialText)! as String? {
+			let alert = UIAlertController(title: level?.name, message: tutorialString, preferredStyle: UIAlertControllerStyle.alert)
+			alert.addAction(UIAlertAction(title: "Start level", style: UIAlertActionStyle.default, handler: {(action: UIAlertAction!) in self.drumPlayer.volume = 1}))
+			self.present(alert, animated: true, completion: nil)
+
+		}
+		
 		self.cmdHandler = CommandHandler(level: &tileArray, playerLoc: &playerLoc, goalLoc: &goalLoc)
 		
 		ButtonView.gameControllerView = self
@@ -131,7 +138,13 @@ class ViewController: UIViewController, UICollectionViewDelegate {
                 playSound(sound: commandSounds[type.rawValue])
 			} else if(type.rawValue < 4 && commandQueue.count >= 14) {
 				
-				//TODO: add sound for failed add
+				playSound(sound: failSound);
+				let delayTime = DispatchTime.now() + .milliseconds(300)
+				DispatchQueue.main.asyncAfter(deadline: delayTime, execute: {
+					UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, "Command queue full");
+				})
+				
+				
 				
             } else { // Command is to be executed immediately
                 if (type == ButtonType.ERASE1) {
@@ -172,7 +185,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 	
 	/// Executes one step of the game loop
 	func runCommands() {
-		drumPlayer.volume = 1
+		musicPlayer.volume = 0.1
 		var won = false
 		if currentStep < commandQueue.count {
 			won = (cmdHandler?.handleCmd(input: commandQueue[currentStep]))!
@@ -185,12 +198,13 @@ class ViewController: UIViewController, UICollectionViewDelegate {
             takeInput = true
 			
 			if (won) {
+				musicPlayer.volume = 1
 				let alert = UIAlertController(title: "You win!", message: "You took \(commandQueue.count) steps", preferredStyle: UIAlertControllerStyle.alert)
-				alert.addAction(UIAlertAction(title: "Yay!", style: UIAlertActionStyle.default, handler: {(action: UIAlertAction!) in self.drumPlayer.volume = 0}))
+				alert.addAction(UIAlertAction(title: "Yay!", style: UIAlertActionStyle.default, handler: {(action: UIAlertAction!) in self.musicPlayer.volume = 0.6}))
 				self.present(alert, animated: true, completion: nil)
 
 			} else {
-				drumPlayer.volume = 0
+				musicPlayer.volume = 0.6
 			}
 		}
 		

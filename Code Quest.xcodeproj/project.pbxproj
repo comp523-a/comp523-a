@@ -23,6 +23,7 @@
 		103DDD4F1DC1F8A000086960 /* left.wav in Resources */ = {isa = PBXBuildFile; fileRef = 103DDD4E1DC1F8A000086960 /* left.wav */; };
 		103DDD521DC1FCD300086960 /* drum.wav in Resources */ = {isa = PBXBuildFile; fileRef = 103DDD501DC1FCD300086960 /* drum.wav */; };
 		103DDD531DC1FCD300086960 /* song.wav in Resources */ = {isa = PBXBuildFile; fileRef = 103DDD511DC1FCD300086960 /* song.wav */; };
+		104E386C1DCB09A200D98EFA /* bumpo.wav in Resources */ = {isa = PBXBuildFile; fileRef = 104E386B1DCB09A200D98EFA /* bumpo.wav */; };
 		108FBD241D9CA6A200043A08 /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108FBD231D9CA6A200043A08 /* Input.swift */; };
 		10A03EB21DC1EA6B004F7ABB /* cheer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 10A03EB11DC1EA6B004F7ABB /* cheer.mp3 */; };
 		10A03EB81DC1F34E004F7ABB /* bump.wav in Resources */ = {isa = PBXBuildFile; fileRef = 10A03EB31DC1F34E004F7ABB /* bump.wav */; };
@@ -76,6 +77,7 @@
 		103DDD4E1DC1F8A000086960 /* left.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = left.wav; sourceTree = "<group>"; };
 		103DDD501DC1FCD300086960 /* drum.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drum.wav; sourceTree = "<group>"; };
 		103DDD511DC1FCD300086960 /* song.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = song.wav; sourceTree = "<group>"; };
+		104E386B1DCB09A200D98EFA /* bumpo.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bumpo.wav; sourceTree = "<group>"; };
 		108FBD231D9CA6A200043A08 /* Input.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
 		10A03EB11DC1EA6B004F7ABB /* cheer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cheer.mp3; sourceTree = "<group>"; };
 		10A03EB31DC1F34E004F7ABB /* bump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bump.wav; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				103DDD4B1DC1F86A00086960 /* up.wav */,
 				10A03EBD1DC1F419004F7ABB /* down.wav */,
 				103DDD4E1DC1F8A000086960 /* left.wav */,
+				104E386B1DCB09A200D98EFA /* bumpo.wav */,
 				10B20FD21D909BD200142CAE /* AppDelegate.swift */,
 				10B20FD41D909BD200142CAE /* ViewController.swift */,
 				103DDD501DC1FCD300086960 /* drum.wav */,
@@ -287,6 +290,7 @@
 				10B20FDD1D909BD200142CAE /* LaunchScreen.storyboard in Resources */,
 				103B18291D92351000BD00CE /* down.png in Resources */,
 				103B182D1D923D9400BD00CE /* goal.png in Resources */,
+				104E386C1DCB09A200D98EFA /* bumpo.wav in Resources */,
 				103B18231D92350500BD00CE /* left.png in Resources */,
 				103B18271D92350500BD00CE /* wall.png in Resources */,
 				103B18241D92350500BD00CE /* player.png in Resources */,
