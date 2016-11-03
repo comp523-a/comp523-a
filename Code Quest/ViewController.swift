@@ -98,10 +98,22 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         }
 		
 		if let tutorialString = (level?.tutorialText)! as String? {
-			let alert = UIAlertController(title: level?.name, message: tutorialString, preferredStyle: UIAlertControllerStyle.alert)
-			alert.addAction(UIAlertAction(title: "Start level", style: UIAlertActionStyle.default, handler: {(action: UIAlertAction!) in self.drumPlayer.volume = 1}))
-			self.present(alert, animated: true, completion: nil)
-
+			//let alert = UIAlertController(title: level?.name, message: tutorialString, preferredStyle: UIAlertControllerStyle.alert)
+			//alert.addAction(UIAlertAction(title: "Start level", style: UIAlertActionStyle.default, handler: {(action: UIAlertAction!) in self.drumPlayer.volume = 1}))
+			//self.present(alert, animated: true, completion: nil)
+			let tText = LevelTutorialViewController()
+			tText.tutorialText = tutorialString
+			tText.modalPresentationStyle = .formSheet
+			tText.modalTransitionStyle = .coverVertical
+			tText.myParent = self
+			if let background = (level?.background) as String? {
+				tText.background = background
+			}
+			self.present(tText, animated: true, completion: {
+				//self.drumPlayer.volume = 1
+			})
+			//self.showDetailViewController(tText, sender: self)
+			
 		}
 		
 		self.cmdHandler = CommandHandler(level: &tileArray, playerLoc: &playerLoc, goalLoc: &goalLoc)

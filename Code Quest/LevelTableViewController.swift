@@ -40,8 +40,15 @@ class LevelTableViewController: UITableViewController {
                      [2,1,1,1,1,2],
                      [2,2,2,2,2,2]]
 		let level3 = Level(name: "Level 3", data: data3, startingLoc: (1, 3), goalLoc: (4, 1), tutorial: "This is your ultimate challenge!")
+		let data4 = [[2,2,2,2,2,2],
+		             [2,1,1,2,1,2],
+		             [2,1,1,2,4,2],
+		             [2,1,1,2,1,2],
+		             [2,2,2,2,2,2]]
+		let level4 = Level(name: "White Whale", data: data4, startingLoc:(1,2), goalLoc:(4,3), tutorial:"Call me Ishmael. Some years ago--never mind how long precisely--having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.")
+		level4.background = "speech2.png"
 
-        levels += [level1, level2, level3]
+        levels += [level1, level2, level3, level4]
     }
 
     override func didReceiveMemoryWarning() {
