@@ -245,7 +245,7 @@
 				TargetAttributes = {
 					10B20FCE1D909BD100142CAE = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = HHW676SF57;
+						DevelopmentTeam = BFZYMS7L7S;
 						ProvisioningStyle = Automatic;
 					};
 					10B20FE21D909BD200142CAE = {
@@ -295,11 +295,8 @@
 				3ACDDAE31DADB9BD00548B1E /* erase1.png in Resources */,
 				10B20FDA1D909BD200142CAE /* Assets.xcassets in Resources */,
 				103B182B1D92357300BD00CE /* play.png in Resources */,
-
 				103DDD521DC1FCD300086960 /* drum.wav in Resources */,
-
 				3A2963A01DC462FB0045B33C /* queuesound.png in Resources */,
-
 				103DDD4F1DC1F8A000086960 /* left.wav in Resources */,
 				103DDD4D1DC1F86A00086960 /* up.wav in Resources */,
 				10B20FD81D909BD200142CAE /* Main.storyboard in Resources */,
@@ -476,7 +473,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = HHW676SF57;
+				DEVELOPMENT_TEAM = BFZYMS7L7S;
 				INFOPLIST_FILE = "Code Quest/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -490,7 +487,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = HHW676SF57;
+				DEVELOPMENT_TEAM = BFZYMS7L7S;
 				INFOPLIST_FILE = "Code Quest/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
