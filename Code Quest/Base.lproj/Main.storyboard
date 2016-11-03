@@ -26,19 +26,21 @@
                                 </items>
                             </navigationBar>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BkI-4L-tlT" customClass="CommandView" customModule="Code_Quest" customModuleProvider="target">
-                                <frame key="frameInset" minY="591" width="1023" height="177"/>
+                                <frame key="frameInset" minX="1" minY="668" width="1023" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bOg-hD-ad6">
+                                        <frame key="frameInset" minX="881" minY="-2" width="142" height="102"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" label="Play"/>
+                                        <state key="normal" title="Button" image="play.png"/>
+                                        <connections>
+                                            <action selector="PlayButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1X9-V4-GUn"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bOg-hD-ad6">
-                                <frame key="frameInset" minX="918" minY="327" width="142" height="102"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" label="Play"/>
-                                <state key="normal" title="Button" image="play.png"/>
-                                <connections>
-                                    <action selector="PlayButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1X9-V4-GUn"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -63,7 +65,7 @@
                                 <rect key="frame" x="0.0" y="92" width="1024" height="128"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b8W-TM-QD0" id="KHO-hp-JCT">
-                                    <frame key="frameInset" width="1024" height="128"/>
+                                    <frame key="frameInset" width="1024" height="127"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Level 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iaf-Kn-Yuo">

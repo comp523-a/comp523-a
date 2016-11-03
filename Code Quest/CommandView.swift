@@ -7,7 +7,7 @@
 //
 
 import UIKit
-let num_command_buttons = 6
+let num_command_buttons = 7
 
 ///View that contains command butotns
 class CommandView: UIView {
@@ -21,7 +21,7 @@ class CommandView: UIView {
 		super.init(coder: aDecoder)
 		
 		for i in 0..<num_command_buttons {
-			let command = Input(type: ButtonType(rawValue : i)!, frame: CGRect(x: 0+150*i, y: 0, width: 128, height: 128));
+			let command = Input(type: ButtonType(rawValue : i)!, frame: CGRect(x: 100*i, y: 0, width: 96, height: 96));
 			//command.backgroundColor = UIColor.cyan
 			
 			//command.addTarget(self, action: #selector(CommandView.commandTapped(_:)), for: .Touchdown)
