@@ -21,6 +21,7 @@ class Level {
 	var goalLoc : (Int, Int)
 	///The text that appears upon starting a level
 	var tutorialText : String
+	var background : String?
 	
 	init(name: String, data: [[Int]], startingLoc: (Int, Int), goalLoc: (Int, Int), tutorial: String){
         self.name = name
