@@ -40,6 +40,7 @@ class LevelTableViewController: UITableViewController {
                      [2,1,1,1,1,2],
                      [2,2,2,2,2,2]]
 		let level3 = Level(name: "Level 3", data: data3, startingLoc: (1, 3), goalLoc: (4, 1), tutorial: "This is your ultimate challenge!")
+		
 		let data4 = [[2,2,2,2,2,2],
 		             [2,1,1,2,1,2],
 		             [2,1,1,2,4,2],
@@ -47,8 +48,45 @@ class LevelTableViewController: UITableViewController {
 		             [2,2,2,2,2,2]]
 		let level4 = Level(name: "White Whale", data: data4, startingLoc:(1,2), goalLoc:(4,3), tutorial:"Call me Ishmael. Some years ago--never mind how long precisely--having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.")
 		level4.background = "speech2.png"
+		
+		let data5 = [[2,2,2,2,2,2,2,2,2,2],
+		             [2,1,1,1,1,1,1,1,1,2],
+		             [2,1,1,1,2,2,2,1,1,2],
+		             [2,1,1,1,2,4,1,1,1,2],
+		             [2,1,1,1,2,1,1,1,1,2],
+		             [2,2,2,2,2,2,2,2,2,2]]
+		
 
-        levels += [level1, level2, level3, level4]
+		let level5 = Level(name: "Level 5", data: data5, startingLoc: (1, 4), goalLoc: (5, 3), tutorial: "Get to the goal!")
+		
+		let data6 = [[2,2,2,2,2,2,2,2,2,2],
+		             [2,1,1,2,1,1,1,1,4,2],
+		             [2,1,1,2,1,1,1,1,1,2],
+		             [2,1,1,1,1,2,1,2,2,2],
+		             [2,1,1,1,1,2,1,1,1,2],
+		             [2,2,2,2,2,2,2,2,2,2]]
+		
+		let level6 = Level(name: "Level 6", data: data6, startingLoc: (1, 4), goalLoc: (8, 1), tutorial: "Get to the goal!")
+		
+		let data7 = [[2,2,2,2,2,2,2,2,2,2],
+		             [2,1,1,2,1,1,1,1,1,2],
+		             [2,2,1,2,1,1,1,1,1,2],
+		             [2,1,1,1,1,2,2,2,1,2],
+		             [2,1,1,1,1,2,1,4,1,2],
+		             [2,2,2,2,2,2,2,2,2,2]]
+		
+		let level7 = Level(name: "Level 7", data: data7, startingLoc: (1, 4), goalLoc: (7, 4), tutorial: "Get to the goal!")
+		
+		let data8 = [[2,2,2,2,2,2,2,2,2,2],
+		             [2,4,1,1,1,1,1,1,1,2],
+		             [2,1,1,2,1,1,2,1,1,2],
+		             [2,2,2,2,1,1,2,2,1,2],
+		             [2,1,1,1,1,1,1,1,1,2],
+		             [2,2,2,2,2,2,2,2,2,2]]
+		
+		let level8 = Level(name: "Level 8", data: data8, startingLoc: (1, 4), goalLoc: (7, 4), tutorial: "Get to the goal!")
+
+        levels += [level1, level2, level3, level4, level5, level6, level7, level8]
     }
 
     override func didReceiveMemoryWarning() {
