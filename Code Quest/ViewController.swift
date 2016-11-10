@@ -210,7 +210,13 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 		musicPlayer.volume = 0.1
 		var won = false
 		var moved = false
+		if (currentStep != 0) {
+			commandQueueViews[currentStep-1].frame.origin.y += 10
+		}
 		if currentStep < commandQueue.count {
+			if (currentStep < (commandQueue.count - 1) ) {
+				commandQueueViews[currentStep].frame.origin.y -= 10
+			}
 			(moved, won) = (cmdHandler?.handleCmd(input: commandQueue[currentStep]))!
 			if (moved) {
 				scene?.movePlayer(newPos: (cmdHandler?.playerLoc)!)
