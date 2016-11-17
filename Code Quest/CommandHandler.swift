@@ -98,13 +98,19 @@ class CommandHandler {
 	
 	*/
 	func setPlayerLoc(newCoords: (Int, Int)) -> (Bool, Bool) {
-		if let oldLoc = level[playerLoc.1][playerLoc.0] as? floorCell, let newLoc = level[newCoords.1][newCoords.0] as? floorCell {
-			oldLoc.makeNotPlayer()
-			playerLoc = newCoords
-			let isGoal = newLoc.isGoal
-			newLoc.makePlayer()
-			return (true, isGoal)
-		} else {
+		
+		if (newCoords.0 >= 0) && (newCoords.0 < level[0].count) && (newCoords.1 >= 0) && (newCoords.1 < level.count-1) {  //Check boundaries - Why does it only work if 1 subtracted from height?
+			if let oldLoc = level[playerLoc.1][playerLoc.0] as? floorCell, let newLoc = level[newCoords.1][newCoords.0] as? floorCell {		//Check if space is floor
+				oldLoc.makeNotPlayer()
+				playerLoc = newCoords
+				let isGoal = newLoc.isGoal
+				newLoc.makePlayer()
+				return (true, isGoal)
+			} else {
+				return (false, false)
+			}
+		}
+		else {
 			return (false, false)
 		}
 	}

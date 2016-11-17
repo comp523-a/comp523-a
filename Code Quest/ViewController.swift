@@ -142,7 +142,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 	
 	- parameter type: (To be) enum specifying type of button
 
-	*/
+	**/
     
     // TODO: Rewrite this function as a switch over ButtonTypes
 	func getButtonInput(type:ButtonType) {
