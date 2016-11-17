@@ -29,6 +29,7 @@
 		104E38761DCB2A6900D98EFA /* speech2.png in Resources */ = {isa = PBXBuildFile; fileRef = 104E38751DCB2A6900D98EFA /* speech2.png */; };
 		104E38781DCB301A00D98EFA /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104E38771DCB301A00D98EFA /* GameScene.swift */; };
 		104E387A1DCB3C0C00D98EFA /* player.png in Resources */ = {isa = PBXBuildFile; fileRef = 104E38791DCB3C0C00D98EFA /* player.png */; };
+		1078D2871DDD6B7600C681AA /* Maze.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1078D2861DDD6B7600C681AA /* Maze.swift */; };
 		108FBD241D9CA6A200043A08 /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108FBD231D9CA6A200043A08 /* Input.swift */; };
 		10A03EB21DC1EA6B004F7ABB /* cheer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 10A03EB11DC1EA6B004F7ABB /* cheer.mp3 */; };
 		10A03EB81DC1F34E004F7ABB /* bump.wav in Resources */ = {isa = PBXBuildFile; fileRef = 10A03EB31DC1F34E004F7ABB /* bump.wav */; };
@@ -88,6 +89,7 @@
 		104E38751DCB2A6900D98EFA /* speech2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speech2.png; sourceTree = "<group>"; };
 		104E38771DCB301A00D98EFA /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		104E38791DCB3C0C00D98EFA /* player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player.png; sourceTree = "<group>"; };
+		1078D2861DDD6B7600C681AA /* Maze.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Maze.swift; path = ../Maze.swift; sourceTree = "<group>"; };
 		108FBD231D9CA6A200043A08 /* Input.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
 		10A03EB11DC1EA6B004F7ABB /* cheer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cheer.mp3; sourceTree = "<group>"; };
 		10A03EB31DC1F34E004F7ABB /* bump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bump.wav; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 		10B20FD11D909BD200142CAE /* Code Quest */ = {
 			isa = PBXGroup;
 			children = (
+				1078D2861DDD6B7600C681AA /* Maze.swift */,
 				3ACDDAE11DADB9BD00548B1E /* erase1.png */,
 				3ACDDAE21DADB9BD00548B1E /* eraseall.png */,
 				10A03EB31DC1F34E004F7ABB /* bump.wav */,
@@ -348,6 +351,7 @@
 				10B20FD31D909BD200142CAE /* AppDelegate.swift in Sources */,
 				100C58D41D9C4937004EE1B2 /* CommandView.swift in Sources */,
 				103733491D921F86006B5B0B /* gameCell.swift in Sources */,
+				1078D2871DDD6B7600C681AA /* Maze.swift in Sources */,
 				10BE0A911D933DAE000CB810 /* LevelTableViewCell.swift in Sources */,
 				D950159C1D92366200CFE700 /* floorCell.swift in Sources */,
 				3AB088F61DA2FF570061F4D9 /* SoundPlayer.swift in Sources */,

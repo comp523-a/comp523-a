@@ -18,6 +18,8 @@ class LevelTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+		//let MrMaze = Maze(width:11, height:7)
+		//levels.append(LevelFromMaze(maze: MrMaze, name: "Mr Maze's Level", tutorial:"This is Mr Maze's level"))
 		if let savedLevels = loadLevels() {
 			levels += savedLevels
 		} else {
@@ -145,8 +147,38 @@ class LevelTableViewController: UITableViewController {
 
         return cell
     }
-    
+	
+	func LevelFromMaze(maze: Maze, name: String, tutorial: String) -> Level {
+		let levelY = maze.data.count
+		let levelX = maze.data[0].count
+		var levelData =  [[Int]](repeating: [Int](repeating:0, count:levelX - 4), count: levelY - 4)
+		print(maze.data)
+		for i in 2 ..< (levelY - 2) {
+			for j in 2 ..< (levelX - 2) {
+				
+				let thisCell = maze.data[i][j] == Maze.Cell.Wall ? 2 : 1
+				levelData[i - 2][j - 2] = thisCell
+			}
+		}
+		print(levelData)
+		return Level(name: name, data: levelData, startingLoc:(0,0), goalLoc: (levelX-5, levelY-5), tutorial: tutorial)
+	}
+	
+	func makeMazeLevel(name: String, tutorial:String) -> Level {
+		let levelX = 5 + Int(arc4random_uniform(4) * 2)
+		let levelY = 3 + Int(arc4random_uniform(2) * 2)
+		let mrMaze = Maze(width: levelX + 4, height: levelY + 4)
+		return LevelFromMaze(maze: mrMaze, name: name, tutorial: tutorial)
+	}
 
+	@IBAction func AddButton(_ sender: AnyObject) {
+		let levelName = "Level \(levels.count + 1)"
+		let tutorialText = "Solve Mr Maze's confounding maze!"
+		let newIndexPath = NSIndexPath(row: levels.count, section:0)
+		levels.append(makeMazeLevel(name:levelName, tutorial: tutorialText))
+		tableView.insertRows(at: [newIndexPath as IndexPath], with:.bottom)
+		saveLevels()
+	}
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -208,7 +240,7 @@ class LevelTableViewController: UITableViewController {
 			}
 		}
 		saveLevels()
-	}*/
-    
+	}
+    */
 
 }

@@ -104,7 +104,7 @@
                                 <rect key="frame" x="0.0" y="92" width="1024" height="128"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b8W-TM-QD0" id="KHO-hp-JCT">
-                                    <frame key="frameInset" width="1024" height="127"/>
+                                    <frame key="frameInset" width="1024" height="128"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Level 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iaf-Kn-Yuo">
@@ -137,7 +137,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Level Select" id="hSc-S1-8su">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="lCb-Tn-lQv"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="lCb-Tn-lQv">
+                            <connections>
+                                <action selector="AddButton:" destination="4CZ-oK-lLi" id="eeR-DH-lRH"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7qd-Js-Hu8" userLabel="First Responder" sceneMemberID="firstResponder"/>
