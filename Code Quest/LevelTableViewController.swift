@@ -23,19 +23,23 @@ class LevelTableViewController: UITableViewController {
 	
 	/// Contains data for built in levels and adds them to level array
     func loadDefaultLevels() {
-        let data1 = [[2,2,2,2,2,2],
-                     [2,1,1,1,1,2],
-                     [2,2,2,2,2,2]]
-		let level1 = Level(name: "Level 1", data: data1, startingLoc: (1, 1), goalLoc: (4, 1), tutorial: "Bring the player to the goal!")
+        //let data1 = [[2,2,2,2,2,2],
+        //             [2,1,1,1,1,2],
+        //             [2,2,2,2,2,2]]
+		//let level1 = Level(name: "Level 1", data: data1, startingLoc: (1, 1), goalLoc: (4, 1), tutorial: "Bring the player to the goal!")
+		
+		let data1 = [[1,1,1,1,1]]
+		let level1 = Level(name: "Level 1", data: data1, startingLoc: (0, 0), goalLoc: (4, 0), tutorial: "Bring the player to the goal!")
+		
         let data2 = [[2,2,2],
                      [2,1,2],
                      [2,1,2],
                      [2,1,2],
-                     [2,4,2],
+                     [2,1,2],
                      [2,2,2]]
 		let level2 = Level(name: "Level 2", data: data2, startingLoc: (1, 1), goalLoc: (1, 4), tutorial: "This is the second level!")
         let data3 = [[2,2,2,2,2,2],
-                     [2,1,1,1,4,2],
+                     [2,1,1,1,1,2],
                      [2,1,1,1,1,2],
                      [2,1,1,1,1,2],
                      [2,2,2,2,2,2]]
@@ -43,7 +47,7 @@ class LevelTableViewController: UITableViewController {
 		
 		let data4 = [[2,2,2,2,2,2],
 		             [2,1,1,2,1,2],
-		             [2,1,1,2,4,2],
+		             [2,1,1,2,1,2],
 		             [2,1,1,2,1,2],
 		             [2,2,2,2,2,2]]
 		let level4 = Level(name: "White Whale", data: data4, startingLoc:(1,2), goalLoc:(4,3), tutorial:"Call me Ishmael. Some years ago--never mind how long precisely--having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.")
@@ -52,7 +56,7 @@ class LevelTableViewController: UITableViewController {
 		let data5 = [[2,2,2,2,2,2,2,2,2,2],
 		             [2,1,1,1,1,1,1,1,1,2],
 		             [2,1,1,1,2,2,2,1,1,2],
-		             [2,1,1,1,2,4,1,1,1,2],
+		             [2,1,1,1,2,1,1,1,1,2],
 		             [2,1,1,1,2,1,1,1,1,2],
 		             [2,2,2,2,2,2,2,2,2,2]]
 		
@@ -60,7 +64,7 @@ class LevelTableViewController: UITableViewController {
 		let level5 = Level(name: "Level 5", data: data5, startingLoc: (1, 4), goalLoc: (5, 3), tutorial: "Get to the goal!")
 		
 		let data6 = [[2,2,2,2,2,2,2,2,2,2],
-		             [2,1,1,2,1,1,1,1,4,2],
+		             [2,1,1,2,1,1,1,1,1,2],
 		             [2,1,1,2,1,1,1,1,1,2],
 		             [2,1,1,1,1,2,1,2,2,2],
 		             [2,1,1,1,1,2,1,1,1,2],
@@ -72,13 +76,13 @@ class LevelTableViewController: UITableViewController {
 		             [2,1,1,2,1,1,1,1,1,2],
 		             [2,2,1,2,1,1,1,1,1,2],
 		             [2,1,1,1,1,2,2,2,1,2],
-		             [2,1,1,1,1,2,1,4,1,2],
+		             [2,1,1,1,1,2,1,1,1,2],
 		             [2,2,2,2,2,2,2,2,2,2]]
 		
 		let level7 = Level(name: "Level 7", data: data7, startingLoc: (1, 4), goalLoc: (7, 4), tutorial: "Get to the goal!")
 		
 		let data8 = [[2,2,2,2,2,2,2,2,2,2],
-		             [2,4,1,1,1,1,1,1,1,2],
+		             [2,1,1,1,1,1,1,1,1,2],
 		             [2,1,1,2,1,1,2,1,1,2],
 		             [2,2,2,2,1,1,2,2,1,2],
 		             [2,1,1,1,1,1,1,1,1,2],
