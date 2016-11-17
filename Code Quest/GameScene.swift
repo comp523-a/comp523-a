@@ -9,8 +9,11 @@
 import Foundation
 import SpriteKit
 
+///The SpriteKit overlay that handles player movement
 class GameScene : SKScene {
+	///The player sprite
 	let player = SKSpriteNode(imageNamed: "pt")
+	///The player position in level coordinates
 	var playerPosition : (Int, Int) = (0,0)
 	
 	
@@ -20,14 +23,17 @@ class GameScene : SKScene {
 		addChild(player)
 	}
 	
+	///Returns the player's screen coordinates based on their level coordinates
 	func getPlayerCoordinates() -> CGPoint {
 		return mapToScreenCoordinates(newPos: playerPosition)
 	}
 	
+	///Maps level coordinates to screen coordinates
 	func mapToScreenCoordinates(newPos : (Int, Int)) -> CGPoint {
 		return CGPoint(x: 96 * newPos.0 + 50, y: Int(self.size.height) - (50 + 64 + 96 * newPos.1))
 	}
 	
+	///Updates the player's location in level coordinates
 	func movePlayer(newPos : (Int, Int)) {
 		playerPosition = newPos
 		let playerMove = SKAction.move(to: getPlayerCoordinates(), duration: 0.15)
@@ -37,11 +43,13 @@ class GameScene : SKScene {
 		
 	}
 	
+	///Updates the player's level coordinates without animating
 	func setPlayerPos(newPos: (Int, Int)) {
 		playerPosition = newPos
 		player.position = getPlayerCoordinates()
 	}
 	
+	///Moves the player towards the specified level coordinates, playing the bonk animation instead. 
 	func tryToMoveTo(newPos: (Int, Int)) {
 		let oldPos = getPlayerCoordinates()
 		let theNewPos = mapToScreenCoordinates(newPos: newPos)

@@ -39,8 +39,11 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 	var cmdHandler: CommandHandler? = nil
     /// Boolean to determine whether to accept commands
     var takeInput: Bool = true
+	/// The SpriteKit layer
 	var scene : GameScene? = nil
+	/// The parent level table view controller
 	var parentLevelTableViewController : LevelTableViewController? = nil
+	
 	
 	let music: URL = URL(fileURLWithPath: Bundle.main.path(forResource: "song", ofType:"wav")!);
 	var musicPlayer = AVAudioPlayer()

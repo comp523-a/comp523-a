@@ -14,8 +14,11 @@ class CommandHandler {
 	
 	/// Cell-based representation of the level
 	var level: [[gameCell]]
+	/// Location of the Player in (x, y)
 	var playerLoc: (Int, Int)
+	/// Location of the goal in (x, y)
 	var goalLoc: (Int, Int)
+	/// Number of commands run
 	var commandCount: Int = 0
 
 	init(level : inout [[gameCell]], playerLoc : inout (Int, Int), goalLoc : inout (Int, Int)) {
@@ -48,6 +51,12 @@ class CommandHandler {
 	
 	// Specialized command handling functions
 	
+	/**
+	Given a command, returns the coordinate that command would move the player to.
+	
+	- parameter input: integer indicating selected command
+	
+	*/
 	func newCoordsFromCommand(input: Int) -> (Int, Int) {
 		// Get player location offsets from move direction
 		var dx = 0
@@ -68,7 +77,12 @@ class CommandHandler {
 		return (playerLoc.0 + dx, playerLoc.1 + dy)
 	}
 	
-	///Returns True if the player wins
+	/**
+	Given a command, tries to move the player. Returns a tuple of bools indicating if the player succesfully moved, and if they won on that turn
+	
+	- parameter input: integer indicating selected command
+	
+	*/
 	func moveCmd(input: Int) -> (Bool, Bool) {
 		var sounds = [leftSound, rightSound, upSound, downSound]
 		let newCoords = newCoordsFromCommand(input: input)

@@ -29,6 +29,7 @@ class LevelTableViewController: UITableViewController {
 		
     }
 	
+	///Saves levels to storage
 	func saveLevels () {
 		let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(levels, toFile: Level.ArchiveURL.path)
 		if !isSuccessfulSave {
@@ -36,11 +37,12 @@ class LevelTableViewController: UITableViewController {
 		}
 	}
 	
+	///Loads levels from storage
 	func loadLevels() -> [Level]? {
 		return NSKeyedUnarchiver.unarchiveObject(withFile: Level.ArchiveURL.path) as? [Level]
 	}
 	
-	/// Contains data for built in levels and adds them to level array
+	/// Contains data for built in levels, adds them to level array, and saves them
     func loadDefaultLevels() {
         //let data1 = [[2,2,2,2,2,2],
         //             [2,1,1,1,1,2],
@@ -148,6 +150,7 @@ class LevelTableViewController: UITableViewController {
         return cell
     }
 	
+	///Given a maze, returns a level
 	func LevelFromMaze(maze: Maze, name: String, tutorial: String) -> Level {
 		let levelY = maze.data.count
 		let levelX = maze.data[0].count
@@ -164,6 +167,7 @@ class LevelTableViewController: UITableViewController {
 		return Level(name: name, data: levelData, startingLoc:(0,0), goalLoc: (levelX-5, levelY-5), tutorial: tutorial)
 	}
 	
+	///Generates a random level
 	func makeMazeLevel(name: String, tutorial:String) -> Level {
 		let levelX = 5 + Int(arc4random_uniform(4) * 2)
 		let levelY = 3 + Int(arc4random_uniform(2) * 2)

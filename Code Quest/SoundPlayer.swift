@@ -19,7 +19,9 @@ let upSound = URL(fileURLWithPath: Bundle.main.path(forResource: "up", ofType:"w
 let downSound = URL(fileURLWithPath: Bundle.main.path(forResource: "down", ofType:"wav")!);
 /// Sound that plays when bumping into a wall
 let bumpSound = URL(fileURLWithPath: Bundle.main.path(forResource: "bump", ofType:"wav")!);
+/// Sound that plays when command queue is full
 let failSound = URL(fileURLWithPath: Bundle.main.path(forResource: "bumpo", ofType:"wav")!);
+/// Sound that plays when the level is cleared
 let cheerSound = URL(fileURLWithPath: Bundle.main.path(forResource: "cheer", ofType:"mp3")!);
 /// Audio player for sound effects
 var audioPlayer = AVAudioPlayer()

@@ -8,12 +8,15 @@
 
 import UIKit
 
+///Displays tutorial text
 class LevelTutorialViewController: UIViewController {
 
     //@IBOutlet weak var tutorialLabel: UITextView!
 	///The tutorial text to display
 	var tutorialText : String = "Good luck!"
+	///The background to display
 	var background : String = "speech1.png"
+	///The parent view controller
 	var myParent : ViewController?
 	
 	

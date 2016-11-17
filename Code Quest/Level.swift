@@ -21,9 +21,13 @@ class Level: NSObject, NSCoding {
 	var goalLoc : (Int, Int)
 	///The text that appears upon starting a level
 	var tutorialText : String
+	///Optional, the background displayed on the tutorial screen
 	var background : String?
+	///A bool representing whether the level has been cleared
 	var cleared : Bool
+	///The player's best score on this level
 	var highscore : Int
+	
 	
 	static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
 	static let ArchiveURL = DocumentsDirectory.appendingPathComponent("levels")
