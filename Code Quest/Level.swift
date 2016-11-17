@@ -9,7 +9,7 @@
 import UIKit
 
 ///Contains initialization data for a level
-class Level {
+class Level: NSObject, NSCoding {
 	
 	///Level's name
     var name: String
@@ -22,6 +22,26 @@ class Level {
 	///The text that appears upon starting a level
 	var tutorialText : String
 	var background : String?
+	var cleared : Bool
+	var highscore : Int
+	
+	static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+	static let ArchiveURL = DocumentsDirectory.appendingPathComponent("levels")
+	
+	
+	
+	struct PropertyKey {
+		static let nameKey = "name"
+		static let dataKey = "data"
+		static let startingLocXKey = "startingLocX"
+		static let startingLocYKey = "startingLocY"
+		static let goalLocXKey = "goalLocX"
+		static let goalLocYKey = "goalLocY"
+		static let tutorialTextKey = "tutorialText"
+		static let backgroundKey = "background"
+		static let clearedKey = "cleared"
+		static let highscoreKey = "highscore"
+	}
 	
 	init(name: String, data: [[Int]], startingLoc: (Int, Int), goalLoc: (Int, Int), tutorial: String){
         self.name = name
@@ -29,7 +49,26 @@ class Level {
 		self.startingLoc = startingLoc
 		self.goalLoc = goalLoc
 		self.tutorialText = tutorial
+		self.cleared = false
+		self.highscore = 0
     }
+	
+	required init (coder aDecoder: NSCoder) {
+		self.name = aDecoder.decodeObject(forKey: PropertyKey.nameKey) as! String
+		self.data = aDecoder.decodeObject(forKey: PropertyKey.dataKey) as! [[Int]]
+		let startingLocX = aDecoder.decodeInteger(forKey: PropertyKey.startingLocXKey)
+
+		let startingLocY = aDecoder.decodeInteger(forKey: PropertyKey.startingLocYKey) as! Int
+		self.startingLoc = (startingLocX, startingLocY)
+		
+		let goalLocX = aDecoder.decodeInteger(forKey: PropertyKey.goalLocXKey)
+		let goalLocY = aDecoder.decodeInteger(forKey: PropertyKey.goalLocYKey)
+		self.goalLoc = (goalLocX, goalLocY)
+		self.tutorialText = aDecoder.decodeObject(forKey: PropertyKey.tutorialTextKey) as! String
+		self.background = aDecoder.decodeObject(forKey: PropertyKey.backgroundKey) as? String
+		self.cleared = aDecoder.decodeBool(forKey: PropertyKey.clearedKey)
+		self.highscore = aDecoder.decodeInteger(forKey: PropertyKey.highscoreKey)
+	}
 	
 	/**
 	Returns the dimensions of the player grid
@@ -41,4 +80,21 @@ class Level {
         let xd = data[0].count
         return (xd, yd)
     }
+	
+	func encode(with aCoder: NSCoder) {
+		aCoder.encode(name, forKey: PropertyKey.nameKey)
+		aCoder.encode(data, forKey: PropertyKey.dataKey)
+		aCoder.encode(startingLoc.0, forKey: PropertyKey.startingLocXKey)
+		aCoder.encode(startingLoc.1, forKey: PropertyKey.startingLocYKey)
+		aCoder.encode(goalLoc.0, forKey: PropertyKey.goalLocXKey)
+		aCoder.encode(goalLoc.1, forKey: PropertyKey.goalLocYKey)
+		aCoder.encode(tutorialText, forKey: PropertyKey.tutorialTextKey)
+		aCoder.encode(background, forKey: PropertyKey.backgroundKey)
+		aCoder.encode(cleared, forKey: PropertyKey.clearedKey)
+		aCoder.encode(highscore, forKey: PropertyKey.highscoreKey)
+		
+		
+	}
+	
+	
 }

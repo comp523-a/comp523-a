@@ -18,8 +18,25 @@ class LevelTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        loadDefaultLevels()
+		if let savedLevels = loadLevels() {
+			levels += savedLevels
+		} else {
+			loadDefaultLevels()
+		}
+		
+		
     }
+	
+	func saveLevels () {
+		let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(levels, toFile: Level.ArchiveURL.path)
+		if !isSuccessfulSave {
+			print("failed to save levels...")
+		}
+	}
+	
+	func loadLevels() -> [Level]? {
+		return NSKeyedUnarchiver.unarchiveObject(withFile: Level.ArchiveURL.path) as? [Level]
+	}
 	
 	/// Contains data for built in levels and adds them to level array
     func loadDefaultLevels() {
@@ -91,6 +108,7 @@ class LevelTableViewController: UITableViewController {
 		let level8 = Level(name: "Level 8", data: data8, startingLoc: (1, 4), goalLoc: (7, 4), tutorial: "Get to the goal!")
 
         levels += [level1, level2, level3, level4, level5, level6, level7, level8]
+		saveLevels()
     }
 
     override func didReceiveMemoryWarning() {
@@ -114,8 +132,16 @@ class LevelTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! LevelTableViewCell
         let level = levels[indexPath.row]
     
-
+		print (level)
+		print(indexPath)
+		print(indexPath.row)
+		print (level.highscore)
         cell.levelLabel.text = level.name
+		if level.cleared {
+			cell.highscoreLabel.text = "Highscore: \(level.highscore) moves"
+		} else {
+			cell.highscoreLabel.text = "Not Yet Cleared"
+		}
 
         return cell
     }
@@ -167,9 +193,22 @@ class LevelTableViewController: UITableViewController {
                 let indexPath = tableView.indexPath(for: selectedLevelCell)!
                 let selectedLevel = levels[indexPath.row]
                 LevelViewController.level = selectedLevel
+				LevelViewController.parentLevelTableViewController = self
             }
         }
     }
+	
+	/*@IBAction func unwindToLevelList(sender: UIStoryboardSegue) {
+		print("we just got a seque, I wonder who it's from")
+		if let sourceViewController = sender.source as? ViewController, let level = sourceViewController.level {
+			if let selectedIndexPath = tableView.indexPathForSelectedRow {
+				levels[selectedIndexPath.row] = level
+				tableView.reloadRows(at: [selectedIndexPath], with:.fade)
+				
+			}
+		}
+		saveLevels()
+	}*/
     
 
 }

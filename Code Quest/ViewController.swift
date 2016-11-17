@@ -40,6 +40,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     /// Boolean to determine whether to accept commands
     var takeInput: Bool = true
 	var scene : GameScene? = nil
+	var parentLevelTableViewController : LevelTableViewController? = nil
 	
 	let music: URL = URL(fileURLWithPath: Bundle.main.path(forResource: "song", ofType:"wav")!);
 	var musicPlayer = AVAudioPlayer()
@@ -236,7 +237,17 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 				let alert = UIAlertController(title: "You win!", message: "You took \(commandQueue.count) steps", preferredStyle: UIAlertControllerStyle.alert)
 				alert.addAction(UIAlertAction(title: "Yay!", style: UIAlertActionStyle.default, handler: {(action: UIAlertAction!) in self.musicPlayer.volume = 0.6}))
 				self.present(alert, animated: true, completion: nil)
-
+				if !level!.cleared {
+					level!.cleared = true
+					level!.highscore = commandQueue.count
+				} else if commandQueue.count < level!.highscore {
+					level!.highscore = commandQueue.count
+				}
+				if let selectedIndexPath = parentLevelTableViewController?.tableView.indexPathForSelectedRow{
+					parentLevelTableViewController?.levels[selectedIndexPath.row] = level!
+					parentLevelTableViewController?.saveLevels()
+					parentLevelTableViewController?.tableView.reloadRows(at: [selectedIndexPath], with:.none)
+				}
 			} else {
 				musicPlayer.volume = 0.6
 			}

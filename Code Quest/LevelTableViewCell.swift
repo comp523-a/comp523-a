@@ -13,6 +13,8 @@ class LevelTableViewCell: UITableViewCell {
 
     //@IBOutlet weak var levelLabel: UIView!
     @IBOutlet weak var levelLabel: UILabel!
+    @IBOutlet weak var highscoreLabel: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
