@@ -43,7 +43,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 	var scene : GameScene? = nil
 	/// The parent level table view controller
 	var parentLevelTableViewController : LevelTableViewController? = nil
-	
+	var won : Bool = false
 	
 	let music: URL = URL(fileURLWithPath: Bundle.main.path(forResource: "song", ofType:"wav")!);
 	var musicPlayer = AVAudioPlayer()
@@ -70,6 +70,9 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 			print ("music failed")
 		}
 		
+		
+		let touchOnResetRecognizer = UITapGestureRecognizer(target: self, action: #selector (self.tapReset (_:)))
+		self.view.addGestureRecognizer(touchOnResetRecognizer)
 		
         if let testGrid = (level?.data)! as [[Int]]? {
 			playerLoc = level!.startingLoc
@@ -140,6 +143,18 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+	
+	func tapReset(_ sender: UITapGestureRecognizer) {
+		if (takeInput) {
+			resetLevelState()
+		}
+	}
+	
+	func resetLevelState() {
+		scene?.setPlayerPos(newPos: level!.startingLoc)
+		cmdHandler?.setPlayerLoc(newCoords: level!.startingLoc)
+		cmdHandler?.resetGoal(coords: level!.goalLoc)
+	}
 
 	/**
 	Gets button input from the Input controller
@@ -151,7 +166,8 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     // TODO: Rewrite this function as a switch over ButtonTypes
 	func getButtonInput(type:ButtonType) {
         if (takeInput) {
-            if (type.rawValue < 4 && commandQueue.count < 14) { // If command is to be added to queue and queue is not full
+			resetLevelState()
+            if (type.rawValue < 4 && commandQueue.count < 140) { // If command is to be added to queue and queue is not full
                 let tempCell = UIImageView(image: UIImage(named:imageNames[type.rawValue] + ".png"))
                 tempCell.frame = CGRect(x:70*commandQueue.count, y:512+84, width: 64, height:64)
                 tempCell.isAccessibilityElement = true
@@ -200,11 +216,10 @@ class ViewController: UIViewController, UICollectionViewDelegate {
             
             // Later, instead of accessing one of cmdHandler's helper methods,
             // simply send a reset command
-			scene?.setPlayerPos(newPos: level!.startingLoc)
-            cmdHandler?.setPlayerLoc(newCoords: level!.startingLoc)
-			cmdHandler?.resetGoal(coords: level!.goalLoc)
+			resetLevelState()
             
             currentStep = 0
+			won = false
             tickTimer = Timer.scheduledTimer(timeInterval: 0.5, target:self, selector:#selector(ViewController.runCommands), userInfo:nil, repeats: true)
         }
     }
@@ -212,7 +227,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 	/// Executes one step of the game loop
 	func runCommands() {
 		musicPlayer.volume = 0.1
-		var won = false
+		
 		var moved = false
 		if (currentStep != 0) {
 			commandQueueViews[currentStep-1].frame.origin.y += 10
@@ -221,7 +236,9 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 			if (currentStep < (commandQueue.count - 1) ) {
 				commandQueueViews[currentStep].frame.origin.y -= 10
 			}
-			(moved, won) = (cmdHandler?.handleCmd(input: commandQueue[currentStep]))!
+			var maybewon: Bool
+			(moved, maybewon) = (cmdHandler?.handleCmd(input: commandQueue[currentStep]))!
+			won = won || maybewon
 			if (moved) {
 				scene?.movePlayer(newPos: (cmdHandler?.playerLoc)!)
 			} else {
@@ -237,6 +254,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 			
 			if (won) {
 				musicPlayer.volume = 1
+				playSound(sound: cheerSound)
 				let alert = UIAlertController(title: "You win!", message: "You took \(commandQueue.count) steps", preferredStyle: UIAlertControllerStyle.alert)
 				alert.addAction(UIAlertAction(title: "Yay!", style: UIAlertActionStyle.default, handler: {(action: UIAlertAction!) in self.musicPlayer.volume = 0.6}))
 				self.present(alert, animated: true, completion: nil)

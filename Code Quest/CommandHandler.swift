@@ -89,11 +89,6 @@ class CommandHandler {
 		let (moved, won) = setPlayerLoc(newCoords: newCoords)
 		if(moved) {
 			playSound(sound: sounds[input])
-			if (won) {
-				playSound(sound: cheerSound)
-				///TODO: Move to view
-							}
-			
 		} else {
 			playSound(sound: bumpSound)
 		}
