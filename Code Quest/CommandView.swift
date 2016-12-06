@@ -8,6 +8,7 @@
 
 import UIKit
 let num_command_buttons = 7
+let num_queue_buttons = 4
 
 ///View that contains command butotns
 class CommandView: UIView {
