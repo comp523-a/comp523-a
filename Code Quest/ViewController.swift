@@ -16,7 +16,7 @@ let commandSounds = [leftSound, rightSound, upSound, downSound]
 /// Primary game controller. Contains most game state information
 class ViewController: UIViewController, UICollectionViewDelegate {
 	
-	/// Child view that contains command butotns
+	/// Child view that contains command buttons
     @IBOutlet var ButtonView: CommandView!
 	
     /// Level data for this stage
@@ -55,7 +55,10 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 	/// Controls game logic
     override func viewDidLoad() {
         super.viewDidLoad()
-		do {
+		
+		self.view.backgroundColor = UIColor(red: 27.0/256.0, green: 40.0/256.0, blue: 54.0/256.0, alpha: 1.0)
+        
+        do {
 			try musicPlayer = AVAudioPlayer(contentsOf: music)
 			try drumPlayer = AVAudioPlayer(contentsOf: drum)
 			musicPlayer.numberOfLoops = -1
@@ -125,6 +128,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 		self.cmdHandler = CommandHandler(level: &tileArray, playerLoc: &playerLoc, goalLoc: &goalLoc)
 		
 		ButtonView.gameControllerView = self
+		ButtonView.backgroundColor = UIColor(red: 27.0/256.0, green: 40.0/256.0, blue: 54.0/256.0, alpha: 1.0)
 		let skView = SKView(frame: view.bounds)
 		skView.isUserInteractionEnabled = false
 		skView.allowsTransparency = true
