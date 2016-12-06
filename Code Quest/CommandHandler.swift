@@ -40,9 +40,12 @@ class CommandHandler {
 		//						1 - Right
 		//						2 - Up
 		//						3 - Down
+		//						4 - Blaster
 		
 		if (input == 0 || input == 1 || input == 2 || input == 3) {
 			return self.moveCmd(input: input)
+		} else if (input == 4){
+			return self.blastCmd(input: input)
 		} else {
 			print("Unrecognized command index: \(input)")
 			return (false, false)
@@ -98,6 +101,29 @@ class CommandHandler {
 			playSound(sound: bumpSound)
 		}
 		return (moved, won)
+	}
+	
+	/**
+	Given a command, sends laser 'blast' in 4 directions (up, down, left, right) from the player. If blocks affected by blast are blastable then they will be 'destroyed'
+	
+	- parameter input: integer idicating selected command
+	
+	*/
+	
+	func blastCmd(input: Int) -> (Bool, Bool) {
+		//establish affected blocks, check if affected blocks are blastable, if so blast, if not don't blast
+		let upBlock = (playerLoc.0 - 1, playerLoc.1)
+		let downBlock = (playerLoc.0 + 1, playerLoc.1)
+		let rightBlock = (playerLoc.0, playerLoc.1 + 1)
+		let leftBlock = (playerLoc.0 , playerLoc.1 - 1)
+		let affectedBlocks = [upBlock, downBlock, rightBlock, leftBlock]
+		for block in affectedBlocks {
+			if(let blastable = block as? blastableCell){
+				
+			}
+		
+		}
+		
 	}
 	
 	// Utility functions
