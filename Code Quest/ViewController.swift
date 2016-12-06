@@ -131,6 +131,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 		self.cmdHandler = CommandHandler(level: &tileArray, playerLoc: &playerLoc, goalLoc: &goalLoc)
 		
 		ButtonView.gameControllerView = self
+        ButtonView.backgroundColor = UIColor(red: 27.0/256.0, green: 40.0/256.0, blue: 54.0/256.0, alpha: 1.0)
 		let skView = SKView(frame: view.bounds)
 		skView.isUserInteractionEnabled = false
 		skView.allowsTransparency = true

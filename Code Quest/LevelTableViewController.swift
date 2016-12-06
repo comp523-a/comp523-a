@@ -142,7 +142,7 @@ class LevelTableViewController: UITableViewController {
 		print (level.highscore)
         cell.levelLabel.text = level.name
 		if level.cleared {
-			cell.highscoreLabel.text = "Highscore: \(level.highscore) moves"
+			cell.highscoreLabel.text = "Best score: \(level.highscore) moves"
 		} else {
 			cell.highscoreLabel.text = "Not Yet Cleared"
 		}
