@@ -54,6 +54,9 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     
 	/// Controls game logic
     override func viewDidLoad() {
+        
+        self.view.backgroundColor = UIColor(red: 27.0/256.0, green: 40.0/256.0, blue: 54.0/256.0, alpha: 1.0)
+        
         super.viewDidLoad()
 		do {
 			try musicPlayer = AVAudioPlayer(contentsOf: music)
