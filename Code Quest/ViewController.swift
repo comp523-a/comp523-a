@@ -10,8 +10,8 @@ import UIKit
 import AVFoundation
 import SpriteKit
 
-let imageNames = ["left", "right", "up", "down", "blaster"]
-let commandSounds = [leftSound, rightSound, upSound, downSound, blasterSound]
+let imageNames = ["left", "right", "up", "down"]
+let commandSounds = [leftSound, rightSound, upSound, downSound]
 
 /// Primary game controller. Contains most game state information
 class ViewController: UIViewController, UICollectionViewDelegate {
@@ -170,10 +170,17 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 				DispatchQueue.main.asyncAfter(deadline: delayTime, execute: {
 					UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, "Command queue full");
 				})
-				
-				
-				
-            } else { // Command is to be executed immediately
+			} else if (type == ButtonType.BLASTER) {
+				let tempCell = UIImageView(image: UIImage(named:"blaster.jpg"))
+				tempCell.frame = CGRect(x:70*commandQueue.count, y:512+84, width: 64, height:64)
+				tempCell.isAccessibilityElement = true
+				tempCell.accessibilityTraits = UIAccessibilityTraitImage
+				tempCell.accessibilityLabel = "blaster"
+				self.view.addSubview(tempCell)
+				commandQueue.append(4)
+				commandQueueViews.append(tempCell)
+				playSound(sound: blasterSound)
+			} else {
                 if (type == ButtonType.ERASE1) {
                     commandQueueViews.popLast()?.removeFromSuperview()
                     commandQueue.popLast()

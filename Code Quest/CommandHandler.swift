@@ -46,7 +46,7 @@ class CommandHandler {
 			return self.moveCmd(input: input)
 		} else if (input == 4){
 			self.blastCmd()
-			return (true, true)
+			return (false, false)
 		} else {
 			print("Unrecognized command index: \(input)")
 			return (false, false)
@@ -113,16 +113,53 @@ class CommandHandler {
 	
 	func blastCmd(){
 		//establish affected blocks, check if affected blocks are blastable, if so blast, if not don't blast
-		let upBlock = level[playerLoc.0 - 1][playerLoc.1]
-		let downBlock = level[playerLoc.0 + 1][playerLoc.1]
-		let rightBlock = level[playerLoc.0][playerLoc.1 + 1]
-		let leftBlock = level[playerLoc.0][playerLoc.1 - 1]
-		let affectedBlocks = [upBlock, downBlock, rightBlock, leftBlock] as [gameCell]
+//		print("called blastCmd()")
+
+		var downBlock: gameCell? = nil
+		var rightBlock: gameCell? = nil
+		var leftBlock: gameCell? = nil
+		var upBlock: gameCell? = nil
+		
+		
+		if (playerLoc.1 != 0) {
+			leftBlock = level[playerLoc.0][playerLoc.1 - 1]
+		}
+		if (playerLoc.0 != 0) {
+			upBlock = level[playerLoc.0-1][playerLoc.1]
+		}
+		if (playerLoc.1+1 != level[0].count) {
+			rightBlock = level[playerLoc.0][playerLoc.1 + 1]
+		}
+		if (playerLoc.0+1 != level.count) {
+			downBlock = level[playerLoc.0 + 1][playerLoc.1]
+		}
+		
+		
+//		var downBlock = level[playerLoc.0 + 1][playerLoc.1]
+//		var rightBlock = level[playerLoc.0][playerLoc.1 + 1]
+//		var leftBlock = level[playerLoc.0][playerLoc.1 - 1]
+//		var affectedBlocks = [upBlock, downBlock, rightBlock, leftBlock] as [gameCell]
+		
+		if (upBlock != nil && upBlock is blastableCell) {
+			blast(cell: &upBlock!)
+		}
+		if (downBlock != nil && downBlock is blastableCell) {
+			blast(cell: &upBlock!)
+		}
+		if (rightBlock != nil && rightBlock is blastableCell) {
+			blast(cell: &upBlock!)
+		}
+		if (leftBlock != nil && leftBlock is blastableCell) {
+			blast(cell: &upBlock!)
+		}
+		
+		/*
 		for block in affectedBlocks {
 			if block is blastableCell{
-				blast(cell: block)
+				blast(cell: &block)
 			}
 		}
+		*/
 	}
 	
 	// Utility functions
@@ -170,8 +207,7 @@ class CommandHandler {
 	-parameter block: cell to blast
 	*/
 	
-	func blast(cell: (gameCell)){
-		var cell = cell
+	func blast(cell: inout (gameCell)){
 		let blastedCell = floorCell()
 		cell = blastedCell
 		//TODO: Animation of laser

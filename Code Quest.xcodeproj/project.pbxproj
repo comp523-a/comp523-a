@@ -48,6 +48,10 @@
 		3A2963A01DC462FB0045B33C /* queuesound.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A29639F1DC462FB0045B33C /* queuesound.png */; };
 		3AB088EA1DA2E0D50061F4D9 /* CommandHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB088E91DA2E0D50061F4D9 /* CommandHandler.swift */; };
 		3AB088F61DA2FF570061F4D9 /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB088F51DA2FF570061F4D9 /* SoundPlayer.swift */; };
+		3AB3EEDF1DF8973D00B6E169 /* blastableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3EEDB1DF8973D00B6E169 /* blastableCell.swift */; };
+		3AB3EEE01DF8973D00B6E169 /* blaster.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3AB3EEDC1DF8973D00B6E169 /* blaster.jpg */; };
+		3AB3EEE11DF8973D00B6E169 /* blaster.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AB3EEDD1DF8973D00B6E169 /* blaster.mp3 */; };
+		3AB3EEE21DF8973D00B6E169 /* laser.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AB3EEDE1DF8973D00B6E169 /* laser.mp3 */; };
 		3ACDDAE31DADB9BD00548B1E /* erase1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ACDDAE11DADB9BD00548B1E /* erase1.png */; };
 		3ACDDAE41DADB9BD00548B1E /* eraseall.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ACDDAE21DADB9BD00548B1E /* eraseall.png */; };
 		D95015981D9235EF00CFE700 /* wallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95015971D9235EF00CFE700 /* wallCell.swift */; };
@@ -110,6 +114,10 @@
 		3A29639F1DC462FB0045B33C /* queuesound.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = queuesound.png; sourceTree = "<group>"; };
 		3AB088E91DA2E0D50061F4D9 /* CommandHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandHandler.swift; sourceTree = "<group>"; };
 		3AB088F51DA2FF570061F4D9 /* SoundPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
+		3AB3EEDB1DF8973D00B6E169 /* blastableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = blastableCell.swift; sourceTree = "<group>"; };
+		3AB3EEDC1DF8973D00B6E169 /* blaster.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = blaster.jpg; sourceTree = "<group>"; };
+		3AB3EEDD1DF8973D00B6E169 /* blaster.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = blaster.mp3; sourceTree = "<group>"; };
+		3AB3EEDE1DF8973D00B6E169 /* laser.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = laser.mp3; sourceTree = "<group>"; };
 		3ACDDAE11DADB9BD00548B1E /* erase1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = erase1.png; sourceTree = "<group>"; };
 		3ACDDAE21DADB9BD00548B1E /* eraseall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eraseall.png; sourceTree = "<group>"; };
 		D95015971D9235EF00CFE700 /* wallCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = wallCell.swift; sourceTree = "<group>"; };
@@ -158,6 +166,10 @@
 		10B20FD11D909BD200142CAE /* Code Quest */ = {
 			isa = PBXGroup;
 			children = (
+				3AB3EEDB1DF8973D00B6E169 /* blastableCell.swift */,
+				3AB3EEDC1DF8973D00B6E169 /* blaster.jpg */,
+				3AB3EEDD1DF8973D00B6E169 /* blaster.mp3 */,
+				3AB3EEDE1DF8973D00B6E169 /* laser.mp3 */,
 				1078D2861DDD6B7600C681AA /* Maze.swift */,
 				3ACDDAE11DADB9BD00548B1E /* erase1.png */,
 				3ACDDAE21DADB9BD00548B1E /* eraseall.png */,
@@ -307,11 +319,14 @@
 				10A03EB21DC1EA6B004F7ABB /* cheer.mp3 in Resources */,
 				103DDD531DC1FCD300086960 /* song.wav in Resources */,
 				103DDD4C1DC1F86A00086960 /* right.wav in Resources */,
+				3AB3EEE11DF8973D00B6E169 /* blaster.mp3 in Resources */,
+				3AB3EEE01DF8973D00B6E169 /* blaster.jpg in Resources */,
 				10B20FDD1D909BD200142CAE /* LaunchScreen.storyboard in Resources */,
 				104E38761DCB2A6900D98EFA /* speech2.png in Resources */,
 				103B18291D92351000BD00CE /* down.png in Resources */,
 				103B182D1D923D9400BD00CE /* goal.png in Resources */,
 				104E386C1DCB09A200D98EFA /* bumpo.wav in Resources */,
+				3AB3EEE21DF8973D00B6E169 /* laser.mp3 in Resources */,
 				103B18231D92350500BD00CE /* left.png in Resources */,
 				103B18271D92350500BD00CE /* wall.png in Resources */,
 				10A03EB81DC1F34E004F7ABB /* bump.wav in Resources */,
@@ -350,6 +365,7 @@
 				10BE0A8E1D933B74000CB810 /* Level.swift in Sources */,
 				10B20FD31D909BD200142CAE /* AppDelegate.swift in Sources */,
 				100C58D41D9C4937004EE1B2 /* CommandView.swift in Sources */,
+				3AB3EEDF1DF8973D00B6E169 /* blastableCell.swift in Sources */,
 				103733491D921F86006B5B0B /* gameCell.swift in Sources */,
 				1078D2871DDD6B7600C681AA /* Maze.swift in Sources */,
 				10BE0A911D933DAE000CB810 /* LevelTableViewCell.swift in Sources */,

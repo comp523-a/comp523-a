@@ -7,7 +7,7 @@
 //
 
 import UIKit
-let num_command_buttons = 7
+let num_command_buttons = 8
 
 ///View that contains command butotns
 class CommandView: UIView {

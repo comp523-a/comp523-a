@@ -68,7 +68,7 @@ class LevelTableViewController: UITableViewController {
 		
 		let data4 = [[2,2,2,2,2,2],
 		             [2,1,1,2,1,2],
-		             [2,1,1,2,1,2],
+		             [2,1,1,5,1,2],
 		             [2,1,1,2,1,2],
 		             [2,2,2,2,2,2]]
 		let level4 = Level(name: "White Whale", data: data4, startingLoc:(1,2), goalLoc:(4,3), tutorial:"Call me Ishmael. Some years ago--never mind how long precisely--having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.")

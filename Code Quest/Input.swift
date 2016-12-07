@@ -17,6 +17,7 @@ enum ButtonType:Int {
 	case ERASE1 = 4
 	case ERASEALL = 5
 	case QUEUESOUND = 6
+	case BLASTER = 7
 }
 
 class Input: UIButton {
@@ -50,6 +51,9 @@ class Input: UIButton {
 		case ButtonType.QUEUESOUND:
 			self.setImage(UIImage(named:"queuesound.png"), for: UIControlState.normal)
 			self.accessibilityLabel = "Hear the commands you have input"
+		case ButtonType.BLASTER:
+			self.setImage(UIImage(named:"blaster.jpg"), for: UIControlState.normal)
+			self.accessibilityLabel = "Blaster"
 		}
 		
 		
