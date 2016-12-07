@@ -10,8 +10,8 @@ import UIKit
 import AVFoundation
 import SpriteKit
 
-let imageNames = ["left", "right", "up", "down"]
-let commandSounds = [leftSound, rightSound, upSound, downSound]
+let imageNames = ["left", "right", "up", "down", "blaster"]
+let commandSounds = [leftSound, rightSound, upSound, downSound, blasterSound]
 
 /// Primary game controller. Contains most game state information
 class ViewController: UIViewController, UICollectionViewDelegate {
@@ -87,6 +87,8 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 							cell = floorCell()
                         //case 4:
                         //    cell = goalCell()
+						case 5:
+							cell = blastableCell()
                         default:
 							cell = floorCell()
                     }

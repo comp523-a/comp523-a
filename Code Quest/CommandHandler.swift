@@ -45,7 +45,8 @@ class CommandHandler {
 		if (input == 0 || input == 1 || input == 2 || input == 3) {
 			return self.moveCmd(input: input)
 		} else if (input == 4){
-			return self.blastCmd(input: input)
+			self.blastCmd()
+			return (true, true)
 		} else {
 			print("Unrecognized command index: \(input)")
 			return (false, false)
@@ -110,20 +111,18 @@ class CommandHandler {
 	
 	*/
 	
-	func blastCmd(input: Int) -> (Bool, Bool) {
+	func blastCmd(){
 		//establish affected blocks, check if affected blocks are blastable, if so blast, if not don't blast
-		let upBlock = (playerLoc.0 - 1, playerLoc.1)
-		let downBlock = (playerLoc.0 + 1, playerLoc.1)
-		let rightBlock = (playerLoc.0, playerLoc.1 + 1)
-		let leftBlock = (playerLoc.0 , playerLoc.1 - 1)
-		let affectedBlocks = [upBlock, downBlock, rightBlock, leftBlock]
+		let upBlock = level[playerLoc.0 - 1][playerLoc.1]
+		let downBlock = level[playerLoc.0 + 1][playerLoc.1]
+		let rightBlock = level[playerLoc.0][playerLoc.1 + 1]
+		let leftBlock = level[playerLoc.0][playerLoc.1 - 1]
+		let affectedBlocks = [upBlock, downBlock, rightBlock, leftBlock] as [gameCell]
 		for block in affectedBlocks {
-			if(let blastable = block as? blastableCell){
-				
+			if block is blastableCell{
+				blast(cell: block)
 			}
-		
 		}
-		
 	}
 	
 	// Utility functions
@@ -163,6 +162,19 @@ class CommandHandler {
 		} else {
 			return false
 		}
+	}
+	
+	/**
+	Determines whether given cell is able to be blasted with blaster function. Returns true or false on this condition
+	
+	-parameter block: cell to blast
+	*/
+	
+	func blast(cell: (gameCell)){
+		var cell = cell
+		let blastedCell = floorCell()
+		cell = blastedCell
+		//TODO: Animation of laser
 	}
 	
 }

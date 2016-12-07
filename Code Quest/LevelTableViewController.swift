@@ -110,8 +110,12 @@ class LevelTableViewController: UITableViewController {
 		             [2,2,2,2,2,2,2,2,2,2]]
 		
 		let level8 = Level(name: "Level 8", data: data8, startingLoc: (1, 4), goalLoc: (7, 4), tutorial: "Get to the goal!")
+		
+		let data9 = [[1,1,5,1,1]]
+		
+		let level9 = Level(name: "Level 9", data: data9, startingLoc: (0, 0), goalLoc: (4, 0), tutorial: "Try using the blaster to get through the walls!")
 
-        levels += [level1, level2, level3, level4, level5, level6, level7, level8]
+        levels += [level1, level2, level3, level4, level5, level6, level7, level8, level9]
 		saveLevels()
     }
 

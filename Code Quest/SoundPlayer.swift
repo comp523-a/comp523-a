@@ -23,6 +23,8 @@ let bumpSound = URL(fileURLWithPath: Bundle.main.path(forResource: "bump", ofTyp
 let failSound = URL(fileURLWithPath: Bundle.main.path(forResource: "bumpo", ofType:"wav")!);
 /// Sound that plays when the level is cleared
 let cheerSound = URL(fileURLWithPath: Bundle.main.path(forResource: "cheer", ofType:"mp3")!);
+/// Sound that plays when the blaster shoots
+let blasterSound = URL(fileURLWithPath: Bundle.main.path(forResource: "blaster", ofType:"mp3")!);
 /// Audio player for sound effects
 var audioPlayer = AVAudioPlayer()
 
