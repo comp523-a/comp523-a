@@ -45,7 +45,7 @@ class floorCell: gameCell {
 	///Changes image and VoiceOver label to goal
 	func makeGoal() {
 		isGoal = true
-		self.image = UIImage(named:"goal.png")
+		self.image = UIImage(named:"ship_grid.png")
 		self.accessibilityLabel = "Goal"
 	}
     

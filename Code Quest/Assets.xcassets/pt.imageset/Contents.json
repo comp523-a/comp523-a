@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "pt.png",
+      "filename" : "player_char.png",
       "scale" : "1x"
     },
     {
