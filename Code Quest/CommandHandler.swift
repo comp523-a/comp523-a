@@ -102,7 +102,14 @@ class CommandHandler {
 	Checks surrounding spaces for breakable walls, then calls blast function on relevant cells
 	*/
 	func blastCommand() {
+		
+		print(playerLoc)
+		print(level)
+		print(level.count)
+		print(level[0].count)
+		
 		if(playerLoc.0 > 0) {
+			print(1)
 			if let loc = level[playerLoc.1][playerLoc.0 - 1] as? floorCell {
 				if(loc.isWall) {
 					loc.makeNotWall()
@@ -110,6 +117,7 @@ class CommandHandler {
 			}
 		}
 		if(playerLoc.0 < level[0].count - 1) {
+			print(2)
 			if let loc = level[playerLoc.1][playerLoc.0 + 1] as? floorCell {
 				if(loc.isWall) {
 					loc.makeNotWall()
@@ -117,6 +125,7 @@ class CommandHandler {
 			}
 		}
 		if(playerLoc.1 > 0) {
+			print(3)
 			if let loc = level[playerLoc.1 - 1][playerLoc.0] as? floorCell {
 				if(loc.isWall) {
 					loc.makeNotWall()
@@ -124,6 +133,7 @@ class CommandHandler {
 			}
 		}
 		if(playerLoc.1 < level.count - 1) {
+			print(4)
 			if let loc = level[playerLoc.1 + 1][playerLoc.0] as? floorCell {
 				if(loc.isWall) {
 					loc.makeNotWall()
@@ -145,7 +155,7 @@ class CommandHandler {
 	*/
 	func setPlayerLoc(newCoords: (Int, Int)) -> (Bool, Bool) {
 		
-		if (newCoords.0 >= 0) && (newCoords.0 < level[0].count) && (newCoords.1 >= 0) && (newCoords.1 < level.count-1) {  //Check boundaries - Why does it only work if 1 subtracted from height?
+		if (newCoords.0 >= 0) && (newCoords.0 < level[0].count) && (newCoords.1 >= 0) && (newCoords.1 < level.count) {  //Check boundaries
 			if let oldLoc = level[playerLoc.1][playerLoc.0] as? floorCell, let newLoc = level[newCoords.1][newCoords.0] as? floorCell {		//Check if space is floor
 				
 				// Check if the wall is an unblasted blastable tile

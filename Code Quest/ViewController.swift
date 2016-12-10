@@ -26,7 +26,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 	/// Goal location
 	var goalLoc : (Int, Int) = (0,0)
 	/// Array of gameCells representing the player's current location
-	var tileArray : [[gameCell]] = [[]]
+	var tileArray : [[gameCell]] = []
 	/// Queue of current commands
 	var commandQueue : [Int] = []
     /// List of queued command views corresponding to elements of commmandQueue
