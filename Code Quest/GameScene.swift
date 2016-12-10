@@ -23,6 +23,7 @@ class GameScene : SKScene {
 		addChild(player)
 		for i in 1...16 {
 			boomFrames.append(SKTexture(imageNamed: "boom (\(i)).png"))
+			boomFrames[i-1].preload(completionHandler: {})
 			print("boom (\(i)).png")
 		}
 	}
@@ -74,6 +75,6 @@ class GameScene : SKScene {
 		let kaboomo = SKSpriteNode(imageNamed: "boom (1).png")
 		addChild(kaboomo)
 		kaboomo.position = mapToScreenCoordinates(newPos: pos)
-		kaboomo.run(SKAction.animate(with: boomFrames, timePerFrame: 0.1))
+		kaboomo.run(SKAction.animate(with: boomFrames, timePerFrame: 0.0625))
 	}
 }
