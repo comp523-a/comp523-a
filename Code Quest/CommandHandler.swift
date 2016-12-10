@@ -147,6 +147,12 @@ class CommandHandler {
 		
 		if (newCoords.0 >= 0) && (newCoords.0 < level[0].count) && (newCoords.1 >= 0) && (newCoords.1 < level.count-1) {  //Check boundaries - Why does it only work if 1 subtracted from height?
 			if let oldLoc = level[playerLoc.1][playerLoc.0] as? floorCell, let newLoc = level[newCoords.1][newCoords.0] as? floorCell {		//Check if space is floor
+				
+				// Check if the wall is an unblasted blastable tile
+				if (newLoc.isWall) {
+					return(false, false)
+				}
+				
 				oldLoc.makeNotPlayer()
 				playerLoc = newCoords
 				let isGoal = newLoc.isGoal
