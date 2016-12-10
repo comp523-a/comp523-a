@@ -15,12 +15,17 @@ class GameScene : SKScene {
 	let player = SKSpriteNode(imageNamed: "pt")
 	///The player position in level coordinates
 	var playerPosition : (Int, Int) = (0,0)
-	
+	var boomFrames = [SKTexture]()
 	
 	override func didMove(to view: SKView) {
 		backgroundColor = SKColor.clear
 		player.position = getPlayerCoordinates()
 		addChild(player)
+		for i in 1...16 {
+			boomFrames.append(SKTexture(imageNamed: "boom (\(i)).png"))
+			boomFrames[i-1].preload(completionHandler: {})
+			print("boom (\(i)).png")
+		}
 	}
 	
 	///Returns the player's screen coordinates based on their level coordinates
@@ -62,5 +67,14 @@ class GameScene : SKScene {
 		player.run(moveSequence)
 		
 		
+	}
+	
+	func kaboom (pos: (Int, Int)) {
+		print("kabooming!")
+		print(boomFrames)
+		let kaboomo = SKSpriteNode(imageNamed: "boom (1).png")
+		addChild(kaboomo)
+		kaboomo.position = mapToScreenCoordinates(newPos: pos)
+		kaboomo.run(SKAction.animate(with: boomFrames, timePerFrame: 0.0625))
 	}
 }

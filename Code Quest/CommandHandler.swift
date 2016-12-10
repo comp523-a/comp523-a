@@ -20,11 +20,14 @@ class CommandHandler {
 	var goalLoc: (Int, Int)
 	/// Number of commands run
 	var commandCount: Int = 0
+	var myGameScene : GameScene
 
-	init(level : inout [[gameCell]], playerLoc : inout (Int, Int), goalLoc : inout (Int, Int)) {
+	init(level : inout [[gameCell]], playerLoc : inout (Int, Int), goalLoc : inout (Int, Int), myGameScene: GameScene) {
+		//TODO: Fix gamescene bodge
 		self.level = level
 		self.playerLoc = playerLoc
 		self.goalLoc = goalLoc
+		self.myGameScene = myGameScene
 	}
 	
 	/**
@@ -113,6 +116,7 @@ class CommandHandler {
 			if let loc = level[playerLoc.1][playerLoc.0 - 1] as? floorCell {
 				if(loc.isWall) {
 					loc.makeNotWall()
+					myGameScene.kaboom(pos: (playerLoc.0 - 1, playerLoc.1))
 				}
 			}
 		}
@@ -121,6 +125,8 @@ class CommandHandler {
 			if let loc = level[playerLoc.1][playerLoc.0 + 1] as? floorCell {
 				if(loc.isWall) {
 					loc.makeNotWall()
+					myGameScene.kaboom(pos: (playerLoc.0 + 1, playerLoc.1))
+
 				}
 			}
 		}
@@ -129,6 +135,8 @@ class CommandHandler {
 			if let loc = level[playerLoc.1 - 1][playerLoc.0] as? floorCell {
 				if(loc.isWall) {
 					loc.makeNotWall()
+					myGameScene.kaboom(pos: (playerLoc.0, playerLoc.1 - 1))
+
 				}
 			}
 		}
@@ -137,6 +145,8 @@ class CommandHandler {
 			if let loc = level[playerLoc.1 + 1][playerLoc.0] as? floorCell {
 				if(loc.isWall) {
 					loc.makeNotWall()
+					myGameScene.kaboom(pos: (playerLoc.0, playerLoc.1 + 1))
+
 				}
 			}
 		}
