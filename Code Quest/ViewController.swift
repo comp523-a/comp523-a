@@ -10,8 +10,8 @@ import UIKit
 import AVFoundation
 import SpriteKit
 
-let imageNames = ["left", "right", "up", "down"]
-let commandSounds = [leftSound, rightSound, upSound, downSound]
+let imageNames = ["left", "right", "up", "down", "blast_button"]
+let commandSounds = [leftSound, rightSound, upSound, downSound, leftSound]
 
 /// Primary game controller. Contains most game state information
 class ViewController: UIViewController, UICollectionViewDelegate {
@@ -172,7 +172,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 	func getButtonInput(type:ButtonType) {
         if (takeInput) {
 			resetLevelState()
-            if (type.rawValue < 4 && commandQueue.count < 140) { // If command is to be added to queue and queue is not full
+            if (type.rawValue < 5 && commandQueue.count < 140) { // If command is to be added to queue and queue is not full
                 let tempCell = UIImageView(image: UIImage(named:imageNames[type.rawValue] + ".png"))
                 tempCell.frame = CGRect(x:70*commandQueue.count, y:512+84, width: 64, height:64)
                 tempCell.isAccessibilityElement = true
@@ -182,7 +182,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
                 commandQueue.append(type.rawValue)
                 commandQueueViews.append(tempCell)
                 playSound(sound: commandSounds[type.rawValue])
-			} else if(type.rawValue < 4 && commandQueue.count >= 14) {
+			} else if(type.rawValue < 5 && commandQueue.count >= 14) {
 				
 				playSound(sound: failSound);
 				let delayTime = DispatchTime.now() + .milliseconds(300)

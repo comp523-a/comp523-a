@@ -8,7 +8,9 @@
 
 import UIKit
 let num_command_buttons = 7
-let num_queue_buttons = 4
+
+// The first num_queue_buttons buttons represent queueable commands that should come before the divider
+let num_queue_buttons = 5
 
 ///View that contains command butotns
 class CommandView: UIView {
@@ -23,7 +25,7 @@ class CommandView: UIView {
 		
 		for i in 0..<num_command_buttons {
 			// Separate the first num_queue_buttons from the others with some empty space
-			let xcoord = (i < num_queue_buttons) ? 100*i : 100*i + 100
+			let xcoord = (i < num_queue_buttons) ? 100*i : 100*i + 50
 			let command = Input(type: ButtonType(rawValue : i)!, frame: CGRect(x: xcoord, y: 0, width: 96, height: 96));
 			//command.backgroundColor = UIColor.cyan
 			

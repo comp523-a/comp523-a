@@ -44,6 +44,7 @@ class CommandHandler {
 		if (input == 0 || input == 1 || input == 2 || input == 3) {
 			return self.moveCmd(input: input)
 		} else if(input == 4) {
+			blastCommand()
 			return (false, false)
 		} else {
 			print("Unrecognized command index: \(input)")
