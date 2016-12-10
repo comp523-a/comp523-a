@@ -53,7 +53,7 @@ class Input: UIButton {
 			self.accessibilityLabel = "Hear the commands you have input"
 		case ButtonType.BLAST:
 			self.setImage(UIImage(named:"blast_button.png"), for: UIControlState.normal)
-			self.accessibilityLabel = "Fire blaster"
+			self.accessibilityLabel = "Blaster"
 		}
 		
 		

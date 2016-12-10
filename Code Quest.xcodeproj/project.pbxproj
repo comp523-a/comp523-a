@@ -70,6 +70,9 @@
 		3AF861DF1DFC978B0050F7FA /* ship_grid.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AF861DE1DFC978B0050F7FA /* ship_grid.png */; };
 		3AF861E11DFC98A30050F7FA /* tutorial.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AF861E01DFC98A30050F7FA /* tutorial.png */; };
 		3AF861E31DFCA8B40050F7FA /* blast_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AF861E21DFCA8B40050F7FA /* blast_button.png */; };
+		3AF861E71DFCC7B40050F7FA /* player_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AF861E61DFCC7B40050F7FA /* player_small.png */; };
+		3AF861E91DFCC7DD0050F7FA /* fuel_grid.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AF861E81DFCC7DD0050F7FA /* fuel_grid.png */; };
+		3AF861EB1DFCC83D0050F7FA /* break_wall.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AF861EA1DFCC83D0050F7FA /* break_wall.png */; };
 		D95015981D9235EF00CFE700 /* wallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95015971D9235EF00CFE700 /* wallCell.swift */; };
 		D950159A1D92362900CFE700 /* playerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95015991D92362900CFE700 /* playerCell.swift */; };
 		D950159C1D92366200CFE700 /* floorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D950159B1D92366200CFE700 /* floorCell.swift */; };
@@ -152,6 +155,9 @@
 		3AF861DE1DFC978B0050F7FA /* ship_grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ship_grid.png; sourceTree = "<group>"; };
 		3AF861E01DFC98A30050F7FA /* tutorial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorial.png; sourceTree = "<group>"; };
 		3AF861E21DFCA8B40050F7FA /* blast_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blast_button.png; sourceTree = "<group>"; };
+		3AF861E61DFCC7B40050F7FA /* player_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_small.png; sourceTree = "<group>"; };
+		3AF861E81DFCC7DD0050F7FA /* fuel_grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fuel_grid.png; path = "../../comp523-a/Code Quest/fuel_grid.png"; sourceTree = "<group>"; };
+		3AF861EA1DFCC83D0050F7FA /* break_wall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = break_wall.png; path = "../../comp523-a/Code Quest/break_wall.png"; sourceTree = "<group>"; };
 		D95015971D9235EF00CFE700 /* wallCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = wallCell.swift; sourceTree = "<group>"; };
 		D95015991D92362900CFE700 /* playerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = playerCell.swift; sourceTree = "<group>"; };
 		D950159B1D92366200CFE700 /* floorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = floorCell.swift; sourceTree = "<group>"; };
@@ -198,6 +204,9 @@
 		10B20FD11D909BD200142CAE /* Code Quest */ = {
 			isa = PBXGroup;
 			children = (
+				3AF861EA1DFCC83D0050F7FA /* break_wall.png */,
+				3AF861E81DFCC7DD0050F7FA /* fuel_grid.png */,
+				3AF861E61DFCC7B40050F7FA /* player_small.png */,
 				3AF861E21DFCA8B40050F7FA /* blast_button.png */,
 				3AF861E01DFC98A30050F7FA /* tutorial.png */,
 				3AF861DE1DFC978B0050F7FA /* ship_grid.png */,
@@ -363,6 +372,7 @@
 				3A0D94171DE010DE0086C239 /* up.png in Resources */,
 				3A0D94131DE010DE0086C239 /* left.png in Resources */,
 				3A0D941E1DE01CD60086C239 /* player.png in Resources */,
+				3AF861EB1DFCC83D0050F7FA /* break_wall.png in Resources */,
 				3A0D94181DE010DE0086C239 /* wall.png in Resources */,
 				10A03EC11DC1F419004F7ABB /* down.wav in Resources */,
 				104E38741DCB275100D98EFA /* loadingscreen.png in Resources */,
@@ -374,6 +384,7 @@
 				10B20FDD1D909BD200142CAE /* LaunchScreen.storyboard in Resources */,
 				3A0D94141DE010DE0086C239 /* play.png in Resources */,
 				10DD33771DFCC282008DF59A /* boom (6).png in Resources */,
+				3AF861E91DFCC7DD0050F7FA /* fuel_grid.png in Resources */,
 				10DD337A1DFCC282008DF59A /* boom (9).png in Resources */,
 				3AF861DF1DFC978B0050F7FA /* ship_grid.png in Resources */,
 				10DD33761DFCC282008DF59A /* boom (5).png in Resources */,
@@ -400,6 +411,7 @@
 				10DD33781DFCC282008DF59A /* boom (7).png in Resources */,
 				3A0D94161DE010DE0086C239 /* right.png in Resources */,
 				10DD337F1DFCC282008DF59A /* boom (14).png in Resources */,
+				3AF861E71DFCC7B40050F7FA /* player_small.png in Resources */,
 				103DDD4F1DC1F8A000086960 /* left.wav in Resources */,
 				104E38721DCB203000D98EFA /* speech1.png in Resources */,
 				10DD33741DFCC282008DF59A /* boom (3).png in Resources */,

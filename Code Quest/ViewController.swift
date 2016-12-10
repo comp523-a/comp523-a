@@ -44,6 +44,8 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 	/// The parent level table view controller
 	var parentLevelTableViewController : LevelTableViewController? = nil
 	var won : Bool = false
+	// List of breakable blocks that must be reset along with the level
+	var breakBlocks : [floorCell] = []
 	
 	let music: URL = URL(fileURLWithPath: Bundle.main.path(forResource: "song", ofType:"wav")!);
 	var musicPlayer = AVAudioPlayer()
@@ -91,7 +93,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
                             cell = wallCell()
                         case 3:
 							cell = floorCell(isWall: true)
-							//TODO: Make list of blastable walls for reset
+							breakBlocks.append(cell as! floorCell)
                         //case 4:
                         //    cell = goalCell()
                         default:
@@ -161,6 +163,9 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 		scene?.setPlayerPos(newPos: level!.startingLoc)
 		cmdHandler?.setPlayerLoc(newCoords: level!.startingLoc)
 		cmdHandler?.resetGoal(coords: level!.goalLoc)
+		for cell in breakBlocks {
+			cell.makeWall()
+		}
 	}
 
 	/**

@@ -25,8 +25,8 @@ class floorCell: gameCell {
 			super.init(image: UIImage(named:"player.png"))
 			self.accessibilityLabel = "Player"
 		} else if(isWall) {
-			super.init(image: UIImage(named:"wall.png"))
-			self.accessibilityLabel = "Wall"
+			super.init(image: UIImage(named:"break_wall.png"))
+			self.accessibilityLabel = "Cracked wall"
 		} else {
 			super.init(image: UIImage(named:"grid.png"))
 			self.accessibilityLabel = "Empty"
@@ -52,7 +52,7 @@ class floorCell: gameCell {
 	func makeGoal() {
 		isGoal = true
 		self.image = UIImage(named:"ship_grid.png")
-		self.accessibilityLabel = "Goal"
+		self.accessibilityLabel = "Ship"
 	}
 	
 	func makeNotWall() {
@@ -63,8 +63,8 @@ class floorCell: gameCell {
 	
 	func makeWall() {
 		self.isWall = true
-		self.image = UIImage(named:"wall.png")
-		self.accessibilityLabel = "Wall"
+		self.image = UIImage(named:"break_wall.png")
+		self.accessibilityLabel = "Cracked wall"
 	}
     
     required init?(coder aDecoder: NSCoder) {

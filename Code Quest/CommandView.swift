@@ -7,7 +7,7 @@
 //
 
 import UIKit
-let num_command_buttons = 7
+let num_command_buttons = 8
 
 // The first num_queue_buttons buttons represent queueable commands that should come before the divider
 let num_queue_buttons = 5
