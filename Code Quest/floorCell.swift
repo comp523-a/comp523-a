@@ -29,7 +29,7 @@ class floorCell: gameCell {
 			self.accessibilityLabel = "Wall"
 		} else {
 			super.init(image: UIImage(named:"grid.png"))
-			self.accessibilityLabel = "Floor"
+			self.accessibilityLabel = "Empty"
 		}
 		
     }
