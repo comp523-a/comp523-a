@@ -15,7 +15,7 @@ class LevelTutorialViewController: UIViewController {
 	///The tutorial text to display
 	var tutorialText : String = "Good luck!"
 	///The background to display
-	var background : String = "speech1.png"
+	var background : String = "tutorial.png"
 	///The parent view controller
 	var myParent : ViewController?
 	
@@ -43,7 +43,7 @@ class LevelTutorialViewController: UIViewController {
 		button.titleLabel!.font = button.titleLabel!.font.withSize(30)
 		button.addTarget(self, action: #selector(LevelTutorialViewController.start), for: UIControlEvents.touchUpInside)
 		self.view.addSubview(button)
-		let label = UILabel(frame:CGRect(x:200,y:50,width:550,height:400))
+		let label = UILabel(frame:CGRect(x:250,y:50,width:550,height:400))
 		//label.center = CGPoint(x:160, y:284)
 		label.backgroundColor = .clear
 		label.numberOfLines = 0
@@ -51,6 +51,7 @@ class LevelTutorialViewController: UIViewController {
 		label.font = label.font?.withSize(30)
 		label.textAlignment = .center
 		label.text = tutorialText
+		label.textColor = UIColor.white
 		self.view.addSubview(label)
 
     }

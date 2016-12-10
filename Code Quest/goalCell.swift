@@ -12,7 +12,7 @@ import UIKit
 class goalCell: gameCell {
 
     init() {
-        super.init(image: UIImage(named:"goal.png"))
+        super.init(image: UIImage(named:"ship_grid.png"))
         self.accessibilityLabel = "Goal"
     }
     
