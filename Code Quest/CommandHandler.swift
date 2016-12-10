@@ -43,6 +43,8 @@ class CommandHandler {
 		
 		if (input == 0 || input == 1 || input == 2 || input == 3) {
 			return self.moveCmd(input: input)
+		} else if(input == 4) {
+			return (false, false)
 		} else {
 			print("Unrecognized command index: \(input)")
 			return (false, false)
@@ -93,6 +95,40 @@ class CommandHandler {
 			playSound(sound: bumpSound)
 		}
 		return (moved, won)
+	}
+	
+	/**
+	Checks surrounding spaces for breakable walls, then calls blast function on relevant cells
+	*/
+	func blastCommand() {
+		if(playerLoc.0 > 0) {
+			if let loc = level[playerLoc.1][playerLoc.0 - 1] as? floorCell {
+				if(loc.isWall) {
+					loc.makeNotWall()
+				}
+			}
+		}
+		if(playerLoc.0 < level[0].count - 1) {
+			if let loc = level[playerLoc.1][playerLoc.0 + 1] as? floorCell {
+				if(loc.isWall) {
+					loc.makeNotWall()
+				}
+			}
+		}
+		if(playerLoc.1 > 0) {
+			if let loc = level[playerLoc.1 - 1][playerLoc.0] as? floorCell {
+				if(loc.isWall) {
+					loc.makeNotWall()
+				}
+			}
+		}
+		if(playerLoc.1 < level.count - 1) {
+			if let loc = level[playerLoc.1 + 1][playerLoc.0] as? floorCell {
+				if(loc.isWall) {
+					loc.makeNotWall()
+				}
+			}
+		}
 	}
 	
 	// Utility functions

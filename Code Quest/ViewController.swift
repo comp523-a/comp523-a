@@ -86,15 +86,16 @@ class ViewController: UIViewController, UICollectionViewDelegate {
                     var cell:gameCell
                     switch testGrid[y][x] {      //Instantiate gameCells based on input array
                         case 1:
-							cell = floorCell()
+							cell = floorCell(isWall: false)
                         case 2:
                             cell = wallCell()
                         case 3:
-							cell = floorCell()
+							cell = floorCell(isWall: true)
+							//TODO: Make list of blastable walls for reset
                         //case 4:
                         //    cell = goalCell()
                         default:
-							cell = floorCell()
+							cell = floorCell(isWall: false)
                     }
                     cell.frame = CGRect(x: 96*x, y: 64+96*y, width: 96, height: 96)
                     self.view.addSubview(cell)
