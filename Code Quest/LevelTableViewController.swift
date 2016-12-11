@@ -67,7 +67,7 @@ class LevelTableViewController: UITableViewController {
 		let level3 = Level(name: "Level 3", data: data3, startingLoc: (1, 3), goalLoc: (4, 1), tutorial: "This is your ultimate challenge!")
 		
 		let data4 = [[2,2,2,2,2,2],
-		             [2,1,1,2,1,2],
+		             [2,1,4,2,1,2],
 		             [2,1,1,3,1,2],
 		             [2,1,1,2,1,2],
 		             [2,2,2,2,2,2]]

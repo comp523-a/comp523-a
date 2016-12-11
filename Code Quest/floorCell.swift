@@ -18,25 +18,31 @@ class floorCell: gameCell {
 	var isGoal: Bool = false
 	///Indicates whether or not the cell is a breakable wall
 	var isWall: Bool
+	/// Indicated whether or not the cell is fuel
+	var isFuel: Bool
 	
-	init(isWall: Bool) {
+	init(isWall: Bool, isFuel: Bool) {
 		self.isWall = isWall
+		self.isFuel = isFuel
 		if isPlayer {
 			super.init(image: UIImage(named:"player.png"))
 			self.accessibilityLabel = "Player"
 		} else if(isWall) {
 			super.init(image: UIImage(named:"break_wall.png"))
 			self.accessibilityLabel = "Cracked wall"
+		} else if (isFuel) {
+			super.init(image: UIImage(named:"fuel_grid.png"))
+			self.accessibilityLabel = "Fuel"
 		} else {
 			super.init(image: UIImage(named:"grid.png"))
 			self.accessibilityLabel = "Empty"
 		}
-		
     }
 	
 	///Changes image and VoiceOver label to player
 	func makePlayer() {
 		isPlayer = true
+		isFuel = false
 		self.image = UIImage(named:"player.png")
 		self.accessibilityLabel = "Player"
 	}
@@ -66,7 +72,13 @@ class floorCell: gameCell {
 		self.image = UIImage(named:"break_wall.png")
 		self.accessibilityLabel = "Cracked wall"
 	}
-    
+	
+	func makeFuel() {
+		self.isFuel = true
+		self.image = UIImage(named:"fuel_grid.png")
+		self.accessibilityLabel = "Fuel"
+	}
+	
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

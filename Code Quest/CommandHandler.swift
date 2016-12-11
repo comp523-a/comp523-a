@@ -21,6 +21,7 @@ class CommandHandler {
 	/// Number of commands run
 	var commandCount: Int = 0
 	var myGameScene : GameScene
+	var onGoal : Bool = false
 
 	init(level : inout [[gameCell]], playerLoc : inout (Int, Int), goalLoc : inout (Int, Int), myGameScene: GameScene) {
 		//TODO: Fix gamescene bodge
@@ -37,7 +38,7 @@ class CommandHandler {
 	- parameter playerLoc: tuple indicating the coordinates of the player
 	
 	*/
-	func handleCmd(input: Int) -> (Bool, Bool){
+	func handleCmd(input: Int) -> (Bool, Bool) {
 		// Switch command input type, call appropriate functions
 		// Current encoding:	0 - Left
 		//						1 - Right
@@ -45,13 +46,13 @@ class CommandHandler {
 		//						3 - Down
 		
 		if (input == 0 || input == 1 || input == 2 || input == 3) {
-			return self.moveCmd(input: input)
+			return (self.moveCmd(input: input), onGoal)
 		} else if(input == 4) {
 			blastCommand()
-			return (false, false)
+			return (false, onGoal)
 		} else {
 			print("Unrecognized command index: \(input)")
-			return (false, false)
+			return (false, onGoal)
 		}
 	}
 	
@@ -89,16 +90,17 @@ class CommandHandler {
 	- parameter input: integer indicating selected command
 	
 	*/
-	func moveCmd(input: Int) -> (Bool, Bool) {
+	func moveCmd(input: Int) -> Bool {
 		var sounds = [leftSound, rightSound, upSound, downSound]
 		let newCoords = newCoordsFromCommand(input: input)
-		let (moved, won) = setPlayerLoc(newCoords: newCoords)
+		let moved = setPlayerLoc(newCoords: newCoords)
 		if(moved) {
 			playSound(sound: sounds[input])
 		} else {
 			playSound(sound: bumpSound)
 		}
-		return (moved, won)
+		onGoal = (playerLoc == goalLoc)
+		return moved
 	}
 	
 	/**
@@ -163,27 +165,30 @@ class CommandHandler {
 	-parameter newCoords: coordinates to try to move the player to
 	
 	*/
-	func setPlayerLoc(newCoords: (Int, Int)) -> (Bool, Bool) {
+	func setPlayerLoc(newCoords: (Int, Int)) -> Bool {
 		
 		if (newCoords.0 >= 0) && (newCoords.0 < level[0].count) && (newCoords.1 >= 0) && (newCoords.1 < level.count) {  //Check boundaries
 			if let oldLoc = level[playerLoc.1][playerLoc.0] as? floorCell, let newLoc = level[newCoords.1][newCoords.0] as? floorCell {		//Check if space is floor
 				
 				// Check if the wall is an unblasted blastable tile
 				if (newLoc.isWall) {
-					return(false, false)
+					return false
 				}
 				
 				oldLoc.makeNotPlayer()
 				playerLoc = newCoords
 				let isGoal = newLoc.isGoal
-				newLoc.makePlayer()
-				return (true, isGoal)
+				
+				if (!isGoal) {
+					newLoc.makePlayer()
+				}
+				return true
 			} else {
-				return (false, false)
+				return false
 			}
 		}
 		else {
-			return (false, false)
+			return false
 		}
 	}
 	

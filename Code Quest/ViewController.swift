@@ -43,11 +43,15 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 	var scene : GameScene? = nil
 	/// The parent level table view controller
 	var parentLevelTableViewController : LevelTableViewController? = nil
-	var won : Bool = false
+//	var won : Bool = false
 	/// List of breakable blocks that must be reset along with the level
 	var breakBlocks : [floorCell] = []
+	/// List of fuel cells in the level
+	var fuelCells : [floorCell] = []
 	/// Number of pixels character should move/size of cells
 	static let moveInc = 90
+	/// Boolean tracks whether the player is currently on the goal
+	var onShip : Bool = false
 	
 	let music: URL = URL(fileURLWithPath: Bundle.main.path(forResource: "song", ofType:"wav")!);
 	var musicPlayer = AVAudioPlayer()
@@ -90,16 +94,17 @@ class ViewController: UIViewController, UICollectionViewDelegate {
                     var cell:gameCell
                     switch testGrid[y][x] {      //Instantiate gameCells based on input array
                         case 1:
-							cell = floorCell(isWall: false)
+							cell = floorCell(isWall: false, isFuel: false)
                         case 2:
                             cell = wallCell()
                         case 3:
-							cell = floorCell(isWall: true)
+							cell = floorCell(isWall: true, isFuel: false)
 							breakBlocks.append(cell as! floorCell)
-                        //case 4:
-                        //    cell = goalCell()
+                        case 4:
+							cell = floorCell(isWall: false, isFuel: true)
+							fuelCells.append(cell as! floorCell)
                         default:
-							cell = floorCell(isWall: false)
+							cell = floorCell(isWall: false, isFuel: false)
                     }
                     cell.frame = CGRect(x: ViewController.moveInc*x, y: 64+ViewController.moveInc*y, width: ViewController.moveInc, height: ViewController.moveInc)
                     self.view.addSubview(cell)
@@ -168,6 +173,9 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 		for cell in breakBlocks {
 			cell.makeWall()
 		}
+		for cell in fuelCells {
+			cell.makeFuel()
+		}
 	}
 
 	/**
@@ -233,7 +241,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 			resetLevelState()
             
             currentStep = 0
-			won = false
+//			won = false
             tickTimer = Timer.scheduledTimer(timeInterval: 0.5, target:self, selector:#selector(ViewController.runCommands), userInfo:nil, repeats: true)
         }
     }
@@ -250,9 +258,10 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 			if (currentStep < (commandQueue.count - 1) ) {
 				commandQueueViews[currentStep].frame.origin.y -= 10
 			}
-			var maybewon: Bool
-			(moved, maybewon) = (cmdHandler?.handleCmd(input: commandQueue[currentStep]))!
-			won = won || maybewon
+//			var maybewon: Bool
+//			(moved, maybewon) = (cmdHandler?.handleCmd(input: commandQueue[currentStep]))!
+			(moved, onShip) = (cmdHandler?.handleCmd(input: commandQueue[currentStep]))!
+//			won = won || maybewon
 			if (moved) {
 				scene?.movePlayer(newPos: (cmdHandler?.playerLoc)!)
 			} else {
@@ -265,6 +274,8 @@ class ViewController: UIViewController, UICollectionViewDelegate {
             
             // All commands run, ready to take input again
             takeInput = true
+			
+			let won = checkWin()
 			
 			if (won) {
 				musicPlayer.volume = 1
@@ -289,6 +300,17 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 		}
 		
 		
+	}
+	
+	func checkWin() -> Bool {
+		// All fuel cells must be collected
+		var gotFuel : Bool = true
+		for cell in fuelCells {
+			if (cell.isFuel) {
+				gotFuel = false
+			}
+		}
+		return gotFuel && onShip
 	}
 	
 	override func viewWillDisappear(_ animated : Bool) {
