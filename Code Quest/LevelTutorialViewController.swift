@@ -43,7 +43,7 @@ class LevelTutorialViewController: UIViewController {
 		button.titleLabel!.font = button.titleLabel!.font.withSize(30)
 		button.addTarget(self, action: #selector(LevelTutorialViewController.start), for: UIControlEvents.touchUpInside)
 		self.view.addSubview(button)
-		let label = UILabel(frame:CGRect(x:250,y:50,width:550,height:400))
+		let label = UILabel(frame:CGRect(x:300,y:30,width:550,height:400))
 		//label.center = CGPoint(x:160, y:284)
 		label.backgroundColor = .clear
 		label.numberOfLines = 0
