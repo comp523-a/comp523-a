@@ -50,68 +50,62 @@ class LevelTableViewController: UITableViewController {
 		//let level1 = Level(name: "Level 1", data: data1, startingLoc: (1, 1), goalLoc: (4, 1), tutorial: "Bring the player to the goal!")
 		
 		let data1 = [[1,1,1,1,1]]
-		let level1 = Level(name: "Level 1", data: data1, startingLoc: (0, 0), goalLoc: (4, 0), tutorial: "Bring the player to the goal!")
+		let level1 = Level(name: "Level 1", data: data1, startingLoc: (0, 0), goalLoc: (4, 0), tutorial: "Move me to my rocket ship!")
 		
-        let data2 = [[2,2,2],
-                     [2,1,2],
-                     [2,1,2],
-                     [2,1,2],
-                     [2,1,2],
-                     [2,2,2]]
-		let level2 = Level(name: "Level 2", data: data2, startingLoc: (1, 1), goalLoc: (1, 4), tutorial: "This is the second level!")
-        let data3 = [[2,2,2,2,2,2],
-                     [2,1,1,1,1,2],
-                     [2,1,1,1,1,2],
-                     [2,1,1,1,1,2],
-                     [2,2,2,2,2,2]]
-		let level3 = Level(name: "Level 3", data: data3, startingLoc: (1, 3), goalLoc: (4, 1), tutorial: "This is your ultimate challenge!")
+		let data2 = [[1,1,1,1,1],
+		             [2,2,2,2,1],
+		             [2,2,2,2,1]]
+		let level2 = Level(name: "Level 2", data: data2, startingLoc: (0, 0), goalLoc: (4, 2), tutorial: "Move me to my rocket ship!")
+		let data3 = [[1,1,1,1,1],
+		             [2,2,1,2,2],
+		             [2,2,1,2,2]]
+		let level3 = Level(name: "Level 3", data: data3, startingLoc: (0, 0), goalLoc: (2, 2), tutorial: "Move me to my rocket ship!")
 		
-		let data4 = [[2,2,2,2,2,2],
-		             [2,1,4,2,1,2],
-		             [2,1,1,3,1,2],
-		             [2,1,1,2,1,2],
+		let data4 = [[1,2,2,2,2,2],
+		             [1,2,2,1,2,2],
+		             [1,1,4,1,1,1]]
+		let level4 = Level(name: "Level 4", data: data4, startingLoc:(0,0), goalLoc:(3,1), tutorial:"Make sure to pick up the rocket fuel!")
+		
+		let data5 = [[1,1,2,2],
+		             [1,1,1,1],
+		             [1,1,2,1],
+		             [1,1,4,1]]
+		
+
+		let level5 = Level(name: "Level 5", data: data5, startingLoc: (0, 0), goalLoc: (3, 1), tutorial: "Make sure to pick up the rocket fuel!")
+		
+		let data6 = [[1,2,1,1,1],
+		             [1,1,1,2,2],
+		             [1,2,1,1,4]]
+		
+		let level6 = Level(name: "Level 6", data: data6, startingLoc: (0, 0), goalLoc: (4, 0), tutorial: "Make sure to pick up the rocket fuel!")
+		
+		let data7 = [[1,2,2,2,2,1],
+		             [1,1,1,1,1,1],
+		             [1,2,2,1,2,2],
+		             [1,2,4,1,2,2]]
+		
+		let level7 = Level(name: "Level 7", data: data7, startingLoc: (0, 0), goalLoc: (0, 3), tutorial: "Make sure to pick up the rocket fuel!")
+		
+		let data8 = [[1,1,3,1,1]]
+		
+		let level8 = Level(name: "Level 8", data: data8, startingLoc: (0, 0), goalLoc: (4, 0), tutorial: "Stand next to cracked walls and use your blaster!")
+		
+		let data9 = [[1,2,2,1,2,2],
+		             [1,2,2,3,2,2],
+		             [1,1,1,1,3,4],
 		             [2,2,2,2,2,2]]
-		let level4 = Level(name: "White Whale", data: data4, startingLoc:(1,2), goalLoc:(4,3), tutorial:"Call me Ishmael. Some years ago--never mind how long precisely--having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.")
-		level4.background = "speech2.png"
 		
-		let data5 = [[2,2,2,2,2,2,2,2,2,2],
-		             [2,1,1,1,1,1,1,1,1,2],
-		             [2,1,1,1,2,2,2,1,1,2],
-		             [2,1,1,1,2,1,1,1,1,2],
-		             [2,1,1,1,2,1,1,1,1,2],
-		             [2,2,2,2,2,2,2,2,2,2]]
+		let level9 = Level(name: "Level 9", data: data9, startingLoc: (0, 0), goalLoc: (3, 0), tutorial: "Stand next to cracked walls and use your blaster!")
 		
+		let data10 = [[1,3,3,1,3],
+		              [2,2,2,2,1],
+		              [2,4,1,3,1],
+		              [2,2,2,2,1]]
+		
+		let level10 = Level(name: "Level 10", data: data10, startingLoc: (0, 0), goalLoc: (4, 3), tutorial: "Stand next to cracked walls and use your blaster!")
 
-		let level5 = Level(name: "Level 5", data: data5, startingLoc: (1, 4), goalLoc: (5, 3), tutorial: "Get to the goal!")
-		
-		let data6 = [[2,2,2,2,2,2,2,2,2,2],
-		             [2,1,1,2,1,1,1,1,1,2],
-		             [2,1,1,2,1,1,1,1,1,2],
-		             [2,1,1,1,1,2,1,2,2,2],
-		             [2,1,1,1,1,2,1,1,1,2],
-		             [2,2,2,2,2,2,2,2,2,2]]
-		
-		let level6 = Level(name: "Level 6", data: data6, startingLoc: (1, 4), goalLoc: (8, 1), tutorial: "Get to the goal!")
-		
-		let data7 = [[2,2,2,2,2,2,2,2,2,2],
-		             [2,1,1,2,1,1,1,1,1,2],
-		             [2,2,1,2,1,1,1,1,1,2],
-		             [2,1,1,1,1,2,2,2,1,2],
-		             [2,1,1,1,1,2,1,1,1,2],
-		             [2,2,2,2,2,2,2,2,2,2]]
-		
-		let level7 = Level(name: "Level 7", data: data7, startingLoc: (1, 4), goalLoc: (7, 4), tutorial: "Get to the goal!")
-		
-		let data8 = [[2,2,2,2,2,2,2,2,2,2],
-		             [2,1,1,1,1,1,1,1,1,2],
-		             [2,1,1,2,1,1,2,1,1,2],
-		             [2,2,2,2,1,1,2,2,1,2],
-		             [2,1,1,1,1,1,1,1,1,2],
-		             [2,2,2,2,2,2,2,2,2,2]]
-		
-		let level8 = Level(name: "Level 8", data: data8, startingLoc: (1, 4), goalLoc: (7, 4), tutorial: "Get to the goal!")
-
-        levels += [level1, level2, level3, level4, level5, level6, level7, level8]
+        levels += [level1, level2, level3, level4, level5, level6, level7, level8, level9, level10]
 		saveLevels()
     }
 
@@ -176,7 +170,7 @@ class LevelTableViewController: UITableViewController {
 	}
 
 	@IBAction func AddButton(_ sender: AnyObject) {
-		let levelName = "Level \(levels.count + 1)"
+		let levelName = "Extra \(levels.count + 1)"
 		let tutorialText = "Solve Mr Maze's confounding maze!"
 		let newIndexPath = NSIndexPath(row: levels.count, section:0)
 		levels.append(makeMazeLevel(name:levelName, tutorial: tutorialText))

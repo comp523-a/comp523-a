@@ -41,9 +41,9 @@ class CommandHandler {
 	func handleCmd(input: Int) -> (Bool, Bool) {
 		// Switch command input type, call appropriate functions
 		// Current encoding:	0 - Left
-		//						1 - Right
-		//						2 - Up
-		//						3 - Down
+		//						1 - Up
+		//						2 - Down
+		//						3 - Right
 		
 		if (input == 0 || input == 1 || input == 2 || input == 3) {
 			return (self.moveCmd(input: input), onGoal)
@@ -73,11 +73,11 @@ class CommandHandler {
 		case 0:
 			dx = -1
 		case 1:
-			dx = 1
-		case 2:
 			dy = -1
-		case 3:
+		case 2:
 			dy = 1
+		case 3:
+			dx = 1
 		default:
 			print("Out of range input to moveCmd: \(input)")
 		}

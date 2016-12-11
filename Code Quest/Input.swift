@@ -11,9 +11,9 @@ import UIKit
 ///Buttons that render in the instruction pane
 enum ButtonType:Int {
 	case LEFT = 0
-	case RIGHT = 1
-	case UP = 2
-	case DOWN = 3
+	case RIGHT = 3
+	case UP = 1
+	case DOWN = 2
 	case BLAST = 4
 	case ERASE1 = 5
 	case ERASEALL = 6

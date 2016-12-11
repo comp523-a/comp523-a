@@ -10,8 +10,8 @@ import UIKit
 import AVFoundation
 import SpriteKit
 
-let imageNames = ["left", "right", "up", "down", "blast_button"]
-let commandSounds = [leftSound, rightSound, upSound, downSound, leftSound]
+let imageNames = ["left", "up", "down", "right", "blast_button"]
+let commandSounds = [leftSound, upSound, downSound, rightSound, blastSound]
 
 /// Primary game controller. Contains most game state information
 class ViewController: UIViewController, UICollectionViewDelegate {
@@ -188,18 +188,22 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     // TODO: Rewrite this function as a switch over ButtonTypes
 	func getButtonInput(type:ButtonType) {
         if (takeInput) {
-			resetLevelState()
             if (type.rawValue < 5 && commandQueue.count < 28) { // If command is to be added to queue and queue is not full
                 let tempCell = UIImageView(image: UIImage(named:imageNames[type.rawValue] + ".png"))
                 tempCell.frame = CGRect(x:(70*commandQueue.count) % 980, y:526 + 70*(commandQueue.count/14), width: 64, height:64)
                 tempCell.isAccessibilityElement = true
                 tempCell.accessibilityTraits = UIAccessibilityTraitImage
                 tempCell.accessibilityLabel = imageNames[type.rawValue]
+				
+				if (type.rawValue == 4) {
+					tempCell.accessibilityLabel = "blast"
+				}
+				
                 self.view.addSubview(tempCell)
                 commandQueue.append(type.rawValue)
                 commandQueueViews.append(tempCell)
                 playSound(sound: commandSounds[type.rawValue])
-			} else if(type.rawValue < 5 && commandQueue.count >= 14) {
+			} else if(type.rawValue < 5 && commandQueue.count >= 28) {
 				
 				playSound(sound: failSound);
 				let delayTime = DispatchTime.now() + .milliseconds(300)
@@ -214,7 +218,8 @@ class ViewController: UIViewController, UICollectionViewDelegate {
                     commandQueueViews.popLast()?.removeFromSuperview()
                     commandQueue.popLast()
                 } else if (type == ButtonType.ERASEALL) {
-                    for view in commandQueueViews {
+					resetLevelState()
+					for view in commandQueueViews {
                         view.removeFromSuperview()
                     }
                     commandQueueViews.removeAll()
@@ -235,9 +240,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         if (takeInput) {
             // Don't take input while commands are running
             takeInput = false
-            
-            // Later, instead of accessing one of cmdHandler's helper methods,
-            // simply send a reset command
+			
 			resetLevelState()
             
             currentStep = 0

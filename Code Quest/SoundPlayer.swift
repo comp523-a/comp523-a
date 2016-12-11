@@ -24,6 +24,8 @@ let failSound = URL(fileURLWithPath: Bundle.main.path(forResource: "bumpo", ofTy
 /// Sound that plays when the level is cleared
 let cheerSound = URL(fileURLWithPath: Bundle.main.path(forResource: "cheer", ofType:"mp3")!);
 /// Audio player for sound effects
+let blastSound = URL(fileURLWithPath: Bundle.main.path(forResource: "lazar", ofType:"wav")!);
+/// Audio player for sound effects
 var audioPlayer = AVAudioPlayer()
 
 func playSound(sound: URL) {
