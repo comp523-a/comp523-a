@@ -44,8 +44,10 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 	/// The parent level table view controller
 	var parentLevelTableViewController : LevelTableViewController? = nil
 	var won : Bool = false
-	// List of breakable blocks that must be reset along with the level
+	/// List of breakable blocks that must be reset along with the level
 	var breakBlocks : [floorCell] = []
+	/// Number of pixels character should move/size of cells
+	static let moveInc = 90
 	
 	let music: URL = URL(fileURLWithPath: Bundle.main.path(forResource: "song", ofType:"wav")!);
 	var musicPlayer = AVAudioPlayer()
@@ -99,7 +101,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
                         default:
 							cell = floorCell(isWall: false)
                     }
-                    cell.frame = CGRect(x: 96*x, y: 64+96*y, width: 96, height: 96)
+                    cell.frame = CGRect(x: ViewController.moveInc*x, y: 64+ViewController.moveInc*y, width: ViewController.moveInc, height: ViewController.moveInc)
                     self.view.addSubview(cell)
 					self.tileArray[y].append(cell)  //Store gameCells in array for accessing
                 }
@@ -179,9 +181,9 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 	func getButtonInput(type:ButtonType) {
         if (takeInput) {
 			resetLevelState()
-            if (type.rawValue < 5 && commandQueue.count < 140) { // If command is to be added to queue and queue is not full
+            if (type.rawValue < 5 && commandQueue.count < 28) { // If command is to be added to queue and queue is not full
                 let tempCell = UIImageView(image: UIImage(named:imageNames[type.rawValue] + ".png"))
-                tempCell.frame = CGRect(x:70*commandQueue.count, y:512+84, width: 64, height:64)
+                tempCell.frame = CGRect(x:(70*commandQueue.count) % 980, y:526 + 70*(commandQueue.count/14), width: 64, height:64)
                 tempCell.isAccessibilityElement = true
                 tempCell.accessibilityTraits = UIAccessibilityTraitImage
                 tempCell.accessibilityLabel = imageNames[type.rawValue]
