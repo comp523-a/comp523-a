@@ -23,7 +23,7 @@ class GameScene : SKScene {
 		backgroundColor = SKColor.clear
 		player.position = getPlayerCoordinates()
 		addChild(player)
-		for i in 1...16 {
+		for i in 1...17 {
 			boomFrames.append(SKTexture(imageNamed: "boom (\(i)).png"))
 			boomFrames[i-1].preload(completionHandler: {})
 			print("boom (\(i)).png")
@@ -44,7 +44,7 @@ class GameScene : SKScene {
 	
 	///Maps level coordinates to screen coordinates
 	func mapToScreenCoordinates(newPos : (Int, Int)) -> CGPoint {
-		return CGPoint(x: ViewController.moveInc * newPos.0 + 50, y: Int(self.size.height) - (50 + 64 + ViewController.moveInc * newPos.1))
+		return CGPoint(x: ViewController.moveInc * newPos.0 + 45, y: Int(self.size.height) - (45 + 64 + ViewController.moveInc * newPos.1))
 	}
 	
 	///Updates the player's location in level coordinates
@@ -81,12 +81,14 @@ class GameScene : SKScene {
 	func kaboom (pos: (Int, Int)) {
 		let boomSound = SKAudioNode(fileNamed: "kaboom.wav")
 		boomSound.autoplayLooped = false
-		let kaboomo = SKSpriteNode(imageNamed: "boom (1).png")
+		let kaboomo = SKSpriteNode(imageNamed: "break_wall.png")
+		kaboomo.xScale = CGFloat(ViewController.moveInc) / kaboomo.size.width
+		kaboomo.yScale = CGFloat(ViewController.moveInc) / kaboomo.size.height
 		kaboomo.addChild(boomSound)
 		addChild(kaboomo)
 		kaboomo.position = mapToScreenCoordinates(newPos: pos)
 		kaboomo.run(SKAction.sequence([
-			SKAction.wait(forDuration: 0.25),
+			SKAction.wait(forDuration: 0.15),
 			SKAction.run {
 				boomSound.run(SKAction.play())
 			},

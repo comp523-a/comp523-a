@@ -118,8 +118,8 @@ class CommandHandler {
 			print(1)
 			if let loc = level[playerLoc.1][playerLoc.0 - 1] as? floorCell {
 				if(loc.isWall) {
-					loc.makeNotWall()
 					myGameScene.kaboom(pos: (playerLoc.0 - 1, playerLoc.1))
+					loc.makeNotWall()
 				}
 			}
 		}
@@ -127,8 +127,8 @@ class CommandHandler {
 			print(2)
 			if let loc = level[playerLoc.1][playerLoc.0 + 1] as? floorCell {
 				if(loc.isWall) {
-					loc.makeNotWall()
 					myGameScene.kaboom(pos: (playerLoc.0 + 1, playerLoc.1))
+					loc.makeNotWall()
 
 				}
 			}
@@ -137,8 +137,8 @@ class CommandHandler {
 			print(3)
 			if let loc = level[playerLoc.1 - 1][playerLoc.0] as? floorCell {
 				if(loc.isWall) {
-					loc.makeNotWall()
 					myGameScene.kaboom(pos: (playerLoc.0, playerLoc.1 - 1))
+					loc.makeNotWall()
 
 				}
 			}
@@ -147,8 +147,8 @@ class CommandHandler {
 			print(4)
 			if let loc = level[playerLoc.1 + 1][playerLoc.0] as? floorCell {
 				if(loc.isWall) {
-					loc.makeNotWall()
 					myGameScene.kaboom(pos: (playerLoc.0, playerLoc.1 + 1))
+					loc.makeNotWall()
 
 				}
 			}
