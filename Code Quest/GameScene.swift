@@ -16,6 +16,8 @@ class GameScene : SKScene {
 	///The player position in level coordinates
 	var playerPosition : (Int, Int) = (0,0)
 	var boomFrames = [SKTexture]()
+	var pewFrames = [SKTexture]()
+
 	
 	override func didMove(to view: SKView) {
 		backgroundColor = SKColor.clear
@@ -26,6 +28,13 @@ class GameScene : SKScene {
 			boomFrames[i-1].preload(completionHandler: {})
 			print("boom (\(i)).png")
 		}
+		for i in -2...0 {
+			pewFrames.append(SKTexture(imageNamed: "blast\(i).png"))
+			pewFrames[i+2].preload(completionHandler: {})
+		}
+		let blank = SKTexture(imageNamed: "blast5.png")
+		blank.preload(completionHandler: {})
+		pewFrames.append(blank)
 	}
 	
 	///Returns the player's screen coordinates based on their level coordinates
@@ -70,11 +79,30 @@ class GameScene : SKScene {
 	}
 	
 	func kaboom (pos: (Int, Int)) {
-		print("kabooming!")
-		print(boomFrames)
+		let boomSound = SKAudioNode(fileNamed: "kaboom.wav")
+		boomSound.autoplayLooped = false
 		let kaboomo = SKSpriteNode(imageNamed: "boom (1).png")
+		kaboomo.addChild(boomSound)
 		addChild(kaboomo)
 		kaboomo.position = mapToScreenCoordinates(newPos: pos)
-		kaboomo.run(SKAction.animate(with: boomFrames, timePerFrame: 0.0625))
+		kaboomo.run(SKAction.sequence([
+			SKAction.wait(forDuration: 0.25),
+			SKAction.run {
+				boomSound.run(SKAction.play())
+			},
+			SKAction.animate(with: boomFrames, timePerFrame: 0.0625)
+		]))
+	}
+	
+	func pewpew (pos: (Int, Int)) {
+		let pewSound = SKAudioNode(fileNamed: "lazar.wav")
+		pewSound.autoplayLooped = false
+		let pew = SKSpriteNode(imageNamed: "blast-2.png")
+		pew.addChild(pewSound)
+		addChild(pew)
+		pew.position = mapToScreenCoordinates(newPos: pos)
+		pew.run(SKAction.animate(with:pewFrames, timePerFrame:0.09))
+		pewSound.run(SKAction.play())
+		
 	}
 }
