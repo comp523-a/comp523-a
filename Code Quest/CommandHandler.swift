@@ -112,6 +112,7 @@ class CommandHandler {
 		print(level)
 		print(level.count)
 		print(level[0].count)
+		myGameScene.pewpew(pos: (playerLoc.0, playerLoc.1))
 		
 		if(playerLoc.0 > 0) {
 			print(1)
