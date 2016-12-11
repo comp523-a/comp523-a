@@ -272,7 +272,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 //			won = won || maybewon
 			if (moved) {
 				scene?.movePlayer(newPos: (cmdHandler?.playerLoc)!)
-			} else {
+			} else if commandQueue[currentStep] < 4{
 				scene?.tryToMoveTo(newPos: (cmdHandler?.newCoordsFromCommand(input: commandQueue[currentStep]))!)
 			}
 		}
