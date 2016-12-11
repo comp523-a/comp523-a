@@ -20,6 +20,7 @@
 		104E38761DCB2A6900D98EFA /* speech2.png in Resources */ = {isa = PBXBuildFile; fileRef = 104E38751DCB2A6900D98EFA /* speech2.png */; };
 		104E38781DCB301A00D98EFA /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104E38771DCB301A00D98EFA /* GameScene.swift */; };
 		1078D2871DDD6B7600C681AA /* Maze.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1078D2861DDD6B7600C681AA /* Maze.swift */; };
+		107E59FF1DFD60CF00008649 /* player_sad.png in Resources */ = {isa = PBXBuildFile; fileRef = 107E59FE1DFD60CF00008649 /* player_sad.png */; };
 		108FBD241D9CA6A200043A08 /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108FBD231D9CA6A200043A08 /* Input.swift */; };
 		10A03EB21DC1EA6B004F7ABB /* cheer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 10A03EB11DC1EA6B004F7ABB /* cheer.mp3 */; };
 		10A03EB81DC1F34E004F7ABB /* bump.wav in Resources */ = {isa = PBXBuildFile; fileRef = 10A03EB31DC1F34E004F7ABB /* bump.wav */; };
@@ -116,6 +117,7 @@
 		104E38751DCB2A6900D98EFA /* speech2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speech2.png; sourceTree = "<group>"; };
 		104E38771DCB301A00D98EFA /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		1078D2861DDD6B7600C681AA /* Maze.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Maze.swift; path = ../Maze.swift; sourceTree = "<group>"; };
+		107E59FE1DFD60CF00008649 /* player_sad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_sad.png; sourceTree = "<group>"; };
 		108FBD231D9CA6A200043A08 /* Input.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
 		10A03EB11DC1EA6B004F7ABB /* cheer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cheer.mp3; sourceTree = "<group>"; };
 		10A03EB31DC1F34E004F7ABB /* bump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bump.wav; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				3A2627B91DFCFDF800278A96 /* player_app_icon.png */,
+				107E59FE1DFD60CF00008649 /* player_sad.png */,
 				3A2627BA1DFCFDF800278A96 /* player_smaller.png */,
 				3AF861EC1DFCCAD90050F7FA /* break_wall.png */,
 				3AF861ED1DFCCAD90050F7FA /* fuel_grid.png */,
@@ -445,6 +448,7 @@
 				10A03EB81DC1F34E004F7ABB /* bump.wav in Resources */,
 				10DD33951DFCD9B2008DF59A /* lazar.wav in Resources */,
 				3A0D94101DE010DE0086C239 /* erase1.png in Resources */,
+				107E59FF1DFD60CF00008649 /* player_sad.png in Resources */,
 				3A0D94151DE010DE0086C239 /* queuesound.png in Resources */,
 				10DD338B1DFCD2FB008DF59A /* blast-2.png in Resources */,
 				3A0D94111DE010DE0086C239 /* eraseall.png in Resources */,

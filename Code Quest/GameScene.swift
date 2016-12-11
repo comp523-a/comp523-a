@@ -12,7 +12,7 @@ import SpriteKit
 ///The SpriteKit overlay that handles player movement
 class GameScene : SKScene {
 	///The player sprite
-	let player = SKSpriteNode(imageNamed: "pt")
+	let player = SKSpriteNode(texture: SKTexture(imageNamed: "pt"))
 	///The player position in level coordinates
 	var playerPosition : (Int, Int) = (0,0)
 	var boomFrames = [SKTexture]()
@@ -55,6 +55,11 @@ class GameScene : SKScene {
 	
 	///Updates the player's location in level coordinates
 	func movePlayer(newPos : (Int, Int)) {
+		if newPos.0 < playerPosition.0 {
+			player.xScale = -1
+		} else if newPos.0 > playerPosition.0 {
+			player.xScale = 1
+		}
 		playerPosition = newPos
 		let playerMove = SKAction.move(to: getPlayerCoordinates(), duration: 0.15)
 		print(newPos)
@@ -67,10 +72,21 @@ class GameScene : SKScene {
 	func setPlayerPos(newPos: (Int, Int)) {
 		playerPosition = newPos
 		player.position = getPlayerCoordinates()
+		player.xScale = 1
 	}
 	
 	///Moves the player towards the specified level coordinates, playing the bonk animation instead. 
 	func tryToMoveTo(newPos: (Int, Int)) {
+		let beSad = SKAction.setTexture(SKTexture(imageNamed: "ps"))
+		let beHappy = SKAction.setTexture(SKTexture(imageNamed: "pt"))
+		var scalo = SKAction.wait(forDuration: 0)
+		if newPos.0 < playerPosition.0 {
+			player.xScale = -1
+			scalo = SKAction.scaleX(to: 1, duration: 0)
+		} else if newPos.0 > playerPosition.0 {
+			player.xScale = 1
+			scalo = SKAction.scaleX(to: -1, duration: 0)
+		}
 		let oldPos = getPlayerCoordinates()
 		let theNewPos = mapToScreenCoordinates(newPos: newPos)
 		let moveVector =  CGVector(dx: theNewPos.x - oldPos.x, dy: theNewPos.y - oldPos.y)
@@ -78,7 +94,8 @@ class GameScene : SKScene {
 		let moveVector2 = CGVector(dx: moveVector.dx * -0.3, dy: moveVector.dy*(-0.3))
 		let move1 = SKAction.move(by: moveVector1, duration: 0.1)
 		let move2 = SKAction.move(by: moveVector2, duration: 0.1)
-		let moveSequence = SKAction.sequence([move1, move2])
+		let waito = SKAction.wait(forDuration: 0.25)
+		let moveSequence = SKAction.sequence([move1, beSad, scalo, move2, waito, beHappy])
 		player.run(moveSequence)
 		
 		
