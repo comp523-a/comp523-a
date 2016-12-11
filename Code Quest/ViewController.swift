@@ -50,6 +50,10 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 	var fuelCells : [floorCell] = []
 	/// Number of pixels character should move/size of cells
 	static let moveInc = 90
+	/// Original width used
+	static let origW = CGFloat(1024)
+	/// Original height used
+	static let origH = CGFloat(768)
 	/// Boolean tracks whether the player is currently on the goal
 	var onShip : Bool = false
 	
@@ -62,7 +66,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     
 	/// Controls game logic
     override func viewDidLoad() {
-        
+		
         self.view.backgroundColor = UIColor(red: 27.0/256.0, green: 40.0/256.0, blue: 54.0/256.0, alpha: 1.0)
         
         super.viewDidLoad()
@@ -106,7 +110,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
                         default:
 							cell = floorCell(isWall: false, isFuel: false)
                     }
-                    cell.frame = CGRect(x: ViewController.moveInc*x, y: 64+ViewController.moveInc*y, width: ViewController.moveInc, height: ViewController.moveInc)
+					cell.frame = CGRect(x: ViewController.scaleDims(input: ViewController.moveInc*x, x: true), y: ViewController.scaleDims(input: 64+ViewController.moveInc*y, x: false), width: ViewController.scaleDims(input: ViewController.moveInc, x: true), height: ViewController.scaleDims(input: ViewController.moveInc, x: false))
                     self.view.addSubview(cell)
 					self.tileArray[y].append(cell)  //Store gameCells in array for accessing
                 }
@@ -170,6 +174,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 		scene?.setPlayerPos(newPos: level!.startingLoc)
 		cmdHandler?.setPlayerLoc(newCoords: level!.startingLoc)
 		cmdHandler?.resetGoal(coords: level!.goalLoc)
+		cmdHandler?.onGoal = false
 		for cell in breakBlocks {
 			cell.makeWall()
 		}
@@ -190,7 +195,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         if (takeInput) {
             if (type.rawValue < 5 && commandQueue.count < 28) { // If command is to be added to queue and queue is not full
                 let tempCell = UIImageView(image: UIImage(named:imageNames[type.rawValue] + ".png"))
-                tempCell.frame = CGRect(x:(70*commandQueue.count) % 980, y:526 + 70*(commandQueue.count/14), width: 64, height:64)
+				tempCell.frame = CGRect(x: ViewController.scaleDims(input: (70*commandQueue.count) % 980, x: true), y: ViewController.scaleDims(input: 526 + 70*(commandQueue.count/14), x: false), width: ViewController.scaleDims(input:64, x: true), height: ViewController.scaleDims(input: 64, x: false))
                 tempCell.isAccessibilityElement = true
                 tempCell.accessibilityTraits = UIAccessibilityTraitImage
                 tempCell.accessibilityLabel = imageNames[type.rawValue]
@@ -333,6 +338,14 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 			tickTimer.invalidate()
 			takeInput = true
 		}
+	}
+	
+	///Scales pixel values to be relative to the resolution of the device
+	static func scaleDims(input : Int, x : Bool) -> Int {
+		let height = (UIScreen.main.bounds.height)
+		let width = (UIScreen.main.bounds.width)
+		let finput : CGFloat = CGFloat(input)
+		return (x) ? Int(finput / ViewController.origW * width) : Int(finput / ViewController.origH * height)
 	}
 }
 

@@ -26,7 +26,7 @@ class CommandView: UIView {
 		for i in 0..<num_command_buttons {
 			// Separate the first num_queue_buttons from the others with some empty space
 			let xcoord = (i < num_queue_buttons) ? 100*i : 100*i + 50
-			let command = Input(type: ButtonType(rawValue : i)!, frame: CGRect(x: xcoord, y: 0, width: 96, height: 96));
+			let command = Input(type: ButtonType(rawValue : i)!, frame: CGRect(x: ViewController.scaleDims(input: xcoord, x: true), y: ViewController.scaleDims(input: 0, x: false), width: ViewController.scaleDims(input: 96, x: true), height: ViewController.scaleDims(input: 96, x: false)));
 			//command.backgroundColor = UIColor.cyan
 			
 			//command.addTarget(self, action: #selector(CommandView.commandTapped(_:)), for: .Touchdown)
