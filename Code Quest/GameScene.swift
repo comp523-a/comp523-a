@@ -17,12 +17,18 @@ class GameScene : SKScene {
 	var playerPosition : (Int, Int) = (0,0)
 	var boomFrames = [SKTexture]()
 	var pewFrames = [SKTexture]()
-
+	var boomSound = SKAudioNode(fileNamed: "kaboom.wav")
+	var pewSound = SKAudioNode(fileNamed: "lazar.wav")
 	
 	override func didMove(to view: SKView) {
+		boomSound.autoplayLooped = false
+		pewSound.autoplayLooped = false
 		backgroundColor = SKColor.clear
 		player.position = getPlayerCoordinates()
 		addChild(player)
+		addChild(boomSound)
+		addChild(pewSound)
+		self.listener = player
 		for i in 1...17 {
 			boomFrames.append(SKTexture(imageNamed: "boom (\(i)).png"))
 			boomFrames[i-1].preload(completionHandler: {})
@@ -79,32 +85,38 @@ class GameScene : SKScene {
 	}
 	
 	func kaboom (pos: (Int, Int)) {
-		let boomSound = SKAudioNode(fileNamed: "kaboom.wav")
-		boomSound.autoplayLooped = false
 		let kaboomo = SKSpriteNode(imageNamed: "break_wall.png")
 		kaboomo.xScale = CGFloat(ViewController.moveInc) / kaboomo.size.width
 		kaboomo.yScale = CGFloat(ViewController.moveInc) / kaboomo.size.height
-		kaboomo.addChild(boomSound)
+		
 		addChild(kaboomo)
 		kaboomo.position = mapToScreenCoordinates(newPos: pos)
+		boomSound.position = kaboomo.position
 		kaboomo.run(SKAction.sequence([
 			SKAction.wait(forDuration: 0.15),
-			SKAction.run {
-				boomSound.run(SKAction.play())
-			},
-			SKAction.animate(with: boomFrames, timePerFrame: 0.0625)
+			SKAction.animate(with: boomFrames, timePerFrame: 0.0625),
+			SKAction.wait(forDuration: 1),
+			SKAction.removeFromParent()
 		]))
+		boomSound.run(SKAction.sequence([
+				SKAction.wait(forDuration: 0.15),
+				SKAction.play()
+		]))
+		
 	}
 	
 	func pewpew (pos: (Int, Int)) {
-		let pewSound = SKAudioNode(fileNamed: "lazar.wav")
-		pewSound.autoplayLooped = false
 		let pew = SKSpriteNode(imageNamed: "blast-2.png")
-		pew.addChild(pewSound)
 		addChild(pew)
 		pew.position = mapToScreenCoordinates(newPos: pos)
-		pew.run(SKAction.animate(with:pewFrames, timePerFrame:0.09))
+		pewSound.position = pew.position
 		pewSound.run(SKAction.play())
+		pew.run(SKAction.sequence([
+			SKAction.animate(with:pewFrames, timePerFrame:0.09),
+			SKAction.wait(forDuration: 1),
+			SKAction.removeFromParent()
+		]))
+		
 		
 	}
 }
