@@ -44,7 +44,9 @@ class GameScene : SKScene {
 	
 	///Maps level coordinates to screen coordinates
 	func mapToScreenCoordinates(newPos : (Int, Int)) -> CGPoint {
-		return CGPoint(x: ViewController.scaleDims(input: ViewController.moveInc * newPos.0 + 50, x: true), y: ViewController.scaleDims(input: Int(self.size.height) - (50 + 64 + ViewController.moveInc * newPos.1), x: false))
+		//return CGPoint(x: ViewController.scaleDims(input: ViewController.moveInc * newPos.0 + 50, x: true), y: ViewController.scaleDims(input: Int(self.size.height) - (50 + 64 + ViewController.moveInc * newPos.1), x: false))
+		return CGPoint(x: ViewController.scaleDims(input: ViewController.moveInc * newPos.0 + 50, x: true) , y: Int(self.size.height) -  (ViewController.scaleDims(input: 50 + 64 + ViewController.moveInc * newPos.1, x: false)))
+
 	}
 	
 	///Updates the player's location in level coordinates
