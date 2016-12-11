@@ -33,17 +33,17 @@ class LevelTutorialViewController: UIViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-		self.preferredContentSize = CGSize(width: 1000, height: 600)
-		let backgroundImage = UIImageView(frame:CGRect(x:0, y:0, width:1000, height:600))
+		self.preferredContentSize = CGSize(width: ViewController.scaleDims(input:1000, x: true), height: ViewController.scaleDims(input: 600, x: false))
+		let backgroundImage = UIImageView(frame:CGRect(x: ViewController.scaleDims(input: 0, x: true), y: ViewController.scaleDims(input: 0, x: false), width: ViewController.scaleDims(input: 1000, x: true), height: ViewController.scaleDims(input: 600, x: false)))
 		backgroundImage.image = UIImage(named: background)
 		self.view.insertSubview(backgroundImage, at: 0)
 		let button = UIButton(type:.system)
-		button.frame = CGRect(x:750, y:450, width:200, height:100)
+		button.frame = CGRect(x: ViewController.scaleDims(input: 750, x: true), y: ViewController.scaleDims(input: 450, x: false), width: ViewController.scaleDims(input: 200, x: true), height: ViewController.scaleDims(input: 100, x: false))
 		button.setTitle("Start Level", for: UIControlState.normal)
 		button.titleLabel!.font = button.titleLabel!.font.withSize(30)
 		button.addTarget(self, action: #selector(LevelTutorialViewController.start), for: UIControlEvents.touchUpInside)
 		self.view.addSubview(button)
-		let label = UILabel(frame:CGRect(x:300,y:30,width:550,height:400))
+		let label = UILabel(frame:CGRect(x: ViewController.scaleDims(input: 300, x: true),y: ViewController.scaleDims(input: 30, x: false),width: ViewController.scaleDims(input: 550, x: true), height: ViewController.scaleDims(input: 400, x: false)))
 		//label.center = CGPoint(x:160, y:284)
 		label.backgroundColor = .clear
 		label.numberOfLines = 0
