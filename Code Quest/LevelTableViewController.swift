@@ -13,7 +13,7 @@ class LevelTableViewController: UITableViewController {
 	
 	///Array of level objects
     var levels = [Level]()
-
+	var defaults = UserDefaults.standard
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +25,9 @@ class LevelTableViewController: UITableViewController {
 		} else {
 			loadDefaultLevels()
 		}
-		
+		if defaults.object(forKey: "musicVolume") != nil {
+			musicVolume = defaults.float(forKey: "musicVolume")
+		}
 		
     }
 	
@@ -170,6 +172,19 @@ class LevelTableViewController: UITableViewController {
 	}
 
 	@IBAction func AddButton(_ sender: AnyObject) {
+		let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+		let vc = storyboard.instantiateViewController(withIdentifier: "settings") as! settingsTableViewController
+		vc.modalPresentationStyle = UIModalPresentationStyle.popover
+		vc.parentTableView = self
+		let popover: UIPopoverPresentationController = vc.popoverPresentationController!
+		popover.barButtonItem = (sender as! UIBarButtonItem)
+		present(vc, animated: true, completion: nil)
+		
+		
+
+	}
+	
+	func newMaze () {
 		let levelName = "Extra \(levels.count + 1)"
 		let tutorialText = "Solve Mr Maze's confounding maze!"
 		let newIndexPath = NSIndexPath(row: levels.count, section:0)

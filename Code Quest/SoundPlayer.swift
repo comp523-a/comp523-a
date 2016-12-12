@@ -9,6 +9,8 @@
 import Foundation
 import AVFoundation
 
+var musicVolume : Float = 1.0
+
 /// Sound that plays when moving left
 let leftSound = URL(fileURLWithPath: Bundle.main.path(forResource: "left", ofType:"wav")!);
 /// Sound that plays when moving right
@@ -31,6 +33,7 @@ var audioPlayer = AVAudioPlayer()
 func playSound(sound: URL) {
 	do {
 		try audioPlayer = AVAudioPlayer(contentsOf: sound)
+		audioPlayer.volume = 0.4
 		audioPlayer.prepareToPlay()
 		audioPlayer.play()
 

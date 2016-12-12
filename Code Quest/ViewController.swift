@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import SpriteKit
+import Darwin
 
 let imageNames = ["left", "up", "down", "right", "blast_button"]
 let commandSounds = [leftSound, rightSound, upSound, downSound, blastSound]
@@ -58,9 +59,9 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 	var onShip : Bool = false
 	var aboutToWin : Bool = false
 	
-	let music: URL = URL(fileURLWithPath: Bundle.main.path(forResource: "song", ofType:"wav")!);
+	let music: URL = URL(fileURLWithPath: Bundle.main.path(forResource: "song", ofType:"aif")!);
 	var musicPlayer = AVAudioPlayer()
-	let drum = URL(fileURLWithPath: Bundle.main.path(forResource: "drum", ofType:"wav")!);
+	let drum = URL(fileURLWithPath: Bundle.main.path(forResource: "drum", ofType:"aif")!);
 	var drumPlayer = AVAudioPlayer()
 	
 
@@ -76,7 +77,9 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 			try drumPlayer = AVAudioPlayer(contentsOf: drum)
 			musicPlayer.numberOfLoops = -1
 			drumPlayer.numberOfLoops = -1
-			musicPlayer.volume = 0.6
+			musicPlayer.volume = 1.0 * musicVolume
+			
+			
 			drumPlayer.volume = 0
 			let sdelay : TimeInterval = 0.1
 			let now = musicPlayer.deviceCurrentTime
@@ -233,7 +236,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 				} else if (type == ButtonType.QUEUESOUND) {
 					takeInput = false
 					currentStep = 0
-					tickTimer = Timer.scheduledTimer(timeInterval: 0.5, target:self,
+					tickTimer = Timer.scheduledTimer(timeInterval: 0.25, target:self,
 						selector:#selector(ViewController.runQueueSounds),
 						userInfo:nil, repeats: true)
 				}
@@ -251,13 +254,13 @@ class ViewController: UIViewController, UICollectionViewDelegate {
             
             currentStep = 0
 //			won = false
-            tickTimer = Timer.scheduledTimer(timeInterval: 0.5, target:self, selector:#selector(ViewController.runCommands), userInfo:nil, repeats: true)
+            tickTimer = Timer.scheduledTimer(timeInterval: 0.4054, target:self, selector:#selector(ViewController.runCommands), userInfo:nil, repeats: true)
         }
     }
 	
 	/// Executes one step of the game loop
 	func runCommands() {
-		musicPlayer.volume = 0.1
+		musicPlayer.volume = 0.1 * musicVolume
 		
 		var moved = false
 		if (currentStep != 0 && !aboutToWin) {
@@ -291,17 +294,17 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 				aboutToWin = true
 				return
 			} else {
-				musicPlayer.volume = 0.6
+				musicPlayer.volume = 1.0 * musicVolume
 			}
 			tickTimer.invalidate()
 			takeInput = true
 		}
 		
 		if aboutToWin {
-			musicPlayer.volume = 1
+			musicPlayer.volume = 1.0 * musicVolume
 			playSound(sound: cheerSound)
 			let alert = UIAlertController(title: "You win!", message: "You took \(commandQueue.count) steps", preferredStyle: UIAlertControllerStyle.alert)
-			alert.addAction(UIAlertAction(title: "Yay!", style: UIAlertActionStyle.default, handler: {(action: UIAlertAction!) in self.musicPlayer.volume = 0.6}))
+			alert.addAction(UIAlertAction(title: "Yay!", style: UIAlertActionStyle.default, handler: {(action: UIAlertAction!) in self.musicPlayer.volume = 1.0 * musicVolume}))
 			self.present(alert, animated: true, completion: nil)
 			if !level!.cleared {
 				level!.cleared = true
