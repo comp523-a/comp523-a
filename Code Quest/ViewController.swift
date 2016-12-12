@@ -303,15 +303,17 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 		if aboutToWin {
 			musicPlayer.volume = 1.0 * musicVolume
 			playSound(sound: cheerSound)
-			let alert = UIAlertController(title: "You win!", message: "You took \(commandQueue.count) steps", preferredStyle: UIAlertControllerStyle.alert)
-			alert.addAction(UIAlertAction(title: "Yay!", style: UIAlertActionStyle.default, handler: {(action: UIAlertAction!) in self.musicPlayer.volume = 1.0 * musicVolume}))
-			self.present(alert, animated: true, completion: nil)
+			
 			if !level!.cleared {
 				level!.cleared = true
 				level!.highscore = commandQueue.count
 			} else if commandQueue.count < level!.highscore {
 				level!.highscore = commandQueue.count
 			}
+			let alert = UIAlertController(title: "You win!", message: "You took \(commandQueue.count) steps. Your best score is \(level!.highscore).", preferredStyle: UIAlertControllerStyle.alert)
+			alert.addAction(UIAlertAction(title: "Yay!", style: UIAlertActionStyle.default, handler: {(action: UIAlertAction!) in self.musicPlayer.volume = 1.0 * musicVolume}))
+			self.present(alert, animated: true, completion: nil)
+
 			if let selectedIndexPath = parentLevelTableViewController?.tableView.indexPathForSelectedRow{
 				parentLevelTableViewController?.levels[selectedIndexPath.row] = level!
 				parentLevelTableViewController?.saveLevels()
