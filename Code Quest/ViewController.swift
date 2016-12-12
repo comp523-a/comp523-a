@@ -11,7 +11,7 @@ import AVFoundation
 import SpriteKit
 
 let imageNames = ["left", "up", "down", "right", "blast_button"]
-let commandSounds = [leftSound, upSound, downSound, rightSound, blastSound]
+let commandSounds = [leftSound, rightSound, upSound, downSound, blastSound]
 
 /// Primary game controller. Contains most game state information
 class ViewController: UIViewController, UICollectionViewDelegate {

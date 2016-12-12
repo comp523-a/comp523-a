@@ -20,6 +20,7 @@ class floorCell: gameCell {
 	var isWall: Bool
 	/// Indicated whether or not the cell is fuel
 	var isFuel: Bool
+	var wasGoal: Bool = false
 	
 	init(isWall: Bool, isFuel: Bool) {
 		self.isWall = isWall
@@ -50,13 +51,18 @@ class floorCell: gameCell {
 	///Changes image and VoiceOver label to floor
 	func makeNotPlayer() {
 		isPlayer = false
-		self.image = UIImage(named:"grid.png")
-		self.accessibilityLabel = "Empty"
+		if wasGoal {
+			self.makeGoal()
+		} else {
+			self.image = UIImage(named:"grid.png")
+			self.accessibilityLabel = "Empty"
+		}
 	}
 	
 	///Changes image and VoiceOver label to goal
 	func makeGoal() {
 		isGoal = true
+		wasGoal = true
 		self.image = UIImage(named:"ship_grid.png")
 		self.accessibilityLabel = "Ship"
 	}
