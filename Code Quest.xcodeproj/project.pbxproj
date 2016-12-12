@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10099F661DFEA3F000D32A27 /* cheer.wav in Resources */ = {isa = PBXBuildFile; fileRef = 10099F651DFEA3F000D32A27 /* cheer.wav */; };
 		100C58D41D9C4937004EE1B2 /* CommandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100C58D31D9C4937004EE1B2 /* CommandView.swift */; };
 		103733491D921F86006B5B0B /* gameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103733481D921F86006B5B0B /* gameCell.swift */; };
 		103B182D1D923D9400BD00CE /* goal.png in Resources */ = {isa = PBXBuildFile; fileRef = 103B182C1D923D9400BD00CE /* goal.png */; };
@@ -104,6 +105,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		10099F651DFEA3F000D32A27 /* cheer.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cheer.wav; sourceTree = "<group>"; };
 		100C58D31D9C4937004EE1B2 /* CommandView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandView.swift; sourceTree = "<group>"; };
 		103733481D921F86006B5B0B /* gameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = gameCell.swift; sourceTree = "<group>"; };
 		103B182C1D923D9400BD00CE /* goal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goal.png; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				103DDD4A1DC1F86A00086960 /* right.wav */,
 				103DDD4B1DC1F86A00086960 /* up.wav */,
 				10A03EBD1DC1F419004F7ABB /* down.wav */,
+				10099F651DFEA3F000D32A27 /* cheer.wav */,
 				103DDD4E1DC1F8A000086960 /* left.wav */,
 				104E386B1DCB09A200D98EFA /* bumpo.wav */,
 				10B20FD21D909BD200142CAE /* AppDelegate.swift */,
@@ -429,6 +432,7 @@
 				10DD337A1DFCC282008DF59A /* boom (9).png in Resources */,
 				3AF861DF1DFC978B0050F7FA /* ship_grid.png in Resources */,
 				10DD33761DFCC282008DF59A /* boom (5).png in Resources */,
+				10099F661DFEA3F000D32A27 /* cheer.wav in Resources */,
 				10DD33901DFCD2FB008DF59A /* blast4.png in Resources */,
 				10DD33751DFCC282008DF59A /* boom (4).png in Resources */,
 				10DD33721DFCC282008DF59A /* boom (1).png in Resources */,

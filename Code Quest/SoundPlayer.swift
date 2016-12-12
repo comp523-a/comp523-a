@@ -22,7 +22,7 @@ let bumpSound = URL(fileURLWithPath: Bundle.main.path(forResource: "bump", ofTyp
 /// Sound that plays when command queue is full
 let failSound = URL(fileURLWithPath: Bundle.main.path(forResource: "bumpo", ofType:"wav")!);
 /// Sound that plays when the level is cleared
-let cheerSound = URL(fileURLWithPath: Bundle.main.path(forResource: "cheer", ofType:"mp3")!);
+let cheerSound = URL(fileURLWithPath: Bundle.main.path(forResource: "cheer", ofType:"wav")!);
 /// Audio player for sound effects
 let blastSound = URL(fileURLWithPath: Bundle.main.path(forResource: "lazar", ofType:"wav")!);
 /// Audio player for sound effects
@@ -33,6 +33,7 @@ func playSound(sound: URL) {
 		try audioPlayer = AVAudioPlayer(contentsOf: sound)
 		audioPlayer.prepareToPlay()
 		audioPlayer.play()
+
 	} catch{
 		print ("Failed to play sound: \(sound)")
 	}

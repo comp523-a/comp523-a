@@ -56,6 +56,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 	static let origH = CGFloat(768)
 	/// Boolean tracks whether the player is currently on the goal
 	var onShip : Bool = false
+	var aboutToWin : Bool = false
 	
 	let music: URL = URL(fileURLWithPath: Bundle.main.path(forResource: "song", ofType:"wav")!);
 	var musicPlayer = AVAudioPlayer()
@@ -259,11 +260,12 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 		musicPlayer.volume = 0.1
 		
 		var moved = false
-		if (currentStep != 0) {
+		if (currentStep != 0 && !aboutToWin) {
 			commandQueueViews[currentStep-1].frame.origin.y += 10
 		}
-		if currentStep < commandQueue.count {
-			if (currentStep < (commandQueue.count - 1) ) {
+
+		if currentStep < commandQueue.count && !aboutToWin {
+			if (currentStep < (commandQueue.count - 1)) {
 				commandQueueViews[currentStep].frame.origin.y -= 10
 			}
 //			var maybewon: Bool
@@ -275,38 +277,52 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 			} else if commandQueue[currentStep] < 4{
 				scene?.tryToMoveTo(newPos: (cmdHandler?.newCoordsFromCommand(input: commandQueue[currentStep]))!)
 			}
+			
 		}
 		currentStep += 1
-		if currentStep >= commandQueue.count {
-			tickTimer.invalidate()
+		if currentStep >= commandQueue.count && !aboutToWin{
             
             // All commands run, ready to take input again
-            takeInput = true
+			
 			
 			let won = checkWin()
 			
 			if (won) {
-				musicPlayer.volume = 1
-				playSound(sound: cheerSound)
-				let alert = UIAlertController(title: "You win!", message: "You took \(commandQueue.count) steps", preferredStyle: UIAlertControllerStyle.alert)
-				alert.addAction(UIAlertAction(title: "Yay!", style: UIAlertActionStyle.default, handler: {(action: UIAlertAction!) in self.musicPlayer.volume = 0.6}))
-				self.present(alert, animated: true, completion: nil)
-				if !level!.cleared {
-					level!.cleared = true
-					level!.highscore = commandQueue.count
-				} else if commandQueue.count < level!.highscore {
-					level!.highscore = commandQueue.count
-				}
-				if let selectedIndexPath = parentLevelTableViewController?.tableView.indexPathForSelectedRow{
-					parentLevelTableViewController?.levels[selectedIndexPath.row] = level!
-					parentLevelTableViewController?.saveLevels()
-					parentLevelTableViewController?.tableView.reloadRows(at: [selectedIndexPath], with:.none)
-				}
+				aboutToWin = true
+				return
 			} else {
 				musicPlayer.volume = 0.6
 			}
+			tickTimer.invalidate()
+			takeInput = true
 		}
 		
+		if aboutToWin {
+			musicPlayer.volume = 1
+			playSound(sound: cheerSound)
+			let alert = UIAlertController(title: "You win!", message: "You took \(commandQueue.count) steps", preferredStyle: UIAlertControllerStyle.alert)
+			alert.addAction(UIAlertAction(title: "Yay!", style: UIAlertActionStyle.default, handler: {(action: UIAlertAction!) in self.musicPlayer.volume = 0.6}))
+			self.present(alert, animated: true, completion: nil)
+			if !level!.cleared {
+				level!.cleared = true
+				level!.highscore = commandQueue.count
+			} else if commandQueue.count < level!.highscore {
+				level!.highscore = commandQueue.count
+			}
+			if let selectedIndexPath = parentLevelTableViewController?.tableView.indexPathForSelectedRow{
+				parentLevelTableViewController?.levels[selectedIndexPath.row] = level!
+				parentLevelTableViewController?.saveLevels()
+				parentLevelTableViewController?.tableView.reloadRows(at: [selectedIndexPath], with:.none)
+			}
+			aboutToWin = false
+			tickTimer.invalidate()
+			takeInput = true
+		}
+		
+		
+	}
+	
+	func win() {
 		
 	}
 	
