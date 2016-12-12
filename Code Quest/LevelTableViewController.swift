@@ -151,16 +151,31 @@ class LevelTableViewController: UITableViewController {
 		let levelY = maze.data.count
 		let levelX = maze.data[0].count
 		var levelData =  [[Int]](repeating: [Int](repeating:0, count:levelX - 4), count: levelY - 4)
+		let newtutorial : String
+		var fuelCount = 0
 		print(maze.data)
 		for i in 2 ..< (levelY - 2) {
 			for j in 2 ..< (levelX - 2) {
 				
-				let thisCell = maze.data[i][j] == Maze.Cell.Wall ? 2 : 1
+				var thisCell = maze.data[i][j] == Maze.Cell.Wall ? 2 : 1
+				if !(i == 2 && j == (2)) && !(i == (levelY-3) && (j == (levelX-3))) && thisCell == 1 {
+					if arc4random_uniform(100) < 3 {
+						thisCell = 4
+						fuelCount += 1
+					} else if arc4random_uniform(100) < 10 {
+						thisCell = 3
+					}
+				}
 				levelData[i - 2][j - 2] = thisCell
 			}
 		}
 		print(levelData)
-		return Level(name: name, data: levelData, startingLoc:(0,0), goalLoc: (levelX-5, levelY-5), tutorial: tutorial)
+		if fuelCount != 0 {
+			newtutorial = tutorial + " There are \(fuelCount) fuel cans to collect."
+		} else {
+			newtutorial = tutorial
+		}
+		return Level(name: name, data: levelData, startingLoc:(0,0), goalLoc: (levelX-5, levelY-5), tutorial: newtutorial)
 	}
 	
 	///Generates a random level
