@@ -58,7 +58,7 @@ class LevelTutorialViewController: UIViewController {
 
 	func start() {
 		self.dismiss(animated: true, completion: {});
-		myParent?.drumPlayer.volume = 1
+		myParent?.drumPlayer.volume = 1.0 * musicVolume
 	}
 	
     override func didReceiveMemoryWarning() {
